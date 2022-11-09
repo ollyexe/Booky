@@ -23,37 +23,37 @@
 - [ ] RootPage
  - [ ] Custom NavigationBar
 - [ ] HomePage
- - [X] AppBar 
- - [ ] Next lessons form
+  - [X] AppBar 
+  - [ ] Next lessons form
 - [ ] Cart
 - [ ] My Calendar
- - [X] Custom Calendar
- - [ ] Next lessons form
+  - [X] Custom Calendar
+  - [ ] Next lessons form
 - [ ] Orders & Returns
- - [ ] Last lessons form
+  - [ ] Last lessons form
 - [ ] My Profile
   - [ ] Form with data
   - [ ] Change data
   - [ ] Change profile picture
 - [ ] Search by Professor
- - [ ] Professor form(data + stars)
+  - [ ] Professor form(data + stars)
 - [ ] Search by Subject
 - [ ] Settings
- - [ ] Notifications
- - [ ] Theme
-  - [ ] Dark Theme
-  - [ ] Colorblind Theme
- - [ ] Privacy e Security
-  - [ ] Facial Recognition
-  - [ ] Fingerprint Recognition
- - [ ] Help
-  - [ ] Contact Us
+  - [ ] Notifications
+  - [ ] Theme
+    - [ ] Dark Theme
+    - [ ] Colorblind Theme
+  - [ ] Privacy e Security
+    - [ ] Facial Recognition
+    - [ ] Fingerprint Recognition
+  - [ ] Help
+    - [ ] Contact Us
   
 ### Back END
 
 - [X] Database
 - [ ] DAO
- - [ ] C.R.U.D operations
+  - [ ] C.R.U.D operations
 - [ ] API
- - [ ] Validators & Controllers (Dart) 
- - [ ] JSON convertion from C.R.U.D
+  - [ ] Validators & Controllers (Dart) 
+  - [ ] JSON convertion from C.R.U.D
