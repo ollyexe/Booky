@@ -21,7 +21,7 @@
 
 - [ ] Routes
 - [ ] RootPage
- - [ ] Custom NavigationBar
+  - [ ] Custom NavigationBar
 - [ ] HomePage
   - [X] AppBar 
   - [ ] Next lessons form
@@ -56,4 +56,4 @@
   - [ ] C.R.U.D operations
 - [ ] API
   - [ ] Validators & Controllers (Dart) 
-  - [ ] JSON convertion from C.R.U.D
+  - [ ] JSON conversion from C.R.U.D
