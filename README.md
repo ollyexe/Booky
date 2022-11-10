@@ -6,7 +6,7 @@
 
 ## Good Practices
 ### Comments
-- Use doxygen comments 
+- Use doxygen-like comments
 
 ### Functions / Classes
 - Use camelCase syntax
