@@ -29,10 +29,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  get:
   http:
   table_calendar:
   animated_bottom_navigation_bar:
+  auto_size_text:
   flutter:
     sdk: flutter
 

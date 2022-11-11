@@ -1,10 +1,15 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+/* External Libraries imports  */
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:progettoium/NavigationBar/Calendar.dart';
-import 'package:progettoium/NavigationBar/HomePage.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+
+/* Utilities imports */
 import 'package:progettoium/Utilities/SingleLecture.dart';
 
+/* Navigation Bar imports */
+import 'NavigationBar/Calendar.dart';
 import 'NavigationBar/Cart.dart';
+import 'NavigationBar/Homepage/HomePage.dart';
 import 'NavigationBar/MyProfile.dart';
 import 'NavigationBar/Orders.dart';
 
@@ -34,36 +39,88 @@ class Root extends StatefulWidget {
 }
 
 class _RootState extends State<Root> {
+  final autoSizeGroup = AutoSizeGroup();
   var index=0;
+
   List<Widget> screens = [
     const HomePage(),
     const Calendar(),
-    const Cart(),
     const Orders(),
     const MyProfile(),
   ];
-  List<IconData> iconlist = [
+
+  List<IconData> iconList = [
     Icons.home_filled,
     Icons.calendar_month_rounded,
-    Icons.shopping_cart,
     Icons.inventory,
     Icons.person,
   ];
 
+  List<String> elements = [
+    "Home",
+    "Calendar",
+    "Orders",
+    "Profile"
+  ];
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      screens[index],
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        icons: iconlist,
-        activeIndex: index,
-        gapLocation: GapLocation.center,
-        notchSmoothness: NotchSmoothness.smoothEdge,
-        leftCornerRadius: 25,
-        rightCornerRadius: 25,
-        onTap: (var newIndex) => setState(() => index = newIndex),
+      body: screens[index],
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blueAccent,
+        child: const Icon(Icons.shopping_cart),
+        onPressed: () {
+          Navigator.of(context).push
+            (MaterialPageRoute(builder: (BuildContext context) => const Cart()));
+        },
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+      itemCount: iconList.length,
+      tabBuilder: (int index, bool isActive) {
+        final color = isActive ? const Color(0xFF3B5998) : Colors.grey;
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              iconList[index],
+              size: 24,
+              color: color,
+            ),
+            const SizedBox(height: 4),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: AutoSizeText(
+                elements[index],
+                maxLines: 1,
+                style: TextStyle(color: color),
+                group: autoSizeGroup,
+              ),
+            ),
+          ],
+        );
+      },
+      backgroundColor: Colors.white,
+      elevation: 0,
+      activeIndex: index,
+      splashColor: Colors.blueAccent,
+      splashSpeedInMilliseconds: 250,
+      notchSmoothness: NotchSmoothness.verySmoothEdge,
+      gapLocation: GapLocation.center,
+      leftCornerRadius: 10,
+      rightCornerRadius: 10,
+      onTap: (newIndex) => setState(() => index = newIndex),
+      shadow: const BoxShadow(
+        offset:  Offset(0, 1),
+        blurRadius: 12,
+        spreadRadius: 0.5,
+        color: Colors.white12,
+      ),
+    ),
     );
   }
 }
