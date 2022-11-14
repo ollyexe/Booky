@@ -18,9 +18,9 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          header,
-          SizedBox(height: 35),
-          profSubjectButton
+          header(context), //Custom Widget from MyAppBar.dart file
+          const SizedBox(height: 35),
+          profSubjectButton(context) //Custom Widget from Selection_Professor_Subject.dart file
 
         ],
       )

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '../../MainPages/byProfessor.dart';
+import '../../MainPages/BySubject.dart';
 
-
-Container buildButton(Color color, IconData icon, String label){
+Container buildButton(Color color, IconData icon, String label,BuildContext context){
   return Container(// by Professor
     decoration:  BoxDecoration(
       borderRadius: BorderRadius.circular(10),
@@ -25,10 +26,13 @@ Container buildButton(Color color, IconData icon, String label){
             color: color
           ),
           onPressed: () {
-              /*
-                    Navigator.of(context).push
-                      (MaterialPageRoute(builder: (BuildContext context) => const ByProfessor()));
-                     */
+            if(label == 'Professors'){
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const ByProfessor()));
+            }else if(label == 'Subjects'){
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const BySubject()));
+            }else{
+              //ERROR
+            }
           },
         ),
         Text(
@@ -44,10 +48,12 @@ Container buildButton(Color color, IconData icon, String label){
 }
 
 
-Widget profSubjectButton = Row(
-  mainAxisAlignment: MainAxisAlignment.spaceAround,
-  children: [
-    buildButton(Colors.orange,Icons.school_rounded,'Professori'),
-    buildButton(Colors.green,Icons.science_rounded , 'Materie')
-  ]
-);
+Widget profSubjectButton(BuildContext context) {
+  return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        buildButton(Colors.orange,Icons.school_rounded,'Professors',context),
+        buildButton(Colors.green,Icons.science_rounded , 'Subjects',context)
+      ]
+  );
+}
