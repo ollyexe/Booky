@@ -1,52 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import '../../MainPages/byProfessor.dart';
 import '../../MainPages/BySubject.dart';
-
-Container buildButton(Color color, IconData icon, String label,BuildContext context){
-  return Container(// by Professor
-    decoration:  BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-      color: Colors.white,
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
-          spreadRadius: 2,
-          blurRadius: 5,
-          offset: const Offset(2,3),
-        )
-      ]
-    ),
-    height: 80,
-    width: 150,
-    child: Column(
-      children: [
-        IconButton(
-          icon: Icon(
-            icon,
-            color: color
-          ),
-          onPressed: () {
-            if(label == 'Professors'){
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const ByProfessor()));
-            }else if(label == 'Subjects'){
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const BySubject()));
-            }else{
-              //ERROR
-            }
-          },
-        ),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        )
-      ],
-    )
-  );
-}
-
 
 Widget profSubjectButton(BuildContext context) {
   return Row(
@@ -57,3 +12,38 @@ Widget profSubjectButton(BuildContext context) {
       ]
   );
 }
+
+GestureDetector buildButton(Color color, IconData icon, String label,BuildContext context){
+  return GestureDetector(
+      onTap: (){
+        if(label == 'Professors'){
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const ByProfessor()));
+        }else if(label == 'Subjects'){
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const BySubject()));
+        }else{
+          //ERROR
+        }
+      },
+      child: containerWithShadow(Colors.white, 80, 150, buttonElements(icon, label, color))
+  );
+}
+
+
+Column buttonElements(IconData icon, String label, Color color){
+  return Column(
+    children: [
+      const SizedBox(height: 10),
+      Icon(
+        icon,
+        color: color,
+      ),
+      const SizedBox(height: 8),
+      myText(label, 16, Colors.black, FontWeight.w400)
+    ],
+  );
+}
+
+
+
+
+

@@ -3,9 +3,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 
-/* Utilities imports */
-import 'package:progettoium/Utilities/SingleLecture.dart';
-
 /* Navigation Bar imports */
 import 'NavigationBar/Calendar.dart';
 import 'NavigationBar/Cart.dart';
@@ -73,8 +70,7 @@ class _RootState extends State<Root> {
         backgroundColor: Colors.blueAccent,
         child: const Icon(Icons.shopping_cart),
         onPressed: () {
-          Navigator.of(context).push
-            (MaterialPageRoute(builder: (BuildContext context) => const Cart()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Cart()));
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

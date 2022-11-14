@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 
 class Orders extends StatefulWidget {
   const Orders({Key? key}) : super(key: key);
@@ -10,6 +11,12 @@ class Orders extends StatefulWidget {
 class _OrdersState extends State<Orders> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(21, 90, 0, 0),
+        child: listOfAppointments(context),
+      )
+    );
   }
 }

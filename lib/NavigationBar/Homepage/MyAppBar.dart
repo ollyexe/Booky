@@ -1,6 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
 import '../../Utilities/Settings.dart';
+
+Row searchBar(){
+  return Row(
+    children: [
+      const SizedBox(width: 10),
+      const Icon(
+        Icons.search_rounded,
+        color: Color(0xFF3B5998),
+      ),
+      const SizedBox(width: 20),
+      myText('Cerca qualcosa...', 10, Colors.black, FontWeight.w600)
+    ],
+  );
+}
 
 Widget header(BuildContext context) {
   return Stack(
@@ -14,52 +29,24 @@ Widget header(BuildContext context) {
           IconButton(
             icon: const Icon(Icons.settings_rounded),
             onPressed: (){
-              Navigator.of(context).push
-                (MaterialPageRoute(builder: (BuildContext context) => const Settings()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Settings()));
             },
           ),
         ],
       ),
       Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(50, 90, 0, 0),
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: const Offset(2,3),
-                )
-              ]
-          ),
-          height: 50,
-          width: 300,
-          child: Row(
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.search_rounded,
-                  color: Color(0xFF3B5998),
-                ),
-                onPressed: () {
-
-                },
-              ),
-              const Text(
-                'Cerca qualcosa...',
-                style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600
-                ),
-              )
-            ],
-          ),
-        ),
+        child: GestureDetector(
+          onTap: () {
+            /*Ricerca sul DB */
+          },
+          child:  containerWithShadow(Colors.white, 50, 300, searchBar()),
+        )
       )
     ],
   );
 }
 
+/*
+
+ */

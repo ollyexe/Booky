@@ -20,10 +20,11 @@
 ### Front END
 
 - [ ] Routes
-- [ ] RootPage
-  - [ ] Custom NavigationBar
+- [X] RootPage
+  - [X] Custom NavigationBar
 - [ ] HomePage
-  - [X] AppBar 
+  - [X] AppBar
+  - [X] BySubject/ByProfessors buttons
   - [ ] Next lessons form
 - [ ] Cart
 - [ ] My Calendar
