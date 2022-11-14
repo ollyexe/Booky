@@ -28,7 +28,7 @@
   - [ ] Next lessons form
 - [ ] Cart
 - [ ] My Calendar
-  - [X] Custom Calendar
+  - [ ] Custom Calendar
   - [ ] Next lessons form
 - [ ] Orders & Returns
   - [ ] Last lessons form
