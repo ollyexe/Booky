@@ -33,3 +33,15 @@ Container containerWithShadow(Color boxColor,double height,double width, Widget 
   );
 }
 
+AppBar customAppBar(Widget widget){
+  return AppBar(
+    backgroundColor: const Color(0xFF3B5998),
+    elevation: 0,
+    title: const Text('IUM Project'),
+    toolbarHeight: 90,
+    actions: [
+      widget
+    ],
+  );
+}
+
