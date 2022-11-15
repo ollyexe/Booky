@@ -6,7 +6,7 @@
 
 ## Good Practices
 ### Comments
-- Use doxygen comments 
+- Use doxygen-like comments
 
 ### Functions / Classes
 - Use camelCase syntax
@@ -20,14 +20,15 @@
 ### Front END
 
 - [ ] Routes
-- [ ] RootPage
- - [ ] Custom NavigationBar
+- [X] RootPage
+  - [X] Custom NavigationBar
 - [ ] HomePage
-  - [X] AppBar 
+  - [X] AppBar
+  - [X] BySubject/ByProfessors buttons
   - [ ] Next lessons form
 - [ ] Cart
 - [ ] My Calendar
-  - [X] Custom Calendar
+  - [ ] Custom Calendar
   - [ ] Next lessons form
 - [ ] Orders & Returns
   - [ ] Last lessons form
@@ -56,4 +57,4 @@
   - [ ] C.R.U.D operations
 - [ ] API
   - [ ] Validators & Controllers (Dart) 
-  - [ ] JSON convertion from C.R.U.D
+  - [ ] JSON conversion from C.R.U.D
