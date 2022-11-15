@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 
-Text myText(String label, double fontSize, Color color, FontWeight fontWeight) {
+Text myText(String label, double fontSize, Color color, FontWeight fontWeight){
   return Text(
     label,
     style: TextStyle(

@@ -40,7 +40,7 @@ Widget header(BuildContext context) {
           onTap: () {
             /*Ricerca sul DB */
           },
-          child:  containerWithShadow(Colors.white, 50, 300, searchBar()),
+          child:containerWithShadow(Colors.white, 50, 300, searchBar()),
         )
       )
     ],
