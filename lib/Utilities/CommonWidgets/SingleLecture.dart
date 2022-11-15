@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
-Widget singleLecture(BuildContext context, String name, String surname, String subject, /* aggiungi l'immagine */){
+Widget singleLecture(BuildContext context, String name, String surname, String subject,Widget widget){
   return GestureDetector(
     onTap: () {
       /* Vai alla pagina con i tasti per annullarla/spostarla */
@@ -15,15 +15,12 @@ Widget singleLecture(BuildContext context, String name, String surname, String s
       width: 350,
       child: Row(
         children: [
-          const SizedBox(width: 10),
-          const SizedBox(width: 10),
           myText(name, 14, Colors.black , FontWeight.w500),
-          const SizedBox(width: 40),
+          const SizedBox(width: 20),
           myText(surname, 14, Colors.black, FontWeight.w500),
           const SizedBox(width: 10),
           myText(subject, 10, Colors.black, FontWeight.w400),
-          const SizedBox(width: 110),
-          const Icon(Icons.today_rounded)
+          widget
         ],
       ),
     ),

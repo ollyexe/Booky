@@ -18,10 +18,20 @@ class _OrdersState extends State<Orders> {
         padding: const EdgeInsetsDirectional.fromSTEB(21, 90, 0, 0),
         child: Column(
           children: [
-            listOfAppointments(context),
+            containerWithShadow(Colors.black, 100, 400, filterBySubject()),
+            const SizedBox(height: 30),
+            listOfAppointments(context,placeholder),
           ],
         ),
       )
     );
   }
+}
+
+Row filterBySubject(){
+  return Row(
+    children: [
+
+    ],
+  );
 }
