@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 
 class Orders extends StatefulWidget {
@@ -15,7 +16,11 @@ class _OrdersState extends State<Orders> {
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(21, 90, 0, 0),
-        child: listOfAppointments(context),
+        child: Column(
+          children: [
+            listOfAppointments(context),
+          ],
+        ),
       )
     );
   }

@@ -17,25 +17,22 @@ Row searchBar(){
   );
 }
 
+IconButton settingsButton(BuildContext context) {
+  return IconButton(
+    icon: const Icon(Icons.settings_rounded),
+    onPressed: (){
+      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Settings()));
+    },
+  );
+}
+
+
 Widget header(BuildContext context) {
   return Stack(
     children: [
-      AppBar(
-        backgroundColor: const Color(0xFF3B5998),
-        elevation: 0,
-        title: const Text('IUM Project'),
-        toolbarHeight: 90,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings_rounded),
-            onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Settings()));
-            },
-          ),
-        ],
-      ),
+      customAppBar(settingsButton(context)), // Custom Widget from CommonStyles.dart file
       Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(50, 90, 0, 0),
+        padding: const EdgeInsetsDirectional.fromSTEB(50, 95, 0, 0),
         child: GestureDetector(
           onTap: () {
             /*Ricerca sul DB */

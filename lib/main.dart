@@ -23,6 +23,7 @@ class Progetto extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Progetto',
       initialRoute: 'Root',
+      //ADD THEME AND DARK THEME VIA M3 BUILDER
       home: Root(),
     );
   }
@@ -74,6 +75,7 @@ class _RootState extends State<Root> {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      //NavigationBar
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
       itemCount: iconList.length,
       tabBuilder: (int index, bool isActive) {
