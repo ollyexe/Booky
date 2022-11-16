@@ -69,6 +69,7 @@ class _RootState extends State<Root> {
     return Scaffold(
       body: screens[index],
       floatingActionButton: FloatingActionButton(
+
         backgroundColor: Colors.orange,
         child: const Icon(Icons.shopping_cart),
         onPressed: () {
@@ -77,12 +78,13 @@ class _RootState extends State<Root> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       //NavigationBar
+      backgroundColor: const Color(0xFFE7E7E7),
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
       itemCount: iconList.length,
       tabBuilder: (int index, bool isActive) {
         final color = isActive ? Colors.white : Colors.grey.shade400;
-        final double iconSize = isActive ? 28 : 24;
-        final double textSize = isActive ? 16 : 14;
+        final double iconSize = isActive ? 22 : 20;
+        final double textSize = isActive ? 12 : 10;
         return Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -110,12 +112,12 @@ class _RootState extends State<Root> {
       leftCornerRadius: 10,
       rightCornerRadius: 10,
       onTap: (newIndex) => setState(() => index = newIndex),
-      shadow: const BoxShadow(
-        offset:  Offset(0, 1),
-        blurRadius: 12,
-        spreadRadius: 0.5,
-        color: Colors.white12,
-      ),
+        shadow: const BoxShadow(
+          offset:  Offset(0, 1),
+          blurRadius: 12,
+          spreadRadius: 0.5,
+          color: Colors.white12,
+        ),
     ),
     );
   }

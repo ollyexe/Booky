@@ -22,7 +22,7 @@ class _CartState extends State<Cart> {
           const SizedBox(height: 20),
           listOfAppointments(context,removeButton()),
           totalCost("10£",5),
-          const SizedBox(height: 15),
+          const SizedBox(height: 5),
           confirmationButton(),
         ],
       )
@@ -50,8 +50,8 @@ Widget confirmationButton(){
           borderRadius: BorderRadius.circular(10),
           color: Colors.orange,
         ),
-        width: 300,
-        height: 70,
+        width: 270,
+        height: 60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -77,11 +77,11 @@ Widget totalCost(String totalCost,int number){
             padding: const EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
             child: Column(
               children: [
-                myText("Number of appointments:", 20, Colors.black, FontWeight.w400),
-                const SizedBox(height: 30),
+                myText("Number of appointments:", 18, Colors.black54, FontWeight.w400),
+                const SizedBox(height: 20),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 50, 0),
-                  child:  myText("Your total is:",30,Colors.blue,FontWeight.w500),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 65, 0),
+                  child:myText("Your total is:",25,Colors.black,FontWeight.w500),
                 )
               ],
             ),
@@ -90,15 +90,15 @@ Widget totalCost(String totalCost,int number){
             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
             child: Column(
               children: [
-                myText("$number", 20, Colors.black, FontWeight.w500),
-                const SizedBox(height: 30),
-                myText(totalCost,30,Colors.blue,FontWeight.w600),
+                myText("$number", 18, Colors.black54, FontWeight.w500),
+                const SizedBox(height: 20),
+                myText(totalCost,25,Colors.black,FontWeight.w600),
               ],
             ),
           ),
         ],
       ),
-      const SizedBox(height: 20),
+      const SizedBox(height: 10),
     ],
   );
 }

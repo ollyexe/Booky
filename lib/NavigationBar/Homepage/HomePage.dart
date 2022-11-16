@@ -25,11 +25,21 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 35),
           profSubjectButton(context), //Custom Widget from Selection_Professor_Subject.dart file
           const SizedBox(height: 30),
-          myText("Ciao $name,", 20, Colors.black, FontWeight.w400),
-          myText("queste sono le tue prossime lezioni:", 17, Colors.black, FontWeight.w400),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 75, 0),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 157, 0),
+                  child: myText("Ciao $name,", 20, Colors.black, FontWeight.w400),
+                ),
+                const SizedBox(height: 5),
+                myText("queste sono le tue prossime lezioni:", 17, Colors.black, FontWeight.w400),
+              ],
+            ),
+          ),
           const SizedBox(height: 20),
           listOfAppointments(context,placeholder), //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
-
         ],
       )
     );
