@@ -15,11 +15,13 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFE7E7E7),
       body: Column(
         children: [
           customAppBar(placeholder,text),
           const SizedBox(height: 20),
           listOfAppointments(context,removeButton()),
+          totalCost("10£",5),
           const SizedBox(height: 15),
           confirmationButton(),
         ],
@@ -46,14 +48,14 @@ Widget confirmationButton(){
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Colors.yellow,
+          color: Colors.orange,
         ),
         width: 300,
         height: 70,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            myText("Prenota", 25, Colors.black,FontWeight.w600),
+            myText("Place Order", 25, Colors.black,FontWeight.w600),
             const Icon(Icons.arrow_forward)
           ],
         ),
@@ -62,3 +64,41 @@ Widget confirmationButton(){
   );
 }
 
+
+Widget totalCost(String totalCost,int number){
+  return Column(
+    children: [
+      const Divider(height: 10,thickness: 5),
+      const SizedBox(height: 20),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+            child: Column(
+              children: [
+                myText("Number of appointments:", 20, Colors.black, FontWeight.w400),
+                const SizedBox(height: 30),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 50, 0),
+                  child:  myText("Your total is:",30,Colors.blue,FontWeight.w500),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+            child: Column(
+              children: [
+                myText("$number", 20, Colors.black, FontWeight.w500),
+                const SizedBox(height: 30),
+                myText(totalCost,30,Colors.blue,FontWeight.w600),
+              ],
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: 20),
+    ],
+  );
+}

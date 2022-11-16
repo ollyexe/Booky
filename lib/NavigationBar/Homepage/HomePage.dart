@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFE7E7E7),
       body: Column(
         children: [
           header(context), //Custom Widget from MyAppBar.dart file

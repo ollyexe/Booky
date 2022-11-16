@@ -2,6 +2,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
 /* Navigation Bar imports */
 import 'NavigationBar/Calendar.dart';
@@ -68,7 +69,7 @@ class _RootState extends State<Root> {
     return Scaffold(
       body: screens[index],
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.orange,
         child: const Icon(Icons.shopping_cart),
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Cart()));
@@ -79,35 +80,32 @@ class _RootState extends State<Root> {
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
       itemCount: iconList.length,
       tabBuilder: (int index, bool isActive) {
-        final color = isActive ? const Color(0xFF3B5998) : Colors.grey;
+        final color = isActive ? Colors.white : Colors.grey.shade400;
+        final double iconSize = isActive ? 28 : 24;
+        final double textSize = isActive ? 16 : 14;
         return Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               iconList[index],
-              size: 24,
+              size: iconSize,
               color: color,
             ),
             const SizedBox(height: 4),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: AutoSizeText(
-                elements[index],
-                maxLines: 1,
-                style: TextStyle(color: color),
-                group: autoSizeGroup,
-              ),
+              child: myText(elements[index], textSize, color, FontWeight.w400)
             ),
           ],
         );
       },
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFF3B5998),
       elevation: 0,
       activeIndex: index,
       splashColor: Colors.blueAccent,
       splashSpeedInMilliseconds: 250,
-      notchSmoothness: NotchSmoothness.verySmoothEdge,
+      notchSmoothness: NotchSmoothness.sharpEdge,
       gapLocation: GapLocation.center,
       leftCornerRadius: 10,
       rightCornerRadius: 10,

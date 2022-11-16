@@ -13,7 +13,7 @@ class _OrdersState extends State<Orders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFE7E7E7),
       body: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(21, 90, 0, 0),
         child: Column(

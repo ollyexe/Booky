@@ -7,7 +7,7 @@ Widget profSubjectButton(BuildContext context) {
   return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        buildButton(Colors.orange,Icons.school_rounded,'Professors',context),
+        buildButton(Colors.red,Icons.school_rounded,'Professors',context),
         buildButton(Colors.green,Icons.science_rounded , 'Subjects',context)
       ]
   );
