@@ -12,7 +12,7 @@ Row searchBar(){
         color: Color(0xFF3B5998),
       ),
       const SizedBox(width: 20),
-      myText('Cerca qualcosa...', 10, Colors.black, FontWeight.w600)
+      myText('Cerca qualcosa...', 10, Colors.black, FontWeight.w600) //THIS MUST BE A TEXTFIELD
     ],
   );
 }

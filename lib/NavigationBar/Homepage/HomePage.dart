@@ -38,8 +38,8 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          const SizedBox(height: 20),
-          listOfAppointments(context,placeholder), //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
+          const SizedBox(height: 10),
+          listOfSomething(context,placeholder), //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
         ],
       )
     );

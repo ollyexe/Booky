@@ -48,7 +48,7 @@ class _CalendarState extends State<Calendar> {
             },
           ),
           const SizedBox(height: 30),
-          listOfAppointments(context,placeholder),
+          listOfSomething(context,placeholder),
         ],
       ),
     );

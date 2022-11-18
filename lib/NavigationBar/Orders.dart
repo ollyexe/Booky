@@ -17,7 +17,7 @@ class _OrdersState extends State<Orders> {
   List<bool> isSelected = [false, true];
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = [listOfAppointments(context, placeholder),listOfAppointments(context, placeholder)];
+    List<Widget> screens = [listOfSomething(context, placeholder),listOfSomething(context, placeholder)];
     return Scaffold(
       backgroundColor: const Color(0xFFE7E7E7),
       body: Padding(

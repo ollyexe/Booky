@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/SingleLecture.dart';
 
-Widget space(){
-  return const SizedBox(height: 25);
-}
 
 
-Widget listOfAppointments(BuildContext context,Widget widget) {
+Widget listOfSomething(BuildContext context, Widget widget){
   return Expanded(
-    child: SingleChildScrollView(
+    child: ListView.separated(
+      separatorBuilder: (context, index) => space(),
       scrollDirection: Axis.vertical,
-      child: Column(
-        children: [
-          singleLecture(context,"Matteo","Barone","Matematica",widget),//Add dinamic number of singleLecture
-          space(),
-          singleLecture(context,"Matteo","Barone","Matematica",widget),//Add dinamic number of singleLecture
-          space(),
-          singleLecture(context,"Matteo","Barone","Matematica",widget),//Add dinamic number of singleLecture
-          space(),
-          singleLecture(context,"Matteo","Barone","Matematica",widget),//Add dinamic number of singleLecture
-          space(),
-          singleLecture(context,"Matteo","Barone","Matematica",widget),//Add dinamic number of singleLecture
-          space(),
-        ],
-      ),
-    ),
+      shrinkWrap: true,
+      itemCount: 5,
+      itemBuilder: (context,int index){
+        return singleLecture(context,"Matteo","Barone","Matematica",widget);
+
+      },
+    )
   );
 }
 

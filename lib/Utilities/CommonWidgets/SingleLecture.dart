@@ -16,19 +16,23 @@ Container myContainer(String label, Color color){
   );
 }
 
+Widget space(){
+  return const SizedBox(height: 25);
+}
+
 Widget singleLecture(BuildContext context, String name, String surname, String subject,Widget widget){
+  double height=105;
+  double width=320;
   return GestureDetector(
-    onTap: () {
-      /* Vai alla pagina con i tasti per annullarla/spostarla */
-    },
+    onTap: () {},
     child: Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
         border: Border.all(color: Colors.black26, width: 1),
       ),
-      height: 105,
-      width: 350,
+      height: height,
+      width: width,
       child: Column(
         children: [
           Padding(
@@ -62,7 +66,7 @@ Widget singleLecture(BuildContext context, String name, String surname, String s
                 )
               ],
             ),
-          )
+          ),
         ],
       ),
     ),
