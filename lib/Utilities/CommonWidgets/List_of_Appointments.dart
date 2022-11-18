@@ -12,7 +12,6 @@ Widget listOfSomething(BuildContext context, Widget widget){
       itemCount: 5,
       itemBuilder: (context,int index){
         return singleLecture(context,"Matteo","Barone","Matematica",widget);
-
       },
     )
   );

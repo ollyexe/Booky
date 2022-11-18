@@ -8,7 +8,7 @@ import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'NavigationBar/Calendar.dart';
 import 'NavigationBar/Cart.dart';
 import 'NavigationBar/Homepage/HomePage.dart';
-import 'NavigationBar/MyProfile.dart';
+import 'NavigationBar/MyProfile/MyProfile.dart';
 import 'NavigationBar/Orders.dart';
 
 void main(){

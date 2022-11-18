@@ -4,7 +4,7 @@ import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:progettoium/NavigationBar/Homepage/Selection_Professor_Subject.dart';
 
-import '../../Utilities/Settings.dart';
+import '../../Utilities/Settings/Settings.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

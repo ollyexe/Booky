@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
-import '../../Utilities/Settings.dart';
+import '../../Utilities/Settings/Settings.dart';
 
 Row searchBar(){
   return Row(
