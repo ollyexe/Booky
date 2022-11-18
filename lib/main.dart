@@ -66,12 +66,9 @@ class _RootState extends State<Root> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       body: screens[index],
       floatingActionButton: FloatingActionButton(
-
         backgroundColor: Colors.orange,
         child: const Icon(Icons.shopping_cart),
         onPressed: () {
@@ -108,7 +105,7 @@ class _RootState extends State<Root> {
       elevation: 0,
       activeIndex: index,
       splashColor: Colors.blueAccent,
-      splashSpeedInMilliseconds: 250,
+      splashSpeedInMilliseconds: 400,
       notchSmoothness: NotchSmoothness.sharpEdge,
       gapLocation: GapLocation.center,
       leftCornerRadius: 10,

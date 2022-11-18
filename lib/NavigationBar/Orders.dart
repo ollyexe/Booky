@@ -24,29 +24,35 @@ class _OrdersState extends State<Orders> {
         padding: const EdgeInsetsDirectional.fromSTEB(17, 50, 0, 0),
         child: Column(
           children: [
-            ToggleButtons(
-              onPressed: (int newIndex) {
-                setState(() {
-                  for (int i = 0; i < isSelected.length; i++) {
-                    isSelected[i] = i == newIndex;
-                  }
-                });
-                index = newIndex;
-              },
-              selectedBorderColor: Colors.black38,
-              selectedColor: Colors.white,
-              fillColor: Colors.purple,
-              color: Colors.black,
-              highlightColor: Colors.purple,
-              constraints: const BoxConstraints(
-                minHeight: 70.0,
-                minWidth: 150.0,
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
               ),
-              isSelected: isSelected,
-              children: const [
-                Text("Pending"),
-                Text("Confirmed"),
-              ],
+              child: ToggleButtons(
+                onPressed: (int newIndex) {
+                  setState(() {
+                    for (int i = 0; i < isSelected.length; i++) {
+                      isSelected[i] = i == newIndex;
+                    }
+                  });
+                  index = newIndex;
+                },
+                borderRadius: BorderRadius.circular(5),
+                selectedColor: Colors.white,
+                fillColor: Colors.deepPurple[500],
+                color: Colors.black,
+                highlightColor: Colors.deepPurple,
+                constraints: const BoxConstraints(
+                  minHeight: 70.0,
+                  minWidth: 150.0,
+                ),
+                isSelected: isSelected,
+                children: const [
+                  Text("Pending"),
+                  Text("Confirmed"),
+                ],
+              ),
             ),
             const SizedBox(height: 30),
             screens[index],
