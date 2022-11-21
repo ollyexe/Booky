@@ -4,7 +4,6 @@ import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:progettoium/NavigationBar/Homepage/Selection_Professor_Subject.dart';
 
-import '../../Utilities/Settings/Settings.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -39,9 +38,21 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 10),
-          listOfSomething(context,placeholder), //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
+          listOfSomething(context,addToCalendar()),
+          //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
         ],
       )
     );
   }
+}
+
+Widget addToCalendar() {
+  return IconButton(
+    onPressed: () {},
+    icon: const Icon(
+      Icons.event,
+      size: 40,
+      color: Colors.blue,
+    )
+  );
 }

@@ -31,7 +31,7 @@ Widget header(BuildContext context) {
   Text text = myText("IUM Project", 20, Colors.white, FontWeight.w500);
   return Stack(
     children: [
-      customAppBar(settingsButton(context),text), // Custom Widget from CommonStyles.dart file
+      customAppBar(settingsButton(context),text,90), // Custom Widget from CommonStyles.dart file
       Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(50, 95, 0, 0),
         child: GestureDetector(

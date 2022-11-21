@@ -18,7 +18,7 @@ class _CartState extends State<Cart> {
       backgroundColor: const Color(0xFFE7E7E7),
       body: Column(
         children: [
-          customAppBar(placeholder,text),
+          customAppBar(placeholder,text,60),
           const SizedBox(height: 20),
           listOfSomething(context,removeButton()),
           totalCost("10£",5),

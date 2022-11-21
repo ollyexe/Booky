@@ -20,19 +20,19 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     return Scaffold(
       body: Column(
         children: [
-          customAppBar(const SizedBox(height: 0, width: 0),
-              myText("Change Password", 22, Colors.white, FontWeight.w600)),
+          customAppBar(placeholder,
+              myText("Change Password", 22, Colors.white, FontWeight.w600),75),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                myText("Create New Password", 52, Color(0xFF3B5998),
+                myText("Create New Password", 37, Color(0xFF3B5998),
                     FontWeight.w600),
                 const SizedBox(
                   height: 10,
                 ),
                 const Text(
-                  'prova',
+                  'Insert Current and New Password',
                   style: TextStyle(fontSize: 18, color: Colors.black),
                 ),
                 const SizedBox(height: 50),
@@ -76,11 +76,11 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     obscureText: obscuredpassword2,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+                        borderSide: const BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFF3B5998)),
+                          borderSide: const BorderSide(color: Color(0xFF3B5998)),
                           borderRadius: BorderRadius.circular(12)),
                       hintText: 'New Password',
                       fillColor: Colors.grey[200],
@@ -100,7 +100,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 150),
 
                 //bottone
                 Padding(
