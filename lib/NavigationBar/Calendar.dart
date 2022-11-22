@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progettoium/NavigationBar/Homepage/HomePage.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -48,7 +49,7 @@ class _CalendarState extends State<Calendar> {
             },
           ),
           const SizedBox(height: 30),
-          listOfSomething(context,placeholder),
+          ListOfLectures(bottomPartHomePage(),placeholder),
         ],
       ),
     );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
-import 'package:progettoium/Utilities/Settings/Settings.dart';
 
 var textColors = [Colors.black,Colors.white];
 var containerColors = [Colors.white,Colors.purple];
@@ -18,7 +17,7 @@ class _OrdersState extends State<Orders> {
   List<bool> isSelected = [false, true];
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = [listOfSomething(context, placeholder),listOfSomething(context, placeholder)];
+    List<Widget> screens = [ListOfLectures(bottomPartOrders(),placeholder),ListOfLectures(bottomPartOrders(),placeholder)];
     return Scaffold(
       appBar: customAppBar(placeholder, const Text("Orders"), 75),
       backgroundColor: const Color(0xFFE7E7E7),
@@ -76,3 +75,34 @@ class _OrdersState extends State<Orders> {
   }
 }
 
+/*  ------ ------ ------ ------ ------ ------ ------ ------
+ *  From here on we have all the Widget that will be passed
+ *  to the ListOfLecture constructor when it is called from
+ *  the Orders.dart file
+ *  ------ ------ ------ ------ ------ ------ ------ ------
+*/
+
+Widget bottomPartOrders(){
+  return Row(
+    children: [
+      IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.event,
+            size: 40,
+            color: Colors.blue,
+          )
+      ),
+      const SizedBox(width: 20),
+      FloatingActionButton(
+        onPressed: (){},
+        child: Container(
+          decoration: const BoxDecoration(
+              color: Colors.white
+          ),
+          child: myText("Orders", 8, Colors.black, FontWeight.w400),
+        ),
+      )
+    ],
+  );
+}

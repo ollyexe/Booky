@@ -38,21 +38,46 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 10),
-          listOfSomething(context,addToCalendar()),
-          //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
+          ListOfLectures(bottomPartHomePage(), placeholder) //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
         ],
       )
     );
   }
 }
 
-Widget addToCalendar() {
-  return IconButton(
-    onPressed: () {},
-    icon: const Icon(
-      Icons.event,
-      size: 40,
-      color: Colors.blue,
-    )
+
+
+
+
+
+
+/*  ------ ------ ------ ------ ------ ------ ------ ------
+ *  From here on we have all the Widget that will be passed
+ *  to the ListOfLecture constructor when it is called from
+ *  the HomePage/Calendar
+ *  ------ ------ ------ ------ ------ ------ ------ ------
+*/
+
+
+
+
+/* This part adds the Info Button, Add to Calendar? Button and
+ * the Cancel Button
+ */
+Widget bottomPartHomePage(){
+  return Row(
+    children: [
+      const SizedBox(width: 20),
+      FloatingActionButton(
+        onPressed: (){},
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Colors.white
+          ),
+          child: myText("Ciao", 8, Colors.black, FontWeight.w400),
+        ),
+      )
+    ],
   );
 }
+
