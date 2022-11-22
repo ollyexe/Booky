@@ -15,7 +15,7 @@ import 'CommonStyles.dart';
 */
 Widget bottomPartHomePage(){
   return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
       GestureDetector(
         onTap: () {},
