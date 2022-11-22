@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 
+import '../Utilities/CommonWidgets/UtilityWidgets.dart';
+
 class Cart extends StatefulWidget {
   const Cart({Key? key}) : super(key: key);
 
@@ -95,45 +97,3 @@ Widget totalCost(String totalCost,int number){
   );
 }
 
-
-/*  ------ ------ ------ ------ ------ ------ ------ ------
- *  From here on we have all the Widget that will be passed
- *  to the ListOfLecture constructor when it is called from
- *  the Cart
- *  ------ ------ ------ ------ ------ ------ ------ ------
-*/
-
-Widget buildPartCart(){
-  return Row(
-    children: [
-      IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.event,
-            size: 40,
-            color: Colors.blue,
-          )
-      ),
-      const SizedBox(width: 20),
-      FloatingActionButton(
-        onPressed: (){},
-        child: Container(
-          decoration: const BoxDecoration(
-              color: Colors.white
-          ),
-          child: myText("Prova2", 8, Colors.black, FontWeight.w400),
-        ),
-      )
-    ],
-  );
-}
-
-IconButton removeButton() {
-  return IconButton(
-      onPressed: () {},
-      icon: const Icon(
-        Icons.highlight_remove_rounded,
-        color: Colors.red,
-      )
-  );
-}

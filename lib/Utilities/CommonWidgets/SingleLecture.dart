@@ -23,9 +23,9 @@ class SingleLecture extends StatefulWidget {
   final String surname;
   final String subject;
   final Widget bottomPart;
-  final Widget topIcon;
+  late Widget topIcon;
 
-  const SingleLecture(this.name,this.surname,this.subject,this.bottomPart,this.topIcon,{Key? key}) : super(key: key);
+  SingleLecture(this.name,this.surname,this.subject,this.bottomPart,this.topIcon,{Key? key}) : super(key: key);
 
   @override
   State<SingleLecture> createState() => _SingleLectureState();
@@ -36,6 +36,8 @@ class _SingleLectureState extends State<SingleLecture> {
   bool x = false;
   double height = 105;
   double width = 320;
+
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -61,17 +63,14 @@ class _SingleLectureState extends State<SingleLecture> {
         ),
         height: height,
         width: width,
-        child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-          child: ListView.separated(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-            separatorBuilder: (context, index) => space,
-            itemCount: x ? 2 : 1,
-            itemBuilder: (context, index) {
-              return list[index];
-            },
-          ),
-        )
+        child: ListView.separated(
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+          separatorBuilder: (context, index) => space,
+          itemCount: x ? 2 : 1,
+          itemBuilder: (context, index) {
+            return list[index];
+          },
+        ),
       ),
     );
   }
@@ -79,14 +78,17 @@ class _SingleLectureState extends State<SingleLecture> {
 
 
   Widget buildTopPart(){
-    return Row(
-      children: [
-        buildTopLeftPart(),
-        const SizedBox(width: 30),
-        buildTopCenterPart(widget.name, widget.surname, widget.subject),
-        const SizedBox(width: 20),
-        buildTopRightPart(widget.topIcon),
-      ],
+    return Padding(
+      padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+      child: Row(
+        children: [
+          buildTopLeftPart(),
+          const SizedBox(width: 30),
+          buildTopCenterPart(widget.name, widget.surname, widget.subject),
+          const SizedBox(width: 20),
+          buildTopRightPart(widget.topIcon),
+        ],
+      ),
     );
   }
 
@@ -145,7 +147,7 @@ class _SingleLectureState extends State<SingleLecture> {
     return Column(
       children: [
         button,
-        const SizedBox(height: 5),
+        const SizedBox(height: 10),
         myText(" Tra 5 ore", 13, Colors.blueGrey, FontWeight.w500),
       ],
     );

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 
+import '../Utilities/CommonWidgets/UtilityWidgets.dart';
+
 var textColors = [Colors.black,Colors.white];
 var containerColors = [Colors.white,Colors.purple];
 var index=0;
@@ -75,34 +77,5 @@ class _OrdersState extends State<Orders> {
   }
 }
 
-/*  ------ ------ ------ ------ ------ ------ ------ ------
- *  From here on we have all the Widget that will be passed
- *  to the ListOfLecture constructor when it is called from
- *  the Orders.dart file
- *  ------ ------ ------ ------ ------ ------ ------ ------
-*/
 
-Widget bottomPartOrders(){
-  return Row(
-    children: [
-      IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.event,
-            size: 40,
-            color: Colors.blue,
-          )
-      ),
-      const SizedBox(width: 20),
-      FloatingActionButton(
-        onPressed: (){},
-        child: Container(
-          decoration: const BoxDecoration(
-              color: Colors.white
-          ),
-          child: myText("Orders", 8, Colors.black, FontWeight.w400),
-        ),
-      )
-    ],
-  );
-}
+

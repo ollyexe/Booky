@@ -4,6 +4,8 @@ import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import '../Utilities/CommonWidgets/UtilityWidgets.dart';
+
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
 
@@ -49,7 +51,7 @@ class _CalendarState extends State<Calendar> {
             },
           ),
           const SizedBox(height: 30),
-          ListOfLectures(bottomPartHomePage(),placeholder),
+          ListOfLectures(bottomPartHomePage(),arrowRight),
         ],
       ),
     );
