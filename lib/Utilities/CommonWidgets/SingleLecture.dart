@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progettoium/NavigationBar/Homepage/HomePage.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
 Container myContainer(String label, Color color){
@@ -17,13 +18,14 @@ Container myContainer(String label, Color color){
 }
 
 class SingleLecture extends StatefulWidget {
-  final Widget button;
+
   final String name;
   final String surname;
   final String subject;
+  final Widget bottomPart;
+  final Widget topIcon;
 
-
-  const SingleLecture(this.button,this.name,this.surname,this.subject,{Key? key}) : super(key: key);
+  const SingleLecture(this.name,this.surname,this.subject,this.bottomPart,this.topIcon,{Key? key}) : super(key: key);
 
   @override
   State<SingleLecture> createState() => _SingleLectureState();
@@ -39,23 +41,19 @@ class _SingleLectureState extends State<SingleLecture> {
     return GestureDetector(
       onTap: (){
         setState(() {
-          if(height == 105){
+          if(x==false){
             height = 200;
-            list.add(
-              buildBottomPart()
-            );
+            list.add(widget.bottomPart);
             x = true;
           }else{
             height = 105;
-            list.remove(
-              buildBottomPart()
-            );
+            list.remove(widget.bottomPart);
             x = false;
           }
         });
       },
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 370),
+        duration: const Duration(milliseconds: 270),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -66,8 +64,9 @@ class _SingleLectureState extends State<SingleLecture> {
         child: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
           child: ListView.separated(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
             separatorBuilder: (context, index) => space,
-            itemCount: x==true ? 2 : 1,
+            itemCount: x ? 2 : 1,
             itemBuilder: (context, index) {
               return list[index];
             },
@@ -77,101 +76,72 @@ class _SingleLectureState extends State<SingleLecture> {
     );
   }
 
+
+
   Widget buildTopPart(){
     return Row(
       children: [
-        buildLeftPart(),
-        buildCenterPart(widget.name, widget.surname, widget.subject),
-        buildRightPart(widget.button),
-      ],
-    );
-  }
-
-
-
-  Widget buildBottomPart(){
-    return Row(
-      children: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.event,
-            size: 40,
-            color: Colors.blue,
-          )
-        ),
+        buildTopLeftPart(),
+        const SizedBox(width: 30),
+        buildTopCenterPart(widget.name, widget.surname, widget.subject),
         const SizedBox(width: 20),
-        FloatingActionButton(
-          onPressed: (){},
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.white
-            ),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-              child: myText("Ciao", 8, Colors.black, FontWeight.w400),
-            ),
-          ),
-        )
+        buildTopRightPart(widget.topIcon),
       ],
     );
   }
+
+
 
   /*This part has the Image and the Rating of the professor */
-  Widget buildLeftPart(){
+  Widget buildTopLeftPart(){
     return Column(
       children: [
         const CircleAvatar(
           backgroundImage: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAbBB_oglMX609dUtMkvQcL3nmKuqOQmVfR2VIj0he6Q&s"),
           radius: 25,
         ),
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
-          child: Container(
-            decoration:BoxDecoration(
+        const SizedBox(height:5),
+        Container(
+          decoration:BoxDecoration(
               color: Colors.blue,
               borderRadius: BorderRadius.circular(7)
-            ) ,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                myText(" 4.7", 15, Colors.white, FontWeight.w600), //CHANGE 4.7 TO A VARIABLE
-                const Icon(Icons.star,color: Colors.white,size: 18,)],
-            ),
           ),
-        )
+          child: Row(
+            children: [
+              myText(" 4.7", 15, Colors.white, FontWeight.w600), //CHANGE 4.7 TO A VARIABLE
+              const Icon(Icons.star,color: Colors.white,size: 18)],
+          ),
+        ),
       ],
     );
   }
 
   /* This part has the data of the professor(name,surname) and the lecture(subject,hour and date) */
-  Widget buildCenterPart(String name,String surname,String subject){
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(45, 0, 20, 0),
-      child: Column(
-        children: [
-          Column(
-            children: [
-              myText("Prof. $name $surname", 17, Colors.black, FontWeight.bold),
-              myText(subject, 13, Colors.grey, FontWeight.w500),
-            ],
-          ),
-          Row(
-            children: [
-              myContainer("09:00-10:00", Colors.blue),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
-                child: myContainer("16/11/2022", Colors.purple),
-              )
-            ],
-          ),
-        ],
-      ),
+  Widget buildTopCenterPart(String name,String surname,String subject){
+    return Column(
+      children: [
+        Column(
+          children: [
+            myText("Prof. $name $surname", 17, Colors.black, FontWeight.bold),
+            myText(subject, 13, Colors.grey, FontWeight.w500),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            myContainer("09:00-10:00", Colors.blue),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
+              child: myContainer("16/11/2022", Colors.purple),
+            )
+          ],
+        ),
+      ],
     );
   }
 
-  /* This part has  */
-  Widget buildRightPart(Widget button){
+  /* This part has  the button and the time left to the lecture*/
+  Widget buildTopRightPart(Widget button){
     return Column(
       children: [
         button,
