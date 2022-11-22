@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
-import '../../Utilities/Settings.dart';
+import '../../Utilities/Settings/Settings.dart';
 
 Row searchBar(){
   return Row(
@@ -12,7 +12,7 @@ Row searchBar(){
         color: Color(0xFF3B5998),
       ),
       const SizedBox(width: 20),
-      myText('Cerca qualcosa...', 10, Colors.black, FontWeight.w600)
+      myText('Cerca qualcosa...', 10, Colors.black, FontWeight.w600) //THIS MUST BE A TEXTFIELD
     ],
   );
 }
@@ -28,9 +28,10 @@ IconButton settingsButton(BuildContext context) {
 
 
 Widget header(BuildContext context) {
+  Text text = myText("IUM Project", 20, Colors.white, FontWeight.w500);
   return Stack(
     children: [
-      customAppBar(settingsButton(context)), // Custom Widget from CommonStyles.dart file
+      customAppBar(settingsButton(context),text,90), // Custom Widget from CommonStyles.dart file
       Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(50, 95, 0, 0),
         child: GestureDetector(

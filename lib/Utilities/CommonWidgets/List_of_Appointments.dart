@@ -1,15 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/SingleLecture.dart';
+import 'CommonStyles.dart';
 
-Widget listOfAppointments(BuildContext context) {
+class ListOfLectures extends StatefulWidget {
+  const ListOfLectures(Widget myWidget,{Key? key}) : super(key: key);
+
+  @override
+  State<ListOfLectures> createState() => _ListOfLecturesState();
+}
+
+class _ListOfLecturesState extends State<ListOfLectures> {
+  @override
+  void initState() {
+    super.initState();
+
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
+Widget listOfSomething(BuildContext context, Widget widget){
   return Expanded(
-    child: SingleChildScrollView(
+    child: ListView.separated(
+      separatorBuilder: (context, index) => space,
       scrollDirection: Axis.vertical,
-      child: Column(
-        children: [
-          singleLecture(context,"Matteo","Barone","Matematica"),//Add dinamic number of singleLecture
-        ],
-      ),
-    ),
+      padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+      //shrinkWrap: true,
+      itemCount: 5,
+      itemBuilder: (context,int index){
+        return SingleLecture(widget,"Matteo","Barone","Matematica");
+      },
+    )
   );
 }
+

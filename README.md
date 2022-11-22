@@ -22,16 +22,16 @@
 - [ ] Routes
 - [X] RootPage
   - [X] Custom NavigationBar
-- [ ] HomePage
+- [X] HomePage
   - [X] AppBar
   - [X] BySubject/ByProfessors buttons
-  - [ ] Next lessons form
+  - [X] Next lessons form
 - [ ] Cart
-- [ ] My Calendar
-  - [ ] Custom Calendar
-  - [ ] Next lessons form
+- [X] My Calendar
+  - [X] Custom Calendar
+  - [X] Next lessons form
 - [ ] Orders & Returns
-  - [ ] Last lessons form
+  - [X] Last lessons form
 - [ ] My Profile
   - [ ] Form with data
   - [ ] Change data
