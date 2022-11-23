@@ -40,7 +40,13 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 10),
-          ListOfLectures(bottomPartHomePage(), arrowRight) //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
+          ListOfLectures(
+              bottomPart(
+                bottomButtons(const Color(0xFFFF0000),cancelReservationWidget),
+                bottomButtons(const Color(0xFF33B964),const Icon(Icons.calendar_month_rounded,color: Colors.white,size: 40)),
+              ),
+              arrowRight
+          ), //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
         ],
       )
     );

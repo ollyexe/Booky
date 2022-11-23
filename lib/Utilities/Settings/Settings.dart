@@ -22,155 +22,54 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-      //Se non vogliamo tenere tutto bianco
       body: Column(
         children: [
-          customAppBar(placeholder,
-              myText("Settings", 22, Colors.white, FontWeight.w600),75),
+          customAppBar(placeholder,myText("Settings", 22, Colors.white, FontWeight.w600),75),
           Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Card(
-                      elevation: 8.0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      color: Colors.blue,
-                      /*child: ListTile(
-                        onTap: () {
-                          //open edit profile
-                        },
-                        title: const Text(
-                          "Settings",
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w600),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),*/
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Card(
+                    elevation: 8.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0)),
+                    color: Colors.blue,
+                  ),
+                  myText("Notification Settings", 20, Colors.blue, FontWeight.bold),
+                  SwitchListTile(
+                    activeColor: Colors.blue,
+                    contentPadding: const EdgeInsets.all(0),
+                    value: isSwitch1,
+                    title: const Text("Received notification"),
+                    onChanged: (bool newBool) {
+                      setState(() {
+                        isSwitch1 = newBool;
+                      },);
+                    },
+                  ),
+                  const SizedBox(height: 15.0),
+                  myText("App settings", 20, Colors.blue, FontWeight.bold),
+                  const SizedBox(height: 15.0),
+                  Card(
+                    elevation: 4.0,
+                    margin: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 16.0),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: Column(
+                      children: <Widget>[
+                        settingsTile(Icons.dark_mode, "Change Theme", context, const ChangeThemePage()),
+                        divider,
+                        settingsTile(Icons.security, "Privacy & Security", context, const PrivacyPage()),
+                        divider,
+                        settingsTile(Icons.help, "Help", context, const HelpPage())
+                      ],
                     ),
-                    //const SizedBox(height: 10.0),
-                    const Text(
-                      "Notification Settings",
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    SwitchListTile(
-                      activeColor: Colors.blue,
-                      //colore switch
-                      contentPadding: const EdgeInsets.all(0),
-                      value: isSwitch1,
-                      title: Text("Received notification"),
-                      onChanged: (bool newBool) {
-                        setState(
-                              () {
-                            isSwitch1 = newBool;
-                          },
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 15.0),
-                    const Text(
-                      "App settings",
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    const SizedBox(height: 15.0),
-                    Card(
-                      elevation: 4.0,
-                      margin: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 16.0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      child: Column(
-                        children: <Widget>[
-                          /*const Divider(
-                            height: 1.0,
-                            thickness: 2,
-                            indent: Checkbox.width,
-                            endIndent: Checkbox.width,
-                          ),*/
-                          ListTile(
-                            leading: const Icon(
-                              Icons.dark_mode,
-                              color: Colors.blue,
-                            ),
-                            title: const Text("Change Theme"),
-                            trailing: const Icon(Icons.keyboard_arrow_right),
-                            onTap: () {
-                              //open change Theme
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return ChangeThemePage();
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                          const Divider(
-                            height: 1.0,
-                            thickness: 2,
-                            indent: Checkbox.width,
-                            endIndent: Checkbox.width,
-                          ),
-                          ListTile(
-                            leading: const Icon(
-                              Icons.security,
-                              color: Colors.blue,
-                            ),
-                            title: const Text("Privacy & Security"),
-                            trailing: const Icon(Icons.keyboard_arrow_right),
-                            onTap: () {
-                              //open change Theme
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return PrivacyPage();
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                          const Divider(
-                            height: 1.0,
-                            thickness: 2,
-                            indent: Checkbox.width,
-                            endIndent: Checkbox.width,
-                          ),
-                          ListTile(
-                            leading: const Icon(
-                              Icons.help,
-                              color: Colors.blue,
-                            ),
-                            title: const Text("Help"),
-                            trailing: const Icon(Icons.keyboard_arrow_right),
-                            onTap: () {
-                              //open change Theme
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return HelpPage();
-                                  },
-                                ),
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              )
+                  ),
+                ],
+              ),
+            )
           )
         ],
       ),
@@ -178,24 +77,16 @@ class _SettingsState extends State<Settings> {
   }
 }
 
-/*
-ListTile(
-                            leading: const Icon(
-                              Icons.lock_outline,
-                              color: Colors.blue,
-                            ),
-                            title: const Text("Change Password"),
-                            trailing: const Icon(Icons.keyboard_arrow_right),
-                            onTap: () {
-                              //open change password
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return ChangePasswordPage();
-                                  },
-                                ),
-                              );
-                            },
-                          ),
- */
+ListTile settingsTile(IconData icon,String label,BuildContext context,Widget widget){
+  return ListTile(
+    leading: Icon(
+      icon,
+      color: Colors.blue,
+    ),
+    title: Text(label),
+    trailing: const Icon(Icons.keyboard_arrow_right),
+    onTap: (){
+      Navigator.push(context, MaterialPageRoute(builder: (context) {return widget;},),);
+    },
+  );
+}

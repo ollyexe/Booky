@@ -17,9 +17,11 @@ class Orders extends StatefulWidget {
 
 class _OrdersState extends State<Orders> {
   List<bool> isSelected = [false, true];
+  List<Widget> screens = [ListOfLectures(bottomPart(bottomButtons(Colors.green, toBeConfirmedLecture),placeholder),arrowRight),
+                          ListOfLectures(bottomPart(bottomButtons(Colors.green[200]!, confirmedLecture),placeholder),arrowRight)];
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = [ListOfLectures(bottomPartOrders(),placeholder),ListOfLectures(bottomPartOrders(),placeholder)];
+
     return Scaffold(
       appBar: customAppBar(placeholder, const Text("Orders"), 75),
       backgroundColor: const Color(0xFFE7E7E7),
@@ -33,10 +35,10 @@ class _OrdersState extends State<Orders> {
                 borderRadius: BorderRadius.circular(5),
                 boxShadow: [
                   BoxShadow(
-                      color: Colors.grey.withOpacity(0.7),
-                      spreadRadius: 2,
-                      blurRadius: 5,
-                      offset: const Offset(1, 2)
+                    color: Colors.grey.withOpacity(0.7),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(1, 2)
                   ),
                 ]
               ),
@@ -56,8 +58,8 @@ class _OrdersState extends State<Orders> {
           for (int i = 0; i < isSelected.length; i++) {
             isSelected[i] = i == newIndex;
           }
+          index = newIndex;
         });
-        index = newIndex;
       },
       borderRadius: BorderRadius.circular(5),
       selectedColor: Colors.white,

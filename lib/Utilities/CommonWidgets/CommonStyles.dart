@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/* This file contains some useful widget, used in different context */
 
 
 Text myText(String label, double fontSize, Color color, FontWeight fontWeight){
@@ -48,3 +49,10 @@ AppBar customAppBar(Widget widget,Text text,double height){
 SizedBox placeholder = const SizedBox(width: 0, height: 0);
 
 Widget space = const SizedBox(height: 25);
+
+Widget divider = const Divider(
+  height: 1.0,
+  thickness: 2,
+  indent: Checkbox.width,
+  endIndent: Checkbox.width,
+);

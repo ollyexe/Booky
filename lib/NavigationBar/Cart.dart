@@ -22,7 +22,13 @@ class _CartState extends State<Cart> {
         children: [
           customAppBar(placeholder,text,60),
           const SizedBox(height: 20),
-          ListOfLectures(buildPartCart(),removeButton()),
+          ListOfLectures(
+            bottomPart(
+              placeholder,
+              placeholder,
+            ),
+            removeButton()
+          ),
           totalCost("10£",5),
           const SizedBox(height: 5),
           confirmationButton(),

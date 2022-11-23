@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:progettoium/NavigationBar/Homepage/HomePage.dart';
-import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:table_calendar/table_calendar.dart';
-
 import '../Utilities/CommonWidgets/UtilityWidgets.dart';
 
 class Calendar extends StatefulWidget {
@@ -51,7 +48,13 @@ class _CalendarState extends State<Calendar> {
             },
           ),
           const SizedBox(height: 30),
-          ListOfLectures(bottomPartHomePage(),arrowRight),
+          ListOfLectures(
+            bottomPart(
+              bottomButtons(const Color(0xFFFF0000),cancelReservationWidget),
+              bottomButtons(const Color(0xFF33B964),const Icon(Icons.calendar_month_rounded,color: Colors.white,size: 40)),
+            ),
+            arrowRight
+          ),
         ],
       ),
     );
