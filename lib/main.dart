@@ -62,12 +62,11 @@ class _RootState extends State<Root> {
     "Profile"
   ];
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens[index],
+      resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.orange,
         child: const Icon(Icons.shopping_cart),
@@ -117,7 +116,7 @@ class _RootState extends State<Root> {
           spreadRadius: 0.5,
           color: Colors.white12,
         ),
-    ),
+      ),
     );
   }
 }

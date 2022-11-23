@@ -21,7 +21,6 @@ class _OrdersState extends State<Orders> {
                           ListOfLectures(bottomPart(bottomButtons(Colors.green[200]!, confirmedLecture),placeholder),arrowRight)];
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: customAppBar(placeholder, const Text("Orders"), 75),
       backgroundColor: const Color(0xFFE7E7E7),

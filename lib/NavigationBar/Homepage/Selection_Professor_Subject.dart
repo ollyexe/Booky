@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
-import '../../MainPages/byProfessor.dart';
+import '../../MainPages/ResearchByProfessors/byProfessor.dart';
 import '../../MainPages/BySubject.dart';
 
 Widget profSubjectButton(BuildContext context) {

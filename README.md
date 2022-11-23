@@ -19,7 +19,7 @@
 ## Roadmap
 ### Front END
 
-- [ ] Routes
+- [X] Routes
 - [X] RootPage
   - [X] Custom NavigationBar
 - [X] HomePage
@@ -30,17 +30,17 @@
 - [X] My Calendar
   - [X] Custom Calendar
   - [X] Next lessons form
-- [ ] Orders & Returns
+- [X] Orders & Returns
   - [X] Last lessons form
-- [ ] My Profile
-  - [ ] Form with data
-  - [ ] Change data
-  - [ ] Change profile picture
+- [X] My Profile
+  - [X] Form with data
+  - [X] Change data
+  - [X] Change profile picture
 - [ ] Search by Professor
   - [ ] Professor form(data + stars)
 - [ ] Search by Subject
-- [ ] Settings
-  - [ ] Notifications
+- [X] Settings
+  - [X] Notifications
   - [ ] Theme
     - [ ] Dark Theme
     - [ ] Colorblind Theme

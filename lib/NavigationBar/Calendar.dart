@@ -34,8 +34,8 @@ class _CalendarState extends State<Calendar> {
             },
             onDaySelected: (selectedDay, focusedDay) {
               setState(() {
-              _selectedDay = selectedDay;
-              _focusedDay = focusedDay;
+                _selectedDay = selectedDay;
+                _focusedDay = focusedDay;
               });
             },
             onPageChanged: (focusedDay) {

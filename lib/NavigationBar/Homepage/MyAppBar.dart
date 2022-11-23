@@ -3,17 +3,20 @@ import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
 import '../../Utilities/Settings/Settings.dart';
 
-Row searchBar(){
-  return Row(
-    children: [
-      const SizedBox(width: 10),
-      const Icon(
-        Icons.search_rounded,
-        color: Color(0xFF3B5998),
+Expanded searchBar(){
+  return Expanded(
+    child: TextField(
+      decoration: const InputDecoration(
+        border: InputBorder.none,
+        hintText: "Search here",
+        alignLabelWithHint: true,
+        icon: Icon(
+          Icons.search_rounded,
+          color: Colors.blue
+        ),
       ),
-      const SizedBox(width: 20),
-      myText('Cerca qualcosa...', 10, Colors.black, FontWeight.w600) //THIS MUST BE A TEXTFIELD
-    ],
+      onSubmitted: (String stringa) {},
+    )
   );
 }
 
@@ -34,13 +37,9 @@ Widget header(BuildContext context) {
       customAppBar(settingsButton(context),text,90), // Custom Widget from CommonStyles.dart file
       Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(50, 95, 0, 0),
-        child: GestureDetector(
-          onTap: () {
-            /*Ricerca sul DB */
-          },
-          child:containerWithShadow(Colors.white, 50, 300, searchBar()),
-        )
+        child: containerWithShadow(Colors.white, 50, 300, searchBar())
       )
     ],
   );
 }
+
