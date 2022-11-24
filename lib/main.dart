@@ -24,8 +24,9 @@ class Progetto extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Progetto',
       initialRoute: 'Root',
+
       //ADD THEME AND DARK THEME VIA M3 BUILDER
-      home: Root(),
+      home:  Root(),
     );
   }
 }
@@ -46,6 +47,7 @@ class _RootState extends State<Root> {
     const Calendar(),
     const Orders(),
     const MyProfile(),
+    const Cart(),
   ];
 
   List<IconData> iconList = [
@@ -110,12 +112,12 @@ class _RootState extends State<Root> {
       leftCornerRadius: 10,
       rightCornerRadius: 10,
       onTap: (newIndex) => setState(() => index = newIndex),
-        shadow: const BoxShadow(
-          offset:  Offset(0, 1),
-          blurRadius: 12,
-          spreadRadius: 0.5,
-          color: Colors.white12,
-        ),
+      shadow: const BoxShadow(
+        offset:  Offset(0, 1),
+        blurRadius: 12,
+        spreadRadius: 0.5,
+        color: Colors.white12,
+      ),
       ),
     );
   }

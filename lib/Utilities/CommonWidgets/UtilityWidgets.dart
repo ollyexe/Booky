@@ -65,9 +65,9 @@ IconButton removeButton() {
   return IconButton(
       onPressed: () {},
       icon: const Icon(
-        Icons.highlight_remove_rounded,
+        Icons.delete,
         size: 40,
-        color: Colors.red,
+        color: Color(0xFFFF0000),
       )
   );
 }

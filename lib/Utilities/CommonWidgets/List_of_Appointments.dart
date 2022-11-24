@@ -5,7 +5,8 @@ import 'CommonStyles.dart';
 class ListOfLectures extends StatefulWidget {
   final Widget bottomPart;
   final Widget topIcon;
-  const ListOfLectures(this.bottomPart,this.topIcon,{Key? key}) : super(key: key);
+  final bool expand;
+  const ListOfLectures(this.bottomPart,this.topIcon,this.expand,{Key? key}) : super(key: key);
 
   @override
   State<ListOfLectures> createState() => _ListOfLecturesState();
@@ -23,7 +24,7 @@ class _ListOfLecturesState extends State<ListOfLectures> {
         shrinkWrap: true,
         itemCount: 5,
         itemBuilder: (context,int index){
-          return SingleLecture("Matteo","Barone","Matematica",widget.bottomPart,widget.topIcon);
+          return SingleLecture("Matteo","Barone","Matematica",widget.bottomPart,widget.topIcon,widget.expand);
         },
       )
     );

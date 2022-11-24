@@ -24,8 +24,9 @@ class SingleLecture extends StatefulWidget {
   final String subject;
   final Widget bottomPart;
   late Widget topIcon;
+  bool expand;
 
-  SingleLecture(this.name,this.surname,this.subject,this.bottomPart,this.topIcon,{Key? key}) : super(key: key);
+  SingleLecture(this.name,this.surname,this.subject,this.bottomPart,this.topIcon,this.expand,{Key? key}) : super(key: key);
 
   @override
   State<SingleLecture> createState() => _SingleLectureState();
@@ -43,14 +44,16 @@ class _SingleLectureState extends State<SingleLecture> {
     return GestureDetector(
       onTap: (){
         setState(() {
-          if(x==false){
+          if(x==false && widget.expand==true){
             height = 200;
             list.add(widget.bottomPart);
             x = true;
-          }else{
+          }else if(x==true && widget.expand==true){
             height = 105;
             list.remove(widget.bottomPart);
             x = false;
+          }else{
+
           }
         });
       },

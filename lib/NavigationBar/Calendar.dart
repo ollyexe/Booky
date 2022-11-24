@@ -53,7 +53,8 @@ class _CalendarState extends State<Calendar> {
               bottomButtons(const Color(0xFFFF0000),cancelReservationWidget),
               bottomButtons(const Color(0xFF33B964),const Icon(Icons.calendar_month_rounded,color: Colors.white,size: 40)),
             ),
-            arrowRight
+            arrowRight,
+            true
           ),
         ],
       ),

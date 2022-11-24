@@ -17,8 +17,8 @@ class Orders extends StatefulWidget {
 
 class _OrdersState extends State<Orders> {
   List<bool> isSelected = [false, true];
-  List<Widget> screens = [ListOfLectures(bottomPart(bottomButtons(Colors.green, toBeConfirmedLecture),placeholder),arrowRight),
-                          ListOfLectures(bottomPart(bottomButtons(Colors.green[200]!, confirmedLecture),placeholder),arrowRight)];
+  List<Widget> screens = [ListOfLectures(bottomPart(bottomButtons(Colors.green, toBeConfirmedLecture),placeholder),arrowRight,true),
+                          ListOfLectures(bottomPart(bottomButtons(Colors.green[200]!, confirmedLecture),placeholder),arrowRight,true)];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
