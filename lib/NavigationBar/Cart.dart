@@ -54,6 +54,7 @@ class _CartState extends State<Cart> {
         ),
         width: 330,
         height: 65,
+        clipBehavior: Clip.hardEdge,
         child: Dismissible(
           key: UniqueKey(),
           direction: DismissDirection.startToEnd,
@@ -103,47 +104,47 @@ class _CartState extends State<Cart> {
     );
   }
 
+}
 
-  Widget totalCost(){
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      height: 85,
-      width: 290,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          totalCostPart("Number of Lectures ", "5"),
-          totalCostDivider(),
-          totalCostPart("Total", "100€"),
-        ],
-      ),
-    );
-  }
-
-  Row totalCostPart(String label,String total){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+Widget totalCost(){
+  return Container(
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(10),
+    ),
+    height: 85,
+    width: 290,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-          child: myText(label, 17, Colors.black, FontWeight.w600),
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
-          child: myText(total, 15, Colors.black, FontWeight.w400),
-        )
+        totalCostPart("Number of Lectures ", "5"),
+        totalCostDivider(),
+        totalCostPart("Total", "100€"),
       ],
-    );
-  }
+    ),
+  );
+}
 
-  Divider totalCostDivider(){
-    return const Divider(
-      thickness: 1,
-      height: 10,
-      color: Color(0xFFE7E7E7),
-    );
-  }
+Row totalCostPart(String label,String total){
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+        child: myText(label, 17, Colors.black, FontWeight.w600),
+      ),
+      Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+        child: myText(total, 15, Colors.black, FontWeight.w400),
+      )
+    ],
+  );
+}
+
+Divider totalCostDivider(){
+  return const Divider(
+    thickness: 1,
+    height: 10,
+    color: Color(0xFFE7E7E7),
+  );
 }
