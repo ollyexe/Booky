@@ -3,18 +3,21 @@ import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
 import '../../Utilities/Settings/Settings.dart';
 
-TextField searchBar(){
-  return TextField(
-    decoration: const InputDecoration(
-      border: InputBorder.none,
-      hintText: "Search here",
-      alignLabelWithHint: true,
-      icon: Icon(
-          Icons.search_rounded,
-          color: Colors.blue
+Widget searchBar(){
+  return Padding(
+    padding: const EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+    child: TextField(
+      decoration: const InputDecoration(
+        border: InputBorder.none,
+        hintText: "Search here",
+        alignLabelWithHint: true,
+        icon: Icon(
+            Icons.search_rounded,
+            color: Colors.blue
+        ),
       ),
+      onSubmitted: (String stringa) {},
     ),
-    onSubmitted: (String stringa) {},
   );
 }
 

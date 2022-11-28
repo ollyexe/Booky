@@ -49,11 +49,6 @@ Widget cancelReservationWidget = Padding(
 
 
 
-Icon arrowRight = const Icon(
-  Icons.arrow_right,
-  size: 40,
-);
-
 /*  ------ ------ ------ ------ ------ ------ ------ ------
  *  From here on we have all the Widget that will be passed
  *  to the ListOfLecture constructor when it is called from

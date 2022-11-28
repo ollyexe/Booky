@@ -24,9 +24,8 @@ class Progetto extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Progetto',
       initialRoute: 'Root',
-
       //ADD THEME AND DARK THEME VIA M3 BUILDER
-      home:  Root(),
+      home: Root(),
     );
   }
 }

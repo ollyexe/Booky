@@ -17,12 +17,12 @@ class Orders extends StatefulWidget {
 
 class _OrdersState extends State<Orders> {
   List<bool> isSelected = [false, true];
-  List<Widget> screens = [ListOfLectures(bottomPart(bottomButtons(Colors.green, toBeConfirmedLecture),placeholder),arrowRight,true),
-                          ListOfLectures(bottomPart(bottomButtons(Colors.green[200]!, confirmedLecture),placeholder),arrowRight,true)];
+  List<Widget> screens = [ListOfLectures(bottomPart(bottomButtons(Colors.green, toBeConfirmedLecture),placeholder),arrowRight(false),true),
+                          ListOfLectures(bottomPart(bottomButtons(Colors.green[200]!, confirmedLecture),placeholder),arrowRight(false),true)];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(placeholder, const Text("Orders"), 75),
+      appBar: customAppBar(placeholder, myText("Orders", 23, Colors.white, FontWeight.w500), 75),
       backgroundColor: const Color(0xFFE7E7E7),
       body: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),

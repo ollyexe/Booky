@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:progettoium/MainPages/professorSelected/selectedProfessor.dart';
+import 'package:progettoium/MainPages/ResearchByProfessors/selectedProfessor.dart';
+import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
+
 
 
 class ByProfessor extends StatefulWidget {
@@ -14,13 +16,7 @@ class _ByProfessorState extends State<ByProfessor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Scegli il professore"),
-        backgroundColor: const Color(0xFF3B5998),
-
-      ),
-
-
+      appBar: customAppBar(placeholder, const Text("Scegli il professore"), 60),
       body: Padding(
         padding: const EdgeInsets.all(6.0),
         child: GridView.count(
@@ -35,10 +31,6 @@ class _ByProfessorState extends State<ByProfessor> {
     );
   }
 }
-
-
-
-
 
 
 
@@ -74,7 +66,7 @@ TextStyle secondaryTextStyle({
 }) {
   return TextStyle(
     fontSize: size != null ? size.toDouble() : 14,
-    color: color ?? Color(0xFF757575),
+    color: color ?? const Color(0xFF757575),
     fontWeight: weight ?? FontWeight.normal,
     letterSpacing: letterSpacing,
     fontStyle: fontStyle,
@@ -109,11 +101,10 @@ Widget profCard(BuildContext context,int index, List<ProfCard> cards){
       Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const selectedProfessor()));
     },
     child: Container(
-      margin: EdgeInsets.all(5),
+      margin: const EdgeInsets.all(5),
       height: 250,
       width: 180,
-
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: boxDecoration(
         radius: 8,
         spreadRadius: 1,
@@ -134,7 +125,6 @@ Widget profCard(BuildContext context,int index, List<ProfCard> cards){
             children: [
               Text(cards[index].insegnamenti![0], style: secondaryTextStyle(color: Colors.white54, size: 15)),
               Text(cards[index].insegnamenti![1], style: secondaryTextStyle(color: Colors.white54, size: 15)),
-
             ],
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -150,16 +140,13 @@ Widget profCard(BuildContext context,int index, List<ProfCard> cards){
 
 
 int randomColorGradient(){
-List<int> gradients = [0xFFFFDDE1,0xFF7EA56C,0xFF00CDAC,0xFFEA8D8D ,0xFF1EAE98,0xFFBFF098 ,0xFFC33764  ];
-
-return gradients.elementAt(Random().nextInt(gradients.length));
-
+  List<int> gradients = [0xFFFFDDE1,0xFF7EA56C,0xFF00CDAC,0xFFEA8D8D ,0xFF1EAE98,0xFFBFF098 ,0xFFC33764  ];
+  return gradients.elementAt(Random().nextInt(gradients.length));
 }
 
 
 
 List<ProfCard> getProfCards(){
-
   //initializtor from json getAllDocenti
   List<ProfCard> cards = [
     ProfCard(
@@ -168,7 +155,7 @@ List<ProfCard> getProfCards(){
       profSurname : 'Molica',
       time: 'Sempre Disponibile',
       insegnamenti: ["TWEB","IUM","JAVA","BACKEND"],
-      startColor: Color(0xFF2889EB),
+      startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
     ),
     ProfCard(
@@ -177,7 +164,7 @@ List<ProfCard> getProfCards(){
       profSurname: 'Barone',
       time: 'Inizio 16:00',
       insegnamenti: ["Matematica","Algebra","Fisica"],
-      startColor: Color(0xFF2889EB),
+      startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
     ),
     ProfCard(
@@ -186,7 +173,7 @@ List<ProfCard> getProfCards(){
       profSurname: 'Abrate',
       time: 'Inizio 16:00',
       insegnamenti: ["Matematica","Algebra","Fisica"],
-      startColor: Color(0xFF2889EB),
+      startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
     ),
     ProfCard(
@@ -195,10 +182,9 @@ List<ProfCard> getProfCards(){
       profSurname: 'Chimento',
       time: 'Inizio 16:00',
       insegnamenti: ["Matematica","Algebra","Fisica"],
-      startColor: Color(0xFF2889EB),
+      startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
     )
   ];
-
   return cards;
 }

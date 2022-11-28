@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:progettoium/NavigationBar/Homepage/HomePage.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
 Container myContainer(String label, Color color){
@@ -24,7 +23,7 @@ class SingleLecture extends StatefulWidget {
   final String subject;
   final Widget bottomPart;
   late Widget topIcon;
-  bool expand;
+  final bool expand;
 
   SingleLecture(this.name,this.surname,this.subject,this.bottomPart,this.topIcon,this.expand,{Key? key}) : super(key: key);
 
@@ -37,7 +36,6 @@ class _SingleLectureState extends State<SingleLecture> {
   bool x = false;
   double height = 105;
   double width = 320;
-
 
   @override
   Widget build(BuildContext context) {
@@ -87,9 +85,9 @@ class _SingleLectureState extends State<SingleLecture> {
         children: [
           buildTopLeftPart(),
           const SizedBox(width: 30),
-          buildTopCenterPart(widget.name, widget.surname, widget.subject),
+          buildTopCenterPart(),
           const SizedBox(width: 20),
-          buildTopRightPart(widget.topIcon),
+          buildTopRightPart(),
         ],
       ),
     );
@@ -122,13 +120,13 @@ class _SingleLectureState extends State<SingleLecture> {
   }
 
   /* This part has the data of the professor(name,surname) and the lecture(subject,hour and date) */
-  Widget buildTopCenterPart(String name,String surname,String subject){
+  Widget buildTopCenterPart(){
     return Column(
       children: [
         Column(
           children: [
-            myText("Prof. $name $surname", 17, Colors.black, FontWeight.bold),
-            myText(subject, 13, Colors.grey, FontWeight.w500),
+            myText("Prof." + " " + widget.name+ " " + widget.surname, 17, Colors.black, FontWeight.bold),
+            myText(widget.subject, 13, Colors.grey, FontWeight.w500),
           ],
         ),
         const SizedBox(height: 10),
@@ -146,10 +144,10 @@ class _SingleLectureState extends State<SingleLecture> {
   }
 
   /* This part has  the button and the time left to the lecture*/
-  Widget buildTopRightPart(Widget button){
+  Widget buildTopRightPart(){
     return Column(
       children: [
-        button,
+        widget.topIcon,
         const SizedBox(height: 10),
         myText(" Tra 5 ore", 13, Colors.blueGrey, FontWeight.w500),
       ],

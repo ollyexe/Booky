@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:progettoium/NavigationBar/Orders.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 
@@ -17,6 +16,7 @@ class _CartState extends State<Cart> {
   String placeOrderText = "Place Order";
   Icon placeOrderIcon = const Icon(Icons.arrow_forward);
   Color placeOrderColorContainer = Colors.orange;
+  DismissDirection placeOrderDirection = DismissDirection.startToEnd;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,13 +57,14 @@ class _CartState extends State<Cart> {
         clipBehavior: Clip.hardEdge,
         child: Dismissible(
           key: UniqueKey(),
-          direction: DismissDirection.startToEnd,
+          direction: placeOrderDirection,
           onDismissed: (DismissDirection direction){
             setState(() {
               if(direction == DismissDirection.startToEnd){
                 placeOrderIcon = const Icon(Icons.check);
                 placeOrderText = "Payment Confirmed";
                 placeOrderColorContainer = Colors.green;
+                placeOrderDirection = DismissDirection.none;
               }
             });
           },

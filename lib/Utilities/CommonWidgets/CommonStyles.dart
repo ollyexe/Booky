@@ -56,3 +56,37 @@ Widget divider = const Divider(
   indent: Checkbox.width,
   endIndent: Checkbox.width,
 );
+
+RotatedBox arrowRight(bool rotateArrow){
+  return RotatedBox(
+    key: const Key("ArrowThatRotates"),
+    quarterTurns: rotateArrow ? 1 : 0,
+    child: const Icon(
+      Icons.arrow_right,
+      size: 40,
+    ),
+  );
+}
+
+class RightArrow extends StatefulWidget {
+  final bool rotateArrow;
+  const RightArrow(this.rotateArrow,{Key? key}) : super(key: key);
+
+  @override
+  State<RightArrow> createState() => _RightArrowState();
+}
+
+class _RightArrowState extends State<RightArrow> {
+  @override
+  Widget build(BuildContext context) {
+    return RotatedBox(
+      key: const Key("ArrowThatRotates"),
+      quarterTurns: widget.rotateArrow ? 1 : 0,
+      child: const Icon(
+        Icons.arrow_right,
+        size: 40,
+      ),
+    );
+  }
+}
+
