@@ -2,13 +2,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:progettoium/NavigationBar/MyProfile/Login.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
 /* Navigation Bar imports */
 import 'NavigationBar/Calendar.dart';
 import 'NavigationBar/Cart.dart';
 import 'NavigationBar/Homepage/HomePage.dart';
-import 'NavigationBar/MyProfile/MyProfile.dart';
+import 'NavigationBar/MyProfile/Login.dart';
 import 'NavigationBar/Orders.dart';
 
 void main(){
@@ -45,7 +46,7 @@ class _RootState extends State<Root> {
     const HomePage(),
     const Calendar(),
     const Orders(),
-    const MyProfile(),
+    const Login(),
     const Cart(),
   ];
 
