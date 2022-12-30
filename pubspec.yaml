@@ -33,6 +33,7 @@ dependencies:
   table_calendar:
   animated_bottom_navigation_bar:
   auto_size_text:
+  expandable: ^5.0.1
   flutter:
     sdk: flutter
 

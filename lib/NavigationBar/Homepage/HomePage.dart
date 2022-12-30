@@ -3,8 +3,8 @@ import 'package:progettoium/NavigationBar/Homepage/MyAppBar.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:progettoium/NavigationBar/Homepage/Selection_Professor_Subject.dart';
+import 'package:progettoium/Utilities/CommonWidgets/SingleLecture.dart';
 
-import '../../Utilities/CommonWidgets/UtilityWidgets.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -15,6 +15,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Lecture> lectures = [
+    Lecture("Alex","Abrate","Matematica",DateTime.now(),null,5.0),
+    Lecture("Matteo", "Barone", "Informatica", DateTime.now(), null, 4.0)
+  ];
   String name = "Matteo";
   @override
   Widget build(BuildContext context) {
@@ -40,14 +44,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 10),
-          ListOfLectures(
-              bottomPart(
-                bottomButtons(const Color(0xFFFF0000),cancelReservationWidget),
-                bottomButtons(const Color(0xFF33B964),const Icon(Icons.calendar_month_rounded,color: Colors.white,size: 40)),
-              ),
-              const RightArrow(false),
-              true
-          ), //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
+          ListOfLectures(lectures), //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
         ],
       )
     );

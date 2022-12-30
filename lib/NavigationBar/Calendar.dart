@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../Utilities/CommonWidgets/CommonStyles.dart';
+import '../Utilities/CommonWidgets/SingleLecture.dart';
 import '../Utilities/CommonWidgets/UtilityWidgets.dart';
 
 class Calendar extends StatefulWidget {
@@ -16,7 +17,10 @@ class _CalendarState extends State<Calendar> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   CalendarFormat _calendarFormat = CalendarFormat.month;
-
+  List<Lecture> lectures = [
+    Lecture("Alex","Abrate","Matematica",DateTime.now(),null,5.0),
+    Lecture("Matteo", "Barone", "Informatica", DateTime.now(), null, 4.0)
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +53,7 @@ class _CalendarState extends State<Calendar> {
             },
           ),
           const SizedBox(height: 30),
-          ListOfLectures(
-            bottomPart(
-              bottomButtons(const Color(0xFFFF0000),cancelReservationWidget),
-              bottomButtons(const Color(0xFF33B964),const Icon(Icons.calendar_month_rounded,color: Colors.white,size: 40)),
-            ),
-            arrowRight(false),
-            true
-          ),
+          ListOfLectures(lectures),
         ],
       ),
     );

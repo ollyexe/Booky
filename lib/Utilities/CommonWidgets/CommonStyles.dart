@@ -50,12 +50,15 @@ SizedBox placeholder = const SizedBox(width: 0, height: 0);
 
 Widget space = const SizedBox(height: 25);
 
-Widget divider = const Divider(
-  height: 1.0,
-  thickness: 2,
-  indent: Checkbox.width,
-  endIndent: Checkbox.width,
-);
+Widget divider(Color color){
+  return Divider(
+      height: 1.0,
+      thickness: 2,
+      indent: Checkbox.width,
+      endIndent: Checkbox.width,
+      color: color,
+  );
+}
 
 RotatedBox arrowRight(bool rotateArrow){
   return RotatedBox(
@@ -68,25 +71,19 @@ RotatedBox arrowRight(bool rotateArrow){
   );
 }
 
-class RightArrow extends StatefulWidget {
-  final bool rotateArrow;
-  const RightArrow(this.rotateArrow,{Key? key}) : super(key: key);
-
-  @override
-  State<RightArrow> createState() => _RightArrowState();
-}
-
-class _RightArrowState extends State<RightArrow> {
-  @override
-  Widget build(BuildContext context) {
-    return RotatedBox(
-      key: const Key("ArrowThatRotates"),
-      quarterTurns: widget.rotateArrow ? 1 : 0,
-      child: const Icon(
-        Icons.arrow_right,
-        size: 40,
+Container containerSingleLecture(String label, Color color){
+  return Container(
+      decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(7)
       ),
-    );
-  }
+      width: 80,
+      height: 30,
+      child: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(6, 7, 0, 0),
+        child: myText(label, 11, Colors.white, FontWeight.bold),
+      )
+  );
 }
+
 

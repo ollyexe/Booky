@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 
+import '../Utilities/CommonWidgets/SingleLecture.dart';
 import '../Utilities/CommonWidgets/UtilityWidgets.dart';
 
 var textColors = [Colors.black,Colors.white];
@@ -16,9 +17,19 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
+  List<Lecture> lectures = [
+    Lecture("Alex","Abrate","Matematica",DateTime.now(),null,5.0),
+    Lecture("Matteo", "Barone", "Informatica", DateTime.now(), null, 4.0)
+  ];
   List<bool> isSelected = [false, true];
-  List<Widget> screens = [ListOfLectures(bottomPart(bottomButtons(Colors.green, toBeConfirmedLecture),placeholder),arrowRight(false),true),
-                          ListOfLectures(bottomPart(bottomButtons(Colors.green[200]!, confirmedLecture),placeholder),arrowRight(false),true)];
+  List<Widget> screens = [];
+
+  @override
+  void initState() {
+    super.initState();
+    screens = [ListOfLectures(lectures), ListOfLectures(lectures)];
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

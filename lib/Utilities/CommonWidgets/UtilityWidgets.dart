@@ -9,19 +9,12 @@ import 'CommonStyles.dart';
  *  ------ ------ ------ ------ ------ ------ ------ ------
 */
 
-Widget bottomPart(Widget firstWidget,Widget secondWidget){
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    children: [
-      firstWidget,
-      secondWidget
-    ],
-  );
-}
 
 GestureDetector bottomButtons(Color color,Widget myWidget){
   return GestureDetector(
-    onTap: () {},
+    onTap: () {
+
+    },
     child: Container(
       height: 60,
       width: 160,

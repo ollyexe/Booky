@@ -37,7 +37,7 @@ Widget header(BuildContext context) {
     children: [
       customAppBar(settingsButton(context),text,90), // Custom Widget from CommonStyles.dart file
       Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(50, 95, 0, 0),
+        padding: const EdgeInsetsDirectional.fromSTEB(45, 95, 0, 0),
         child: containerWithShadow(Colors.white, 50, 300, searchBar())
       )
     ],
