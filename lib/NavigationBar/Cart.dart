@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 
+import '../Utilities/CommonWidgets/SingleLecture.dart';
 import '../Utilities/CommonWidgets/UtilityWidgets.dart';
 
 class Cart extends StatefulWidget {
@@ -12,11 +13,16 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
+  List<Lecture> lectures = [
+    Lecture("Alex","Abrate","Matematica",DateTime.now(),null,5.0),
+    Lecture("Matteo", "Barone", "Informatica", DateTime.now(), null, 4.0)
+  ];
   Text text = myText("Cart", 20, Colors.white, FontWeight.w500);
   String placeOrderText = "Place Order";
   Icon placeOrderIcon = const Icon(Icons.arrow_forward);
   Color placeOrderColorContainer = Colors.orange;
   DismissDirection placeOrderDirection = DismissDirection.startToEnd;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +31,7 @@ class _CartState extends State<Cart> {
         children: [
           customAppBar(placeholder,text,60),
           const SizedBox(height: 20),
-          /* La lista di lezione da comprare*/
+          ListForCart(lectures),
           const SizedBox(height: 15),
           totalCost(),
           const SizedBox(height: 20),
