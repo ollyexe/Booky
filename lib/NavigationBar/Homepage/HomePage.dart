@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:progettoium/NavigationBar/Homepage/MyAppBar.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:progettoium/NavigationBar/Homepage/Selection_Professor_Subject.dart';
 import 'package:progettoium/Utilities/CommonWidgets/SingleLecture.dart';
+
+import '../../Utilities/Settings/Settings.dart';
 
 
 
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xFFE7E7E7),
       body: Column(
         children: [
-          header(context), //Custom Widget from MyAppBar.dart file
+          customAppBar(settingsButton(context),myText("IUM Project", 20, Colors.white, FontWeight.w500),90), //Custom Widget from MyAppBar.dart file
           const SizedBox(height: 35),
           profSubjectButton(context), //Custom Widget from Selection_Professor_Subject.dart file
           const SizedBox(height: 30),
@@ -51,4 +52,13 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+
+IconButton settingsButton(BuildContext context) {
+  return IconButton(
+    icon: const Icon(Icons.settings_rounded),
+    onPressed: (){
+      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Settings()));
+    },
+  );
+}
 

@@ -9,8 +9,8 @@ import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'NavigationBar/Calendar.dart';
 import 'NavigationBar/Cart.dart';
 import 'NavigationBar/Homepage/HomePage.dart';
-import 'NavigationBar/MyProfile/Login.dart';
 import 'NavigationBar/Orders.dart';
+import 'Utilities/CommonWidgets/SingleLecture.dart';
 
 void main(){
   runApp(const Progetto());
@@ -63,6 +63,7 @@ class _RootState extends State<Root> {
     "Orders",
     "Profile"
   ];
+
 
   @override
   Widget build(BuildContext context) {

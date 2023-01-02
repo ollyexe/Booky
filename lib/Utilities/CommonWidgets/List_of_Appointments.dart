@@ -159,7 +159,12 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                               radius: 25,
                             ),
                             const SizedBox(width: 20),
-                            myText("Prof ${widget.list[index].name} ${widget.list[index].surname}", 19, Colors.black, FontWeight.w500),
+                            Column(
+                              children: [
+                                myText("Prof ${widget.list[index].name} ${widget.list[index].surname}", 19, Colors.black, FontWeight.w500),
+                                myText(widget.list[index].subject, 15, Colors.black, FontWeight.normal)
+                              ],
+                            )
                           ],
                         ),
                         collapsed: topWidget(widget.list[index]),

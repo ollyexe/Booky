@@ -3,10 +3,10 @@ import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 
 import '../Utilities/CommonWidgets/SingleLecture.dart';
-import '../Utilities/CommonWidgets/UtilityWidgets.dart';
 
 class Cart extends StatefulWidget {
-  const Cart({Key? key}) : super(key: key);
+  //List<Lecture> list;
+  const Cart(/*this.list ,*/{Key? key}) : super(key: key);
 
   @override
   State<Cart> createState() => _CartState();
@@ -18,7 +18,7 @@ class _CartState extends State<Cart> {
     Lecture("Matteo", "Barone", "Informatica", DateTime.now(), null, 4.0)
   ];
   Text text = myText("Cart", 20, Colors.white, FontWeight.w500);
-  String placeOrderText = "Place Order";
+  String placeOrderText = " Swipe to Place Order";
   Icon placeOrderIcon = const Icon(Icons.arrow_forward);
   Color placeOrderColorContainer = Colors.orange;
   DismissDirection placeOrderDirection = DismissDirection.startToEnd;
@@ -33,7 +33,7 @@ class _CartState extends State<Cart> {
           const SizedBox(height: 20),
           ListForCart(lectures),
           const SizedBox(height: 15),
-          totalCost(),
+          totalCost(lectures.length,lectures.length*10),
           const SizedBox(height: 20),
           confirmationButton(),
         ],
@@ -106,7 +106,7 @@ class _CartState extends State<Cart> {
 
 }
 
-Widget totalCost(){
+Widget totalCost(int numberOfLecture, int totalPrice){
   return Container(
     decoration: BoxDecoration(
       color: Colors.white,
@@ -117,9 +117,9 @@ Widget totalCost(){
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        totalCostPart("Number of Lectures ", "5"),
+        totalCostPart("Number of Lectures ", "$numberOfLecture"),
         totalCostDivider(),
-        totalCostPart("Total", "100€"),
+        totalCostPart("Total", "$totalPrice"),
       ],
     ),
   );
