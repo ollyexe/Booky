@@ -1,22 +1,18 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:progettoium/MainPages/ResearchBySubjects/BySubject.dart';
+import 'package:progettoium/MainPages/ResearchByProfessors/selectedProfessor.dart';
+import 'package:progettoium/MainPages/ResearchBySubjects/selectedSubject.dart';
+import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
-import '../../NavigationBar/Homepage/Selection_Professor_Subject.dart';
-import '../../Utilities/CommonWidgets/CommonStyles.dart';
-import '../../Utilities/CommonWidgets/List_of_Appointments.dart';
-import '../../Utilities/CommonWidgets/SingleLecture.dart';
-import 'byProfessor.dart';
-
-class selectedProfessor extends StatefulWidget {
-  const selectedProfessor({Key? key}) : super(key: key);
+import '../ResearchByProfessors/byProfessor.dart';
+class BySubject extends StatefulWidget {
+  const BySubject({Key? key}) : super(key: key);
 
   @override
-  State<selectedProfessor> createState() => _selectedProfessor();
+  State<BySubject> createState() => _BySubjectState();
 }
 
-class _selectedProfessor extends State<selectedProfessor> {
-
-
+class _BySubjectState extends State<BySubject> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +71,9 @@ Widget subCard(BuildContext context,int index, List<SubCard> cards){
           Text("${cards[index].subName!}", style: secondaryTextStyle(color: Colors.white, size: 17)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("${cards[index].profName!}", style: secondaryTextStyle(color: Colors.white54, size: 15)),
+            ],
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text(cards[index].time!, style: secondaryTextStyle(color: Colors.white54, size: 15)),
@@ -90,6 +89,7 @@ List<SubCard> getSubjectCards(){
     SubCard(
       image: 'https://www.open-minds.it/wp-content/uploads/2020/03/clil-matematica-inglese.jpg',
       subName: 'Matematica',
+      profName: 'Matteo Barone',
       time: 'Inizio 16:00',
       startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
@@ -97,6 +97,7 @@ List<SubCard> getSubjectCards(){
     SubCard(
       image: 'https://st3.depositphotos.com/3591429/13656/i/450/depositphotos_136562916-stock-photo-creative-website-banner.jpg',
       subName: 'Algebra',
+      profName: 'Alex Abrate',
       time: 'Inizio 16:00',
       startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
@@ -104,6 +105,7 @@ List<SubCard> getSubjectCards(){
     SubCard(
       image: 'https://www.shutterstock.com/image-vector/physics-chalkboard-background-hand-drawn-600w-1988419205.jpg',
       subName: 'Fisica',
+      profName: 'Matteo Barone',
       time: 'Inizio 16:00',
       startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
@@ -111,6 +113,7 @@ List<SubCard> getSubjectCards(){
     SubCard(
       image: 'https://www.lffl.org/wp-content/uploads/2020/07/flutter-google-canonical-1155x770.jpg',
       subName: 'IUM',
+      profName: 'Matteo Barone',
       time: 'Inizio 16:00',
       startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
@@ -118,6 +121,7 @@ List<SubCard> getSubjectCards(){
     SubCard(
       image: 'https://www.asistar.it/var/ezdemo_site/storage/images/media/images/30-anni-web/11896-1-ita-IT/30-anni-web_hq.jpg',
       subName: 'TWEB',
+      profName: 'Matteo Barone',
       time: 'Inizio 16:00',
       startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
@@ -125,4 +129,24 @@ List<SubCard> getSubjectCards(){
   ];
   return cards;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

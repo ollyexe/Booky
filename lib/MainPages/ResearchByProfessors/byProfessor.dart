@@ -1,7 +1,10 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:progettoium/MainPages/ResearchByProfessors/selectedProfessor.dart';
+import 'package:progettoium/MainPages/ResearchBySubjects/selectedSubject.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
+
+import '../../NavigationBar/Homepage/Selection_Professor_Subject.dart';
 
 
 
@@ -98,7 +101,7 @@ class ProfCard {
 Widget profCard(BuildContext context,int index, List<ProfCard> cards){
   return GestureDetector(
     onTap: () {
-      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const selectedProfessor()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const selectedSubject()));
     },
     child: Container(
       margin: const EdgeInsets.all(5),

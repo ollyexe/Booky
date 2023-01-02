@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:progettoium/MainPages/ResearchByProfessors/selectedProfessor.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import '../../MainPages/ResearchByProfessors/byProfessor.dart';
-import '../../MainPages/BySubject.dart';
+import '../../MainPages/ResearchBySubjects/BySubject.dart';
 
 Widget profSubjectButton(BuildContext context) {
   return Row(
@@ -27,7 +28,6 @@ GestureDetector buildButton(Color color, IconData icon, String label,BuildContex
       child: containerWithShadow(Colors.white, 80, 150, buttonElements(icon, label, color))
   );
 }
-
 
 Column buttonElements(IconData icon, String label, Color color){
   return Column(
