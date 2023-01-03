@@ -162,7 +162,7 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                             Column(
                               children: [
                                 myText("Prof ${widget.list[index].name} ${widget.list[index].surname}", 19, Colors.black, FontWeight.w500),
-                                myText(widget.list[index].subject, 15, Colors.black, FontWeight.normal)
+                                myText(widget.list[index].subject, 15, Colors.grey, FontWeight.normal)
                               ],
                             )
                           ],
@@ -224,10 +224,10 @@ Widget topWidget(Lecture lecture){
         const SizedBox(width: 20),
         Row(
           children: [
-            containerSingleLecture("${lecture.date.hour}:${lecture.date.minute} - ${lecture.date.hour+1}:${lecture.date.minute}", Colors.blue),
+            containerSingleLecture("${lecture.time}", Colors.blue),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
-              child: containerSingleLecture("${lecture.date.day}/${lecture.date.month}/${lecture.date.year}", Colors.purple),
+              child: containerSingleLecture("${lecture.date}", Colors.purple),
             )
           ],
         ),

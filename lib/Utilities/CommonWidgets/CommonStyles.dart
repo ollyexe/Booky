@@ -79,11 +79,9 @@ Container containerSingleLecture(String label, Color color){
       ),
       width: 80,
       height: 30,
-      child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(7, 8, 0, 0),
-        child: myText(label, 11, Colors.white, FontWeight.bold),
-      )
+      child: Center(child: myText(label, 11, Colors.white, FontWeight.bold))
   );
 }
+
 
 

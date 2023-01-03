@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 
+import '../../main.dart';
 import 'ChangeDataPage.dart';
 import 'ChangePasswordPage.dart';
+import 'Login.dart';
 
 class MyProfile extends StatefulWidget {
   const MyProfile({Key? key}) : super(key: key);
@@ -14,89 +17,17 @@ class _MyProfileState extends State<MyProfile> {
   final double coverHeight = 280;
   final double profileHeight = 144;
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          ListView(
-            shrinkWrap: true,
-            padding: EdgeInsets.zero,
-            children: [
-              buildTop(),
-              buildContent(),
-              Card(
-                elevation: 4.0,
-                margin: const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 16.0),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const Icon(
-                        Icons.lock_outline,
-                        color: Colors.blue,
-                      ),
-                      title: const Text("Change Password"),
-                      trailing: const Icon(Icons.keyboard_arrow_right),
-                      onTap: () {
-                        //open change password
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return const ChangePasswordPage();
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                    const Divider(
-                      height: 1.0,
-                      thickness: 2,
-                      indent: Checkbox.width,
-                      endIndent: Checkbox.width,
-                    ),
-                    ListTile(
-                      leading: const Icon(
-                        Icons.account_box,
-                        color: Colors.blue,
-                      ),
-                      title: const Text("Change Data"),
-                      trailing: const Icon(Icons.keyboard_arrow_right),
-                      onTap: () {
-                        //open change Theme
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return ChangeDataPage();
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-            child: FloatingActionButton.extended(
-              backgroundColor: Colors.deepPurple[500],
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              onPressed: () {},
-              label: const Text(
-                "SIGN OUT",
-                style: TextStyle(
-                    fontSize: 16, letterSpacing: 2.2, color: Colors.black),
-              ),
-            ),
-          ),
-        ],
-      ),
+    return FutureBuilder(
+      future: SessionManager().get("loginState"),
+      builder: (context, snapshot){
+        return ( snapshot.hasData ?  profile() : Login());
+      },
     );
   }
 
@@ -175,6 +106,92 @@ class _MyProfileState extends State<MyProfile> {
       ],
     ),
   );
+  Widget profile(){return Scaffold(
+    body: Column(
+      children: [
+        ListView(
+          shrinkWrap: true,
+          padding: EdgeInsets.zero,
+          children: [
+            buildTop(),
+            buildContent(),
+            Card(
+              elevation: 4.0,
+              margin: const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 16.0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0)),
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: const Icon(
+                      Icons.lock_outline,
+                      color: Colors.blue,
+                    ),
+                    title: const Text("Change Password"),
+                    trailing: const Icon(Icons.keyboard_arrow_right),
+                    onTap: () {
+                      //open change password
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const ChangePasswordPage();
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                  const Divider(
+                    height: 1.0,
+                    thickness: 2,
+                    indent: Checkbox.width,
+                    endIndent: Checkbox.width,
+                  ),
+                  ListTile(
+                    leading: const Icon(
+                      Icons.account_box,
+                      color: Colors.blue,
+                    ),
+                    title: const Text("Change Data"),
+                    trailing: const Icon(Icons.keyboard_arrow_right),
+                    onTap: () {
+                      //open change Theme
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ChangeDataPage();
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+          child: FloatingActionButton.extended(
+            backgroundColor: Colors.deepPurple[500],
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)),
+            onPressed: () async {
+              await SessionManager().destroy();
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Root()));
+
+            },
+            label: const Text(
+              "SIGN OUT",
+              style: TextStyle(
+                  fontSize: 16, letterSpacing: 2.2, color: Colors.black),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );}
 }
 
 /*Widget buildTextField(String labelText, String placeholder) {

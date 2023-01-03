@@ -18,8 +18,8 @@ class Orders extends StatefulWidget {
 
 class _OrdersState extends State<Orders> {
   List<Lecture> lectures = [
-    Lecture("Alex","Abrate","Matematica",DateTime.now(),null,5.0),
-    Lecture("Matteo", "Barone", "Informatica", DateTime.now(), null, 4.0)
+    Lecture.local("Alessandro","Abrate","Matematica","2022-11-03","17:00",NetworkImage("https://thispersondoesnotexist.com/image"),5,10),
+
   ];
   List<bool> isSelected = [false, true];
   List<Widget> screens = [];
@@ -88,6 +88,8 @@ class _OrdersState extends State<Orders> {
     );
   }
 }
+
+
 
 
 

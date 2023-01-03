@@ -1,11 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'dart:io';
+import 'package:flutter_session_manager/flutter_session_manager.dart' ;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:progettoium/Model/LoginM.dart';
+import 'package:progettoium/NavigationBar/Homepage/HomePage.dart';
+import 'package:progettoium/NavigationBar/MyProfile/MyProfile.dart';
+
 
 import '../../Utilities/CommonWidgets/CommonStyles.dart';
+import '../../main.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -18,7 +23,7 @@ class _SignUpScreenState extends State<Login> {
   int log=-1;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  var sessionManager = SessionManager();
 
    Future<int> login(String email , String password) async {
 
@@ -38,6 +43,8 @@ class _SignUpScreenState extends State<Login> {
            setState(() {
              log=0;
            });
+
+
          }
          else if (loginStatus.loginState=="other"){
            print(loginStatus.stateDescription);
@@ -75,7 +82,7 @@ return 0;
       fontSize: 15
   );
 
-  int statusDisplay(int i){
+  bool statusDisplay(int i){
     if(i==0){
       setState(() {
         s="Succesful Login";
@@ -84,6 +91,7 @@ return 0;
             fontSize: 15
         );
       });
+      return true;
     }
     else if(i==1){
       setState(() {
@@ -112,7 +120,7 @@ return 0;
         );
       });
     }
-    return 0;
+    return false;
   }
 
   @override
@@ -144,11 +152,25 @@ return 0;
             SizedBox(height: 20,),
             Text(s,
             style: t,),
-            SizedBox(height: 20,),
+            SizedBox(height: 10,),
             GestureDetector(
               onTap: () async {
                 await login(emailController.text.toString(), passwordController.text.toString());
-                statusDisplay(log);
+                print(statusDisplay(log));
+                if(statusDisplay(log)){
+
+                  await sessionManager.set("loginState","true");
+
+                  await sessionManager.set("email",emailController.text.toString());
+                  dynamic id = await SessionManager().get("email");
+                  print(id);
+
+                  //getUtente api e set session par
+                  sleep(const Duration(milliseconds: 50));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Root()));
+
+
+                }
 
 
               },
@@ -159,6 +181,23 @@ return 0;
                     borderRadius: BorderRadius.circular(10)
                 ),
                 child: Center(child: Text('Login'),),
+              ),
+            ),
+            SizedBox(height: 5,),
+            GestureDetector(
+              onTap: ()  {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Root()));
+
+
+
+              },
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                    color: Colors.indigo,
+                    borderRadius: BorderRadius.circular(10)
+                ),
+                child: Center(child: Text('Guest'),),
               ),
             ),
 

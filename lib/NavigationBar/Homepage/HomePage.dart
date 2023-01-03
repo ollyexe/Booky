@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:progettoium/NavigationBar/Homepage/Selection_Professor_Subject.dart';
@@ -17,10 +18,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Lecture> lectures = [
-    Lecture("Alex","Abrate","Matematica",DateTime.now(),null,5.0),
-    Lecture("Matteo", "Barone", "Informatica", DateTime.now(), null, 4.0)
+    Lecture.local("Alessandro","Abrate","Matematica","2022-11-03","17:00",NetworkImage("https://thispersondoesnotexist.com/image"),5,10),
+    Lecture.local("Alessandro","Abrate","Matematica","2022-11-03","17:00",NetworkImage("https://thispersondoesnotexist.com/image"),5,10),
   ];
-  String name = "Matteo";
+
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +44,12 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 157, 0),
-                  child: myText("Ciao $name,", 20, Colors.black, FontWeight.w400),
+                  child: FutureBuilder(
+                    future: SessionManager().get("email"),
+                    builder: (context, snapshot){
+                      return myText( snapshot.hasData ? "Ciao ${snapshot.data}" : "Ciao Guest", 20, Colors.black, FontWeight.w400);
+                    },
+                  ),
                 ),
                 const SizedBox(height: 5),
                 myText("queste sono le tue prossime lezioni:", 17, Colors.black, FontWeight.w400),

@@ -14,8 +14,8 @@ class Cart extends StatefulWidget {
 
 class _CartState extends State<Cart> {
   List<Lecture> lectures = [
-    Lecture("Alex","Abrate","Matematica",DateTime.now(),null,5.0),
-    Lecture("Matteo", "Barone", "Informatica", DateTime.now(), null, 4.0)
+    Lecture.local("Alessandro","Abrate","Matematica","2022-11-03","17:00",NetworkImage("https://thispersondoesnotexist.com/image"),5,10),
+    Lecture.local("Alessandro","Abrate","Matematica","2022-11-03","17:00",NetworkImage("https://thispersondoesnotexist.com/image"),5,10),
   ];
   Text text = myText("Cart", 20, Colors.white, FontWeight.w500);
   String placeOrderText = " Swipe to Place Order";
