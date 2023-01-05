@@ -4,7 +4,6 @@ import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:progettoium/NavigationBar/Homepage/Selection_Professor_Subject.dart';
 import 'package:progettoium/Utilities/CommonWidgets/SingleLecture.dart';
-
 import '../../Utilities/Settings/Settings.dart';
 
 
@@ -31,10 +30,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE7E7E7),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
-          customAppBar(settingsButton(context),myText("IUM Project", 20, Colors.white, FontWeight.w500),90), //Custom Widget from MyAppBar.dart file
+          customAppBar(
+            settingsButton(context),
+            myText("IUM Project", 20, Theme.of(context).colorScheme.onPrimary, FontWeight.w500),90,context), //Custom Widget from MyAppBar.dart file
           const SizedBox(height: 35),
           profSubjectButton(context), //Custom Widget from Selection_Professor_Subject.dart file
           const SizedBox(height: 30),
@@ -47,12 +48,12 @@ class _HomePageState extends State<HomePage> {
                   child: FutureBuilder(
                     future: SessionManager().get("email"),
                     builder: (context, snapshot){
-                      return myText( snapshot.hasData ? "Ciao ${snapshot.data}" : "Ciao Guest", 20, Colors.black, FontWeight.w400);
+                      return myText( snapshot.hasData ? "Ciao ${snapshot.data}" : "Ciao Guest", 20, Theme.of(context).colorScheme.onBackground, FontWeight.w400);
                     },
                   ),
                 ),
                 const SizedBox(height: 5),
-                myText("queste sono le tue prossime lezioni:", 17, Colors.black, FontWeight.w400),
+                myText("queste sono le tue prossime lezioni:", 17, Theme.of(context).colorScheme.onBackground, FontWeight.w400),
               ],
             ),
           ),
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
 
 IconButton settingsButton(BuildContext context) {
   return IconButton(
-    icon: const Icon(Icons.settings_rounded),
+    icon: Icon(Icons.settings_rounded, color: Theme.of(context).colorScheme.onPrimary),
     onPressed: (){
       Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Settings()));
     },

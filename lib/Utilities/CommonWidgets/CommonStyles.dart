@@ -14,14 +14,14 @@ Text myText(String label, double fontSize, Color color, FontWeight fontWeight){
   );
 }
 
-Container containerWithShadow(Color boxColor,double height,double width, Widget widget){
+Container containerWithShadow(Color boxColor,double height,double width, Widget widget, BuildContext context){
   return Container(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
       color: boxColor,
       boxShadow: [
         BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
+          color: Theme.of(context).colorScheme.shadow,
           spreadRadius: 2,
           blurRadius: 5,
           offset: const Offset(2, 3)
@@ -34,9 +34,9 @@ Container containerWithShadow(Color boxColor,double height,double width, Widget 
   );
 }
 
-AppBar customAppBar(Widget widget,Text text,double height){
+AppBar customAppBar(Widget widget,Text text,double height,BuildContext context){
   return AppBar(
-    backgroundColor: const Color(0xFF3B5998),
+    backgroundColor: Theme.of(context).colorScheme.primary,
     elevation: 0,
     title: text,
     toolbarHeight: height,
@@ -60,18 +60,7 @@ Widget divider(Color color){
   );
 }
 
-RotatedBox arrowRight(bool rotateArrow){
-  return RotatedBox(
-    key: const Key("ArrowThatRotates"),
-    quarterTurns: rotateArrow ? 1 : 0,
-    child: const Icon(
-      Icons.arrow_right,
-      size: 40,
-    ),
-  );
-}
-
-Container containerSingleLecture(String label, Color color){
+Container containerSingleLecture(String label, Color color, BuildContext context){
   return Container(
       decoration: BoxDecoration(
           color: color,
@@ -79,7 +68,7 @@ Container containerSingleLecture(String label, Color color){
       ),
       width: 80,
       height: 30,
-      child: Center(child: myText(label, 11, Colors.white, FontWeight.bold))
+      child: Center(child: myText(label, 11, Theme.of(context).colorScheme.onTertiaryContainer, FontWeight.bold))
   );
 }
 

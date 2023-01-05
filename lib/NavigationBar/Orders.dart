@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
-
 import '../Utilities/CommonWidgets/SingleLecture.dart';
-import '../Utilities/CommonWidgets/UtilityWidgets.dart';
 
 var textColors = [Colors.black,Colors.white];
 var containerColors = [Colors.white,Colors.purple];
@@ -28,25 +26,24 @@ class _OrdersState extends State<Orders> {
   void initState() {
     super.initState();
     screens = [ListOfLectures(lectures), ListOfLectures(lectures)];
-
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(placeholder, myText("Orders", 23, Colors.white, FontWeight.w500), 75),
-      backgroundColor: const Color(0xFFE7E7E7),
+      appBar: customAppBar(placeholder, myText("Orders", 23, Colors.white, FontWeight.w500),75,context),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
         child: Column(
           children: [
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.secondaryContainer,
                 borderRadius: BorderRadius.circular(5),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.7),
-                    spreadRadius: 2,
+                    color: Theme.of(context).colorScheme.shadow,
+                    spreadRadius: 1,
                     blurRadius: 5,
                     offset: const Offset(1, 2)
                   ),
@@ -72,10 +69,10 @@ class _OrdersState extends State<Orders> {
         });
       },
       borderRadius: BorderRadius.circular(5),
-      selectedColor: Colors.white,
-      fillColor: Colors.deepPurple[500],
-      color: Colors.black,
-      highlightColor: Colors.deepPurple,
+      selectedColor: Theme.of(context).colorScheme.onTertiaryContainer,
+      fillColor: Theme.of(context).colorScheme.tertiaryContainer,
+      color: Theme.of(context).colorScheme.onSecondaryContainer,
+      highlightColor: Theme.of(context).colorScheme.tertiaryContainer,
       constraints: const BoxConstraints(
         minHeight: 70.0,
         minWidth: 150.0,

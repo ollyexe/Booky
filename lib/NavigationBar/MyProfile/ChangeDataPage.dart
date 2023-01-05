@@ -15,8 +15,7 @@ class _ChangeDataPageState extends State<ChangeDataPage> {
     return Scaffold(
       body: Column(
         children: [
-          customAppBar(placeholder,
-              myText("Change Data", 22, Colors.white, FontWeight.w600),75),
+          customAppBar(placeholder, myText("Change Data", 22, Colors.white, FontWeight.w600),75,context),
           const SizedBox(height: 30),
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),

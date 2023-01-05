@@ -20,8 +20,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     return Scaffold(
       body: Column(
         children: [
-          customAppBar(placeholder,
-              myText("Change Password", 22, Colors.white, FontWeight.w600),75),
+          customAppBar(placeholder, myText("Change Password", 22, Colors.white, FontWeight.w600),75,context),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

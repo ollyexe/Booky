@@ -5,10 +5,6 @@ import 'package:flutter_session_manager/flutter_session_manager.dart' ;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:progettoium/Model/LoginM.dart';
-import 'package:progettoium/NavigationBar/Homepage/HomePage.dart';
-import 'package:progettoium/NavigationBar/MyProfile/MyProfile.dart';
-
-
 import '../../Utilities/CommonWidgets/CommonStyles.dart';
 import '../../main.dart';
 
@@ -127,7 +123,8 @@ return 0;
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: customAppBar(placeholder, const Text("Login"), 75),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      appBar: customAppBar(placeholder, myText("Login",22, Theme.of(context).colorScheme.onPrimary, FontWeight.w600), 75,context),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -137,7 +134,8 @@ return 0;
             TextFormField(
               controller: emailController,
               decoration: InputDecoration(
-                  hintText: 'Email'
+                hintText: 'Email',
+
               ),
             ),
             SizedBox(height: 20,),
@@ -149,30 +147,23 @@ return 0;
               ),
 
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Text(s,
             style: t,),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             GestureDetector(
               onTap: () async {
                 await login(emailController.text.toString(), passwordController.text.toString());
                 print(statusDisplay(log));
                 if(statusDisplay(log)){
-
                   await sessionManager.set("loginState","true");
-
                   await sessionManager.set("email",emailController.text.toString());
                   dynamic id = await SessionManager().get("email");
                   print(id);
-
                   //getUtente api e set session par
                   sleep(const Duration(milliseconds: 50));
                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Root()));
-
-
                 }
-
-
               },
               child: Container(
                 height: 50,
@@ -183,13 +174,10 @@ return 0;
                 child: Center(child: Text('Login'),),
               ),
             ),
-            SizedBox(height: 5,),
+            const SizedBox(height: 5,),
             GestureDetector(
               onTap: ()  {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Root()));
-
-
-
               },
               child: Container(
                 height: 50,

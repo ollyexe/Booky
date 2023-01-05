@@ -21,21 +21,20 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
-          customAppBar(placeholder,
-              myText("Settings", 22, Colors.white, FontWeight.w600), 75),
+          customAppBar(placeholder, myText("Settings", 22, Theme.of(context).colorScheme.onPrimary, FontWeight.w600), 75,context),
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(10, 20, 10, 0),
             child: Column(
               children: [
                 SwitchListTile(
                   title: myText(
-                      "Notifications", 18, Colors.black, FontWeight.normal),
-                  tileColor: Colors.white,
-                  secondary: const Icon(
-                      Icons.notifications, color: Colors.blue),
+                      "Notifications", 18, Theme.of(context).colorScheme.onBackground, FontWeight.normal),
+                  //tileColor: Colors.white,
+                  secondary: Icon(
+                      Icons.notifications, color: Theme.of(context).colorScheme.inversePrimary),
                   value: notificationsOnOff,
                   onChanged: (value) {
                     setState(() {
@@ -43,20 +42,23 @@ class _SettingsState extends State<Settings> {
                     });
                   },
                 ),
-                divider(Colors.black38),
+                divider(Theme.of(context).colorScheme.onBackground.withOpacity(0.9)),
                 ExpandableNotifier(
                   initialExpanded: false,
                   child: ScrollOnExpand(
                     scrollOnCollapse: true,
                     scrollOnExpand: true,
                     child: ExpandablePanel(
+                      theme: ExpandableThemeData(
+                        iconColor: Theme.of(context).colorScheme.inversePrimary,
+                      ),
                       header: Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(18, 15, 0, 15),
                         child: Row(
                           children: [
-                            const Icon(Icons.dark_mode,color: Colors.blue),
+                            Icon(Icons.dark_mode,color: Theme.of(context).colorScheme.inversePrimary),
                             const SizedBox(width: 30),
-                            myText("Change theme", 18, Colors.black, FontWeight.normal),
+                            myText("Change theme", 18, Theme.of(context).colorScheme.onBackground, FontWeight.normal),
                           ],
                         ),
                       ),
@@ -64,10 +66,10 @@ class _SettingsState extends State<Settings> {
                       expanded: Column(
                         children: [
                           SwitchListTile(
-                            title: myText("Light Mode", 18, Colors.black,
+                            title: myText("Light Mode", 18, Theme.of(context).colorScheme.onBackground,
                                 FontWeight.normal),
-                            secondary: const Icon(
-                                Icons.sunny, color: Colors.blue),
+                            secondary: Icon(
+                                Icons.sunny, color: Theme.of(context).colorScheme.inversePrimary),
                             value: lightSwitch,
                             onChanged: (value) {
                               setState(() {
@@ -76,12 +78,12 @@ class _SettingsState extends State<Settings> {
                               });
                             },
                           ),
-                          divider(Colors.black26),
+                          divider(Theme.of(context).colorScheme.onBackground.withOpacity(0.7)),
                           SwitchListTile(
-                            title: myText("Dark Mode", 18, Colors.black,
+                            title: myText("Dark Mode", 18, Theme.of(context).colorScheme.onBackground,
                                 FontWeight.normal),
-                            secondary: const Icon(
-                                Icons.dark_mode, color: Colors.blue),
+                            secondary: Icon(
+                                Icons.dark_mode, color: Theme.of(context).colorScheme.inversePrimary),
                             value: darkSwitch,
                             onChanged: (value) {
                               setState(() {
@@ -90,12 +92,12 @@ class _SettingsState extends State<Settings> {
                               });
                             },
                           ),
-                          divider(Colors.black26),
+                          divider(Theme.of(context).colorScheme.onBackground.withOpacity(0.7)),
                           SwitchListTile(
-                            title: myText("Colorblind Mode", 18, Colors.black,
+                            title: myText("Colorblind Mode", 18, Theme.of(context).colorScheme.onBackground,
                                 FontWeight.normal),
-                            secondary: const Icon(
-                                Icons.visibility_outlined, color: Colors.blue),
+                            secondary: Icon(
+                                Icons.visibility_outlined, color: Theme.of(context).colorScheme.inversePrimary),
                             value: colorblindSwitch,
                             onChanged: (value) {
                               setState(() {
@@ -108,10 +110,10 @@ class _SettingsState extends State<Settings> {
                     ),
                   ),
                 ),
-                divider(Colors.black38),
+                divider(Theme.of(context).colorScheme.onBackground.withOpacity(0.9)),
                 ListTile(
-                  leading: const Icon(Icons.help,color: Colors.blue,),
-                  title: myText("Help", 18, Colors.black, FontWeight.normal),
+                  leading: Icon(Icons.help,color: Theme.of(context).colorScheme.inversePrimary),
+                  title: myText("Help", 18, Theme.of(context).colorScheme.onBackground, FontWeight.normal),
                 )
               ],
             ),

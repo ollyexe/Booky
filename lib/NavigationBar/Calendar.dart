@@ -25,7 +25,7 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE7E7E7),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
           const SizedBox(height: 30),

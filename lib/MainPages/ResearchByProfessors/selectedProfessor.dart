@@ -20,7 +20,7 @@ class _selectedProfessor extends State<selectedProfessor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(placeholder, const Text("Scegli la materia"), 60),
+      appBar: customAppBar(placeholder, const Text("Scegli la materia"), 60, context),
       backgroundColor: const Color(0xFFE7E7E7),
       body: Padding(
         padding: const EdgeInsets.all(6.0),

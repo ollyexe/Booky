@@ -53,33 +53,36 @@ class _ListForCartState extends State<ListForCart> {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    border: Border.all(color: Colors.black26, width: 1),
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    //border: Border.all(color: Colors.black26, width: 1),
                   ),
                   padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CircleAvatar(
                             backgroundImage: widget.list[index].image,
                             radius: 25,
                           ),
-                          const SizedBox(width: 20),
-                          myText("Prof ${widget.list[index].name} ${widget.list[index].surname}", 19, Colors.black, FontWeight.w500),
-                          const SizedBox(width: 35),
+                          Column(
+                            children: [
+                              myText("Prof ${widget.list[index].name} ${widget.list[index].surname}", 19, Theme.of(context).colorScheme.onPrimaryContainer, FontWeight.w500),
+                              myText(widget.list[index].subject, 15, Theme.of(context).colorScheme.onPrimaryContainer, FontWeight.normal)
+                            ],
+                          ),
                           IconButton(
-                            icon: const Icon(
+                            icon:  Icon(
                               Icons.delete,
                               size: 40,
-                              color: Color(0xFFFF0000),
+                              color: Theme.of(context).colorScheme.error,
                             ),
                             onPressed: () => _removeItem(index),
                           )
                         ],
                       ),
-                      topWidget(widget.list[index])
+                      topWidget(widget.list[index], context)
                     ],
                   ),
                 ),
@@ -142,8 +145,8 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    border: Border.all(color: Colors.black26, width: 1),
+                    color: Theme.of(context).colorScheme.primaryContainer,
+                    //border: Border.all(color: Colors.black26, width: 1),
                   ),
                   padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
                   child: ExpandableNotifier(
@@ -161,16 +164,16 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                             const SizedBox(width: 20),
                             Column(
                               children: [
-                                myText("Prof ${widget.list[index].name} ${widget.list[index].surname}", 19, Colors.black, FontWeight.w500),
-                                myText(widget.list[index].subject, 15, Colors.grey, FontWeight.normal)
+                                myText("Prof ${widget.list[index].name} ${widget.list[index].surname}", 19, Theme.of(context).colorScheme.onPrimaryContainer, FontWeight.w500),
+                                myText(widget.list[index].subject, 15, Theme.of(context).colorScheme.onPrimaryContainer, FontWeight.normal)
                               ],
                             )
                           ],
                         ),
-                        collapsed: topWidget(widget.list[index]),
+                        collapsed: topWidget(widget.list[index], context),
                         expanded:Column(
                           children: [
-                            topWidget(widget.list[index]),
+                            topWidget(widget.list[index], context ),
                             const SizedBox(height:10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -183,7 +186,7 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                                 IconButton(
                                   iconSize: 40,
                                   onPressed: () => _removeItem(index),
-                                  icon: const Icon(Icons.delete, color: Colors.red),
+                                  icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.error),
                                 )
                               ],
                             )
@@ -205,34 +208,35 @@ class _ListOfLecturesState extends State<ListOfLectures> {
 
 
 
-Widget topWidget(Lecture lecture){
+Widget topWidget(Lecture lecture, BuildContext context){
   return Padding(
     padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 0),
     child: Row(
       children: [
         Container(
           decoration:BoxDecoration(
-              color: Colors.blue,
+              color: Theme.of(context).colorScheme.secondaryContainer,
               borderRadius: BorderRadius.circular(7)
           ),
           child: Row(
             children: [
-              myText("${lecture.rating}", 15, Colors.white, FontWeight.w600), //CHANGE 4.7 TO A VARIABLE
-              const Icon(Icons.star,color: Colors.white,size: 18)],
+              Icon(Icons.star,color: Theme.of(context).colorScheme.onSecondaryContainer,size: 18),
+              myText("${lecture.rating}", 15, Theme.of(context).colorScheme.onSecondaryContainer.withOpacity(0.6), FontWeight.w600), //CHANGE 4.7 TO A VARIABLE
+            ],
           ),
         ),
         const SizedBox(width: 20),
         Row(
           children: [
-            containerSingleLecture("${lecture.time}", Colors.blue),
+            containerSingleLecture("${lecture.time}", Theme.of(context).colorScheme.tertiaryContainer, context),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
-              child: containerSingleLecture("${lecture.date}", Colors.purple),
+              child: containerSingleLecture("${lecture.date}", Theme.of(context).colorScheme.tertiaryContainer, context),
             )
           ],
         ),
-        const SizedBox(width: 35),
-        myText(" Tra 5 ore", 13, Colors.blueGrey, FontWeight.w500),
+        const SizedBox(width: 40),
+        myText(" Tra 5 ore", 13, Theme.of(context).colorScheme.onPrimaryContainer, FontWeight.w500),
       ],
     ),
   );

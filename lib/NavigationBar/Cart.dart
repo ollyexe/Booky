@@ -26,14 +26,14 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE7E7E7),
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
-          customAppBar(placeholder,text,60),
+          customAppBar(placeholder,text,60,context),
           const SizedBox(height: 20),
           ListForCart(lectures),
           const SizedBox(height: 15),
-          totalCost(lectures.length,lectures.length*10),
+          totalCost(lectures.length,lectures.length*10, context),
           const SizedBox(height: 20),
           confirmationButton(),
         ],
@@ -106,10 +106,10 @@ class _CartState extends State<Cart> {
 
 }
 
-Widget totalCost(int numberOfLecture, int totalPrice){
+Widget totalCost(int numberOfLecture, int totalPrice, BuildContext context){
   return Container(
     decoration: BoxDecoration(
-      color: Colors.white,
+      color: Theme.of(context).colorScheme.primaryContainer,
       borderRadius: BorderRadius.circular(10),
     ),
     height: 85,
@@ -118,7 +118,11 @@ Widget totalCost(int numberOfLecture, int totalPrice){
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         totalCostPart("Number of Lectures ", "$numberOfLecture"),
-        totalCostDivider(),
+        Divider(
+          thickness: 1,
+          height: 10,
+          color: Color(0xFFE7E7E7),
+        ),
         totalCostPart("Total", "$totalPrice"),
       ],
     ),
@@ -138,13 +142,5 @@ Row totalCostPart(String label,String total){
         child: myText(total, 15, Colors.black, FontWeight.w400),
       )
     ],
-  );
-}
-
-Divider totalCostDivider(){
-  return const Divider(
-    thickness: 1,
-    height: 10,
-    color: Color(0xFFE7E7E7),
   );
 }

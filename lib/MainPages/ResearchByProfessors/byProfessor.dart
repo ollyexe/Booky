@@ -19,7 +19,7 @@ class _ByProfessorState extends State<ByProfessor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(placeholder, const Text("Scegli il professore"), 60),
+      appBar: customAppBar(placeholder, const Text("Scegli il professore"), 60,context),
       body: Padding(
         padding: const EdgeInsets.all(6.0),
         child: GridView.count(
