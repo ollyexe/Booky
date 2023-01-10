@@ -206,6 +206,90 @@ class _ListOfLecturesState extends State<ListOfLectures> {
   }
 }
 
+class ListForSubject extends StatefulWidget {
+  List<Lecture> list;
+
+  ListForSubject(this.list,{Key? key}) : super(key: key);
+
+  @override
+  State<ListForSubject> createState() => _ListForSubjectState();
+}
+
+
+class _ListForSubjectState extends State<ListForSubject> {
+  final GlobalKey<AnimatedListState> _key = GlobalKey();
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: AnimatedList(
+        key: _key,
+        initialItemCount: widget.list.length,
+        padding: const EdgeInsets.all(10),
+        itemBuilder: (context,index,animation){
+          return SizeTransition(
+              key: UniqueKey(),
+              sizeFactor: animation,
+              child: Column(
+                children: [
+                  Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        border: Border.all(color: Colors.black26, width: 1),
+                      ),
+                      padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
+                      child: ExpandableNotifier(
+                        initialExpanded: false,
+                        child: ScrollOnExpand(
+                          scrollOnExpand: true,
+                          scrollOnCollapse: true,
+                          child: ExpandablePanel(
+                            header: Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundImage: widget.list[index].image,
+                                  radius: 25,
+                                ),
+                                const SizedBox(width: 20),
+                                Column(
+                                  children: [
+                                    myText(widget.list[index].subject, 19, Colors.black, FontWeight.w500),
+                                    myText("Prof: ${widget.list[index].name} ${widget.list[index].surname}", 15, Colors.black, FontWeight.normal)
+                                  ],
+                                )
+                              ],
+                            ),
+                            collapsed: topWidget(widget.list[index],context),
+                            expanded:Column(
+                              children: [
+                                topWidget(widget.list[index],context),
+                                const SizedBox(height:10),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    IconButton(
+                                      iconSize: 40,
+                                      onPressed: () {},
+                                      icon: const Icon(Icons.calendar_month_rounded,color: Colors.green),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                  ),
+                  space
+                ],
+              )
+          );
+        },
+      ),
+    );
+  }
+}
+
 
 
 Widget topWidget(Lecture lecture, BuildContext context){

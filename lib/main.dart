@@ -2,19 +2,27 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:progettoium/NavigationBar/MyProfile/Login.dart';
-import 'package:progettoium/NavigationBar/MyProfile/MyProfile.dart';
-import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
+import 'package:provider/provider.dart';
 
-/* Navigation Bar imports */
+/* My Pages */
 import 'NavigationBar/Calendar.dart';
 import 'NavigationBar/Cart.dart';
 import 'NavigationBar/Homepage/HomePage.dart';
 import 'NavigationBar/Orders.dart';
+import 'package:progettoium/NavigationBar/MyProfile/Login.dart';
+import 'package:progettoium/NavigationBar/MyProfile/MyProfile.dart';
+import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
+import 'package:progettoium/Utilities/Settings/ThemeManager.dart';
 
 
 void main(){
-  runApp(const Progetto());
+  return runApp(
+    ChangeNotifierProvider<ThemeNotifier>(
+      create: (_) => ThemeNotifier(),
+      child: const Progetto()
+    )
+  );
+  /*runApp(const Progetto());*/
 }
 
 class Progetto extends StatelessWidget {
@@ -22,14 +30,17 @@ class Progetto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Progetto',
-      initialRoute: 'Root',
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
-      darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-      home: const Login(),
+    return Consumer<ThemeNotifier>(
+      builder: (context, theme, _) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Progetto',
+        initialRoute: 'Root',
+        themeMode: ThemeMode.system,
+        //themeMode: ThemeMode.dark,
+        theme: ThemeData(useMaterial3: true, colorScheme: theme.getTheme()),//ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+        //darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
+        home: const Login(),
+      ),
     );
   }
 }
@@ -132,6 +143,7 @@ class _RootState extends State<Root> {
 }
 
 
+/*
 final lightColorScheme = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xFF355CA8),
@@ -195,3 +207,4 @@ final darkColorScheme = ColorScheme(
   shadow: Colors.black.withOpacity(0.5),
   surfaceTint: Color(0xFFAFC6FF),
 );
+ */

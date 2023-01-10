@@ -26,7 +26,7 @@
   - [X] AppBar
   - [X] BySubject/ByProfessors buttons
   - [X] Next lessons form
-- [ ] Cart
+- [X] Cart
 - [X] My Calendar
   - [X] Custom Calendar
   - [X] Next lessons form
@@ -36,19 +36,16 @@
   - [X] Form with data
   - [X] Change data
   - [X] Change profile picture
-- [ ] Search by Professor
-  - [ ] Professor form(data + stars)
-- [ ] Search by Subject
+- [X] Search by Professor
+  - [X] Professor form(data + stars)
+- [X] Search by Subject
 - [X] Settings
   - [X] Notifications
-  - [ ] Theme
-    - [ ] Dark Theme
-    - [ ] Colorblind Theme
-  - [ ] Privacy e Security
-    - [ ] Facial Recognition
-    - [ ] Fingerprint Recognition
-  - [ ] Help
-    - [ ] Contact Us
+  - [X] Theme
+    - [X] Dark Theme
+    - [X] Colorblind Theme
+  - [X] Help
+    - [X] Contact Us
   
 ### Back END
 

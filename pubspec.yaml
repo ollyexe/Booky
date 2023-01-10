@@ -34,8 +34,10 @@ dependencies:
   animated_bottom_navigation_bar:
   auto_size_text:
   expandable: ^5.0.1
+  provider:
   flutter:
     sdk: flutter
+
 
 
   # The following adds the Cupertino Icons font to your application.

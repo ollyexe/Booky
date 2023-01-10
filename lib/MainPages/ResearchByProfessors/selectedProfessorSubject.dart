@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:progettoium/MainPages/ResearchBySubjects/selectedProfessor.dart';
+import 'package:progettoium/MainPages/ResearchByProfessors/selectedLesson.dart';
+import 'package:progettoium/MainPages/ResearchBySubjects/BySubject.dart';
 
+import '../../NavigationBar/Homepage/Selection_Professor_Subject.dart';
 import '../../Utilities/CommonWidgets/CommonStyles.dart';
-import '../CommonMainPagesWidgets/SubjectCard.dart';
-
-/*class BySubject extends StatefulWidget {
-  const BySubject({Key? key}) : super(key: key);
+import '../../Utilities/CommonWidgets/List_of_Appointments.dart';
+import '../../Utilities/CommonWidgets/SingleLecture.dart';
+import 'byProfessor.dart';
+/*
+class selectedProfessorSubject extends StatefulWidget {
+  const selectedProfessorSubject({Key? key}) : super(key: key);
 
   @override
-  State<BySubject> createState() => _BySubjectState();
+  State<selectedProfessorSubject> createState() => _selectedProfessorSubject();
 }
 
-class _BySubjectState extends State<BySubject> {
+class _selectedProfessorSubject extends State<selectedProfessorSubject> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(placeholderBack, const Text("Scegli la materia"), 60,context),
+      appBar: customAppBar(placeholderBack, const Text("Materie insegnate"), 60,context),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
         padding: const EdgeInsets.all(6.0),
@@ -46,7 +52,7 @@ class SubCard {
 Widget subCard(BuildContext context,int index, List<SubCard> cards){
   return GestureDetector(
     onTap: () {
-      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const selectedProfessor()));
+      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const selectedLesson()));
     },
     child: Container(
       margin: const EdgeInsets.all(5),
@@ -67,11 +73,11 @@ Widget subCard(BuildContext context,int index, List<SubCard> cards){
             radius: 40,
             backgroundImage: NetworkImage(cards[index].image! ),
           ),
-          Text("${cards[index].subName!}", style: secondaryTextStyle(color: Colors.white, size: 17)),
+          Text(cards[index].subName!, style: secondaryTextStyle(color: Colors.white, size: 17)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("${cards[index].profName!}", style: secondaryTextStyle(color: Colors.white54, size: 15)),
+              Text(cards[index].profName!, style: secondaryTextStyle(color: Colors.white54, size: 15)),
             ],
           ),
           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -128,13 +134,5 @@ List<SubCard> getSubjectCards(){
   ];
   return cards;
 }
+
 */
-
-
-
-
-
-
-
-
-

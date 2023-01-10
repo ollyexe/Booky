@@ -21,12 +21,6 @@ class _HomePageState extends State<HomePage> {
     Lecture.local("Alessandro","Abrate","Matematica","2022-11-03","17:00",NetworkImage("https://thispersondoesnotexist.com/image"),5,10),
   ];
 
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

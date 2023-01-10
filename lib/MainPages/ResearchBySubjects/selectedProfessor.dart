@@ -1,27 +1,31 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:progettoium/MainPages/ResearchByProfessors/selectedProfessorSubject.dart';
+import 'package:progettoium/MainPages/ResearchBySubjects/selectedSubLesson.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
-import '../CommonMainPagesWidgets/ProfessorCard.dart';
+
+import '../../NavigationBar/Homepage/Selection_Professor_Subject.dart';
 /*
-class ByProfessor extends StatefulWidget {
-  const ByProfessor({Key? key}) : super(key: key);
+class selectedProfessor extends StatefulWidget {
+  const selectedProfessor({Key? key}) : super(key: key);
 
   @override
-  State<ByProfessor> createState() => _ByProfessorState();
+  State<selectedProfessor> createState() => _selectedProfessorState();
 }
 
-class _ByProfessorState extends State<ByProfessor> {
+class _selectedProfessorState extends State<selectedProfessor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: customAppBar(placeholderBack, myText("Scegli il professore", 20, Theme.of(context).colorScheme.onPrimary, FontWeight.w500), 60,context),
+      appBar: customAppBar(placeholderBack, const Text("Scegli il professore"), 60,context),
       body: Padding(
         padding: const EdgeInsets.all(6.0),
         child: GridView.count(
           crossAxisCount: 2 ,
-          children: List.generate(getProfCards(Theme.of(context).colorScheme.tertiaryContainer).length,(index){
+          children: List.generate(getProfCards().length,(index){
             return Container(
-              child: profCard(context, index, getProfCards(Theme.of(context).colorScheme.tertiaryContainer)),
+              child: profCard(context, index, getProfCards()),
             );
           }),
         ),
@@ -29,8 +33,6 @@ class _ByProfessorState extends State<ByProfessor> {
     );
   }
 }
-
-
 
 BoxDecoration boxDecoration({double radius = 80.0,  double blurRadius = 8.0, double spreadRadius = 8.0, Color radiusColor = Colors.black12, Gradient? gradient}) {
   return BoxDecoration(
@@ -79,6 +81,7 @@ TextStyle secondaryTextStyle({
 }
 
 
+
 class ProfCard {
   String? image;
   String? profName;
@@ -94,13 +97,13 @@ class ProfCard {
 Widget profCard(BuildContext context,int index, List<ProfCard> cards){
   return GestureDetector(
     onTap: () {
-      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const selectedProfessorSubject()));
+      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const selectedSubLesson()));
     },
     child: Container(
-      margin: const EdgeInsets.all(4),
-      height: 250,
+      margin: const EdgeInsets.all(5),
+      height: 270,
       width: 180,
-      padding: const EdgeInsets.all(5),
+      //padding: const EdgeInsets.all(10),
       decoration: boxDecoration(
         radius: 8,
         spreadRadius: 1,
@@ -113,7 +116,7 @@ Widget profCard(BuildContext context,int index, List<ProfCard> cards){
         children: <Widget>[
           CircleAvatar(
             radius: 40,
-            backgroundImage: NetworkImage(cards[index].image!),
+            backgroundImage: NetworkImage(cards[index].image! ),
           ),
           Text("Prof. ${cards[index].profName!} ${cards[index].profSurname!}", style: secondaryTextStyle(color: Colors.white, size: 17)),
           Column(
@@ -136,14 +139,14 @@ Widget profCard(BuildContext context,int index, List<ProfCard> cards){
 
 
 int randomColorGradient(){
-  List<int> gradients = [0xFFFFDDE1,0xFF7EA56C,0xFF00CDAC,0xFFEA8D8D ,0xFF1EAE98,0xFFBFF098 ,0xFFC33764];
+  List<int> gradients = [0xFFFFDDE1,0xFF7EA56C,0xFF00CDAC,0xFFEA8D8D ,0xFF1EAE98,0xFFBFF098 ,0xFFC33764  ];
   return gradients.elementAt(Random().nextInt(gradients.length));
 }
 
 
 
-List<ProfCard> getProfCards(Color color){
-  //initializer from json getAllDocenti
+List<ProfCard> getProfCards(){
+  //initializtor from json getAllDocenti
   List<ProfCard> cards = [
     ProfCard(
       image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Cima_da_Conegliano%2C_God_the_Father.jpg',
@@ -151,7 +154,7 @@ List<ProfCard> getProfCards(Color color){
       profSurname : 'Molica',
       time: 'Sempre Disponibile',
       insegnamenti: ["TWEB","IUM","JAVA","BACKEND"],
-      startColor: color,//const Color(0xFF2889EB),
+      startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
     ),
     ProfCard(
@@ -160,7 +163,7 @@ List<ProfCard> getProfCards(Color color){
       profSurname: 'Barone',
       time: 'Inizio 16:00',
       insegnamenti: ["Matematica","Algebra","Fisica"],
-      startColor: color,//const Color(0xFF2889EB),
+      startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
     ),
     ProfCard(
@@ -169,7 +172,7 @@ List<ProfCard> getProfCards(Color color){
       profSurname: 'Abrate',
       time: 'Inizio 16:00',
       insegnamenti: ["Matematica","Algebra","Fisica"],
-      startColor: color,//const Color(0xFF2889EB),
+      startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
     ),
     ProfCard(
@@ -178,7 +181,7 @@ List<ProfCard> getProfCards(Color color){
       profSurname: 'Chimento',
       time: 'Inizio 16:00',
       insegnamenti: ["Matematica","Algebra","Fisica"],
-      startColor: color,//const Color(0xFF2889EB),
+      startColor: const Color(0xFF2889EB),
       endColor: Color(randomColorGradient()),
     )
   ];

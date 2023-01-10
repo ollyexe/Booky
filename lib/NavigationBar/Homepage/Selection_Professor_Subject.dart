@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progettoium/MainPages/GenericListOfSubjectsOrProfessors.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import '../../MainPages/ResearchByProfessors/byProfessor.dart';
 import '../../MainPages/ResearchBySubjects/BySubject.dart';
@@ -17,9 +18,9 @@ GestureDetector buildButton(IconData icon, String label,BuildContext context){
   return GestureDetector(
       onTap: (){
         if(label == 'Professors'){
-          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const ByProfessor()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => GenericListOfSubjectsOrProfessors(null, null, "Professors")));
         }else if(label == 'Subjects'){
-          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const BySubject()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => GenericListOfSubjectsOrProfessors(null, null, "Subjects")));
         }else{
           //ERROR
         }

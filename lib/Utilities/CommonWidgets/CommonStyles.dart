@@ -39,6 +39,10 @@ AppBar customAppBar(Widget widget,Text text,double height,BuildContext context){
     backgroundColor: Theme.of(context).colorScheme.primary,
     elevation: 0,
     title: text,
+    leading: widget.key == const Key('BackArrow') ? IconButton(
+      icon:Icon(Icons.arrow_back,color: Theme.of(context).colorScheme.onPrimary),
+      onPressed: () => Navigator.of(context).pop(),
+    ) : placeholder,
     toolbarHeight: height,
     actions: [
       widget
@@ -47,6 +51,8 @@ AppBar customAppBar(Widget widget,Text text,double height,BuildContext context){
 }
 
 SizedBox placeholder = const SizedBox(width: 0, height: 0);
+
+SizedBox placeholderBack = const SizedBox(key: Key('BackArrow'),width: 0, height: 0);
 
 Widget space = const SizedBox(height: 25);
 
