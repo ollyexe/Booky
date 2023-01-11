@@ -18,3 +18,29 @@ class LoginM {
     stateDescription: json["state_description"],
   );
 }
+
+
+User userFromJson(String str) => User.fromJson(json.decode(str));
+
+
+
+class User {
+  User({
+    required this.nome,
+    required this.cognome,
+    required this.ruolo,
+    required this.pf,
+  });
+
+  String? nome;
+  String? cognome;
+  String? ruolo;
+  String? pf;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+    nome: json["nome"],
+    cognome: json["cognome"],
+    ruolo: json["ruolo"],
+    pf: json["pf"],
+  );
+}

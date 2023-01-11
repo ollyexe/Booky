@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:progettoium/Utilities/CommonWidgets/SingleLecture.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'CommonStyles.dart';
 
 
@@ -180,7 +181,10 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                               children: [
                                 IconButton(
                                   iconSize: 40,
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    await launchUrl(
+                                        Uri.parse('https://calendar.google.com/calendar/u/0/r/eventedit?text=Lezione+di+${widget.list[index].subject}+con+${widget.list[index].name}+${widget.list[index].surname}&dates=${widget.list[index].date.replaceAll(new RegExp(r'[^\w\s]+'),'')}T${widget.list[index].time.replaceAll(new RegExp(r'[^\w\s]+'),'')}00/${widget.list[index].date.replaceAll(new RegExp(r'[^\w\s]+'),'')}T${int.parse(widget.list[index].time.replaceAll(new RegExp(r'[^\w\s]+'),''))+100}00Z&details=zoom.com/random_reunion&location=Metavers&sf=true&output=xml'));
+                                  },
                                   icon: const Icon(Icons.calendar_month_rounded,color: Colors.green),
                                 ),
                                 IconButton(
@@ -269,7 +273,7 @@ class _ListForSubjectState extends State<ListForSubject> {
                                   children: [
                                     IconButton(
                                       iconSize: 40,
-                                      onPressed: () {},
+                                      onPressed: (){_launchUrl(widget.list[index].subject,widget.list[index].name,widget.list[index].surname,widget.list[index].date,widget.list[index].time);},
                                       icon: const Icon(Icons.calendar_month_rounded,color: Colors.green),
                                     ),
                                   ],
@@ -326,5 +330,9 @@ Widget topWidget(Lecture lecture, BuildContext context){
   );
 }
 
-
-
+Future<void> _launchUrl(String object,nome,cognome,date,time) async {
+  if (!await launchUrl(
+      Uri.parse('https://calendar.google.com/calendar/u/0/r/eventedit?text=Lezione+di+${object}+con+${nome}+{cognome}&dates=${date}T${time}/${date}T${time}Z&details=zoom.com/random_reunion&location=Metavers&sf=true&output=xml'))) {
+    throw 'Could not launch ';
+  }
+}
