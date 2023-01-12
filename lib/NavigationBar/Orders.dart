@@ -23,7 +23,7 @@ class _OrdersState extends State<Orders> {
 
 
 
-  Widget confirmed = FutureBuilder<List<Lecture>>(
+  Widget pending = FutureBuilder<List<Lecture>>(
     future: SessionManager().get("email").then((value) => getNextLezioniPrenotate(value).then((value) => lectureFromJson(value))),
     builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
       if(snapshot.hasData) {
@@ -43,7 +43,7 @@ class _OrdersState extends State<Orders> {
   );
 
 
-  Widget pending = FutureBuilder<List<Lecture>>(
+  Widget confirmed = FutureBuilder<List<Lecture>>(
     future: SessionManager().get("email").then((value) => getLezioniFinite(value).then((value) => lectureFromJson(value))),
     builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
       if(snapshot.hasData) {
@@ -82,28 +82,31 @@ class _OrdersState extends State<Orders> {
     return Scaffold(
       appBar: customAppBar(placeholderBack, myText("Orders", 23, Colors.white, FontWeight.w500),75,context),
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondaryContainer,
-                borderRadius: BorderRadius.circular(5),
-                boxShadow: [
-                  BoxShadow(
-                    color: Theme.of(context).colorScheme.shadow,
-                    spreadRadius: 1,
-                    blurRadius: 5,
-                    offset: const Offset(1, 2)
-                  ),
-                ]
+      body: Center(
+
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.secondaryContainer,
+                  borderRadius: BorderRadius.circular(5),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Theme.of(context).colorScheme.shadow,
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: const Offset(1, 2)
+                    ),
+                  ]
+                ),
+                child: buttons(),
               ),
-              child: buttons(),
-            ),
-            const SizedBox(height: 30),
-            screens[index],
-          ],
+              const SizedBox(height: 30),
+              screens[index],
+            ],
+          ),
         ),
       )
     );

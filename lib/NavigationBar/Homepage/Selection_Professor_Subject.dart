@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:progettoium/MainPages/GenericListOfSubjectsOrProfessors.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
-import '../../MainPages/ResearchByProfessors/byProfessor.dart';
-import '../../MainPages/ResearchBySubjects/BySubject.dart';
 
 Widget profSubjectButton(BuildContext context) {
   return Row(

@@ -301,6 +301,15 @@ class ListForSubject extends StatefulWidget {
 class _ListForSubjectState extends State<ListForSubject> {
   final GlobalKey<AnimatedListState> _key = GlobalKey();
   IconData icon = Icons.add;
+  MaterialColor color = Colors.yellow ;
+  void _changeicon(int i){
+    _key.currentState!.setState(() {
+      icon=Icons.check;
+      color=Colors.green;
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -339,11 +348,12 @@ class _ListForSubjectState extends State<ListForSubject> {
                           IconButton(
                             iconSize: 40,
                             onPressed: () {
-                              icon = Icons.check;
+                              _changeicon(index);
+
                             },
                             icon: Icon(
                               icon,
-                              color: Colors.yellow,
+                              color: color,
                             )
                           )
                         ],
@@ -404,3 +414,5 @@ Future<void> _launchUrl(String object,nome,cognome,date,time) async {
     throw 'Could not launch ';
   }
 }
+
+

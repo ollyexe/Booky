@@ -30,7 +30,9 @@ class _HomePageState extends State<HomePage> {
           customAppBar(
             settingsButton(context),
             myText("IUM Project", 20, Theme.of(context).colorScheme.onPrimary, FontWeight.w500),90,context), //Custom Widget from MyAppBar.dart file
-          const SizedBox(height: 35),
+          const SizedBox(height: 5),
+          myText("Selezione le lezioni in base ", 20, Colors.black54,FontWeight.bold),
+          const SizedBox(height: 5),
           profSubjectButton(context), //Custom Widget from Selection_Professor_Subject.dart file
           const SizedBox(height: 30),
           Padding(
@@ -53,6 +55,7 @@ class _HomePageState extends State<HomePage> {
           FutureBuilder<List<Lecture>>(
             future: SessionManager().get("email").then((value) => getNextLezioniPrenotate(value).then((value) => lectureFromJson(value))),
             builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
+              print(snapshot.data.toString());
               if(snapshot.hasData)
                 return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : CircularProgressIndicator());
               else

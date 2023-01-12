@@ -1,18 +1,45 @@
+import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:progettoium/MainPages/GenericListOfSubjectsOrProfessors.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import '../LessonsToBeSelected.dart';
 
+
+List<ProfCard> professorFromJson(String str) => List<ProfCard>.from(json.decode(str).map((x) => ProfCard.fromJson(x)));
+
 class ProfCard {
-  String? image;
+  ProfCard({
+    required this.email,
+    required this.profName,
+    required this.profSurname,
+    required this.image,
+    required this.insegnamenti,
+  });
+
+  String email;
   String profName;
   String profSurname;
-  List<String> insegnamenti;
-  Color? startColor;
-  Color? endColor;
-  ProfCard({this.image, required this.profName,required this.profSurname,required this.insegnamenti, this.startColor, this.endColor});
+  String image;
+  List<String?> insegnamenti;
+
+
+  factory ProfCard.fromJson(Map<String, dynamic> json) => ProfCard(
+      profName: json["nome"],
+      profSurname: json["cognome"],
+      image: json["pf"],
+      insegnamenti: json["corsi"] == null ? [] : List<String?>.from(json["corsi"]!.map((x) => x)),
+      email: json["email"],
+
+  );
 }
+
+int randomColorGradient(){
+  List<int> gradients = [0xFFFFDDE1,0xFF7EA56C,0xFF00CDAC,0xFFEA8D8D ,0xFF1EAE98,0xFFBFF098 ,0xFFC33764];
+  return gradients.elementAt(Random().nextInt(gradients.length));
+}
+
 
 
 Widget profCard(BuildContext context,ProfCard card,String? subjectAlreadySelected){
@@ -35,7 +62,7 @@ Widget profCard(BuildContext context,ProfCard card,String? subjectAlreadySelecte
             spreadRadius: 1,
           ),
         ],
-        gradient: LinearGradient(colors: [card.startColor!, card.endColor!]),
+        gradient: LinearGradient(colors: [Theme.of(context).colorScheme.tertiaryContainer, Color(randomColorGradient())]),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +75,7 @@ Widget profCard(BuildContext context,ProfCard card,String? subjectAlreadySelecte
           myText("Prof. ${card.profName} ${card.profSurname}", 17, Colors.white, FontWeight.w500),
           Expanded(
             child: ListView.separated(
-              itemBuilder: (context, i) =>  myText(card.insegnamenti[i], 15, Colors.white54, FontWeight.w500),
+              itemBuilder: (context, i) =>  myText(card.insegnamenti[i]!, 15, Colors.white54, FontWeight.w500),
               separatorBuilder: (context, index) => const SizedBox(height: 5),
               itemCount: card.insegnamenti.length
             )
@@ -60,46 +87,39 @@ Widget profCard(BuildContext context,ProfCard card,String? subjectAlreadySelecte
 }
 
 
-List<ProfCard> getProfCards(Color color){
-  //initializer from json getAllDocenti
+List<ProfCard> getProfCards(){
+
+  List<ProfCard> l = getAllDocenti().then((value) => professorFromJson(value)) as List<ProfCard>;
+
   List<ProfCard> cards = [
     ProfCard(
       image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Cima_da_Conegliano%2C_God_the_Father.jpg',
       profName: 'Marco',
       profSurname : 'Molica',
       insegnamenti: ["TWEB","IUM","JAVA","BACKEND"],
-      startColor: color,//const Color(0xFF2889EB),
-      endColor: Color(randomColorGradient()),
+      email: '@unito.it',
+
     ),
-    ProfCard(
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAbBB_oglMX609dUtMkvQcL3nmKuqOQmVfR2VIj0he6Q&s',
-      profName: 'Matteo',
-      profSurname: 'Barone',
-      insegnamenti: ["Matematica","Algebra","Fisica"],
-      startColor: color,//const Color(0xFF2889EB),
-      endColor: Color(randomColorGradient()),
-    ),
-    ProfCard(
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAbBB_oglMX609dUtMkvQcL3nmKuqOQmVfR2VIj0he6Q&s',
-      profName: 'Alex',
-      profSurname: 'Abrate',
-      insegnamenti: ["Matematica","Algebra","Fisica"],
-      startColor: color,//const Color(0xFF2889EB),
-      endColor: Color(randomColorGradient()),
-    ),
-    ProfCard(
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAbBB_oglMX609dUtMkvQcL3nmKuqOQmVfR2VIj0he6Q&s',
-      profName: 'Mino',
-      profSurname: 'Chimento',
-      insegnamenti: ["Matematica","Algebra","Fisica"],
-      startColor: color,//const Color(0xFF2889EB),
-      endColor: Color(randomColorGradient()),
-    )
+
   ];
   return cards;
 }
 
-int randomColorGradient(){
-  List<int> gradients = [0xFFFFDDE1,0xFF7EA56C,0xFF00CDAC,0xFFEA8D8D ,0xFF1EAE98,0xFFBFF098 ,0xFFC33764];
-  return gradients.elementAt(Random().nextInt(gradients.length));
+
+Future<String> getAllDocenti() async{
+
+  Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiUtente?path=getAllDocenti"));
+
+
+  if (response.statusCode == 200) {
+
+
+
+    print("got the professors");
+
+    return  response.body;
+  }
+  else {
+    throw Exception('Unexpected error occured!');
+  }
 }
