@@ -17,7 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Lecture> lectures = [];
+
 
 
 
@@ -55,10 +55,9 @@ class _HomePageState extends State<HomePage> {
           FutureBuilder<List<Lecture>>(
             future: SessionManager().get("email").then((value) => getNextLezioniPrenotate(value).then((value) => lectureFromJson(value))),
             builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
-              print(snapshot.data.toString());
-              if(snapshot.hasData)
-                return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : CircularProgressIndicator());
-              else
+              if(snapshot.hasData) {
+                return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : const CircularProgressIndicator());
+              } else {
                 return (!snapshot.hasData ? Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -67,7 +66,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                     padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
                     child: myText("Non ci sono lezioni", 20, Colors.red, FontWeight.bold)
-                ):CircularProgressIndicator());
+                ):const CircularProgressIndicator());
+              }
             },
           ),        ],
       )
@@ -94,7 +94,7 @@ Future<String> getNextLezioniPrenotate(String login) async{
 
 
 
-    print("got the data");
+
 
     return  response.body;
   }

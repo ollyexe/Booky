@@ -22,14 +22,14 @@ class ProfCard {
   String profName;
   String profSurname;
   String image;
-  List<String?> insegnamenti;
+  List<String> insegnamenti;
 
 
   factory ProfCard.fromJson(Map<String, dynamic> json) => ProfCard(
       profName: json["nome"],
       profSurname: json["cognome"],
       image: json["pf"],
-      insegnamenti: json["corsi"] == null ? [] : List<String?>.from(json["corsi"]!.map((x) => x)),
+      insegnamenti: json["corsi"] == null ? [] : List<String>.from(json["corsi"]!.map((x) => x)),
       email: json["email"],
 
   );
@@ -45,9 +45,11 @@ int randomColorGradient(){
 Widget profCard(BuildContext context,ProfCard card,String? subjectAlreadySelected){
   return GestureDetector(
     onTap: () {
+      print(card.insegnamenti.length);
       subjectAlreadySelected != null ?
       Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const LessonsToBeSelected())) :
-      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) =>  GenericListOfSubjectsOrProfessors(null,"Prof. ${card.profName} ${card.profSurname}", null)));
+      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) =>  GenericListOfSubjectsOrProfessors(null,card.email, null)));
+
     },
     child: Container(
       margin: const EdgeInsets.all(4),
@@ -72,10 +74,10 @@ Widget profCard(BuildContext context,ProfCard card,String? subjectAlreadySelecte
             radius: 40,
             backgroundImage: NetworkImage(card.image!),
           ),
-          myText("Prof. ${card.profName} ${card.profSurname}", 17, Colors.white, FontWeight.w500),
+          myText("Prof. ${card.profName} ${card.profSurname}", 17, Theme.of(context).colorScheme.onTertiaryContainer, FontWeight.w500),
           Expanded(
             child: ListView.separated(
-              itemBuilder: (context, i) =>  myText(card.insegnamenti[i]!, 15, Colors.white54, FontWeight.w500),
+              itemBuilder: (context, i) =>  myText(card.insegnamenti[i]!, 15, Theme.of(context).colorScheme.onTertiaryContainer.withOpacity(0.5), FontWeight.w500),
               separatorBuilder: (context, index) => const SizedBox(height: 5),
               itemCount: card.insegnamenti.length
             )
@@ -87,23 +89,7 @@ Widget profCard(BuildContext context,ProfCard card,String? subjectAlreadySelecte
 }
 
 
-List<ProfCard> getProfCards(){
 
-  List<ProfCard> l = getAllDocenti().then((value) => professorFromJson(value)) as List<ProfCard>;
-
-  List<ProfCard> cards = [
-    ProfCard(
-      image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Cima_da_Conegliano%2C_God_the_Father.jpg',
-      profName: 'Marco',
-      profSurname : 'Molica',
-      insegnamenti: ["TWEB","IUM","JAVA","BACKEND"],
-      email: '@unito.it',
-
-    ),
-
-  ];
-  return cards;
-}
 
 
 Future<String> getAllDocenti() async{

@@ -52,27 +52,53 @@ class _GenericListOfSubjectsOrProfessorsState extends State<GenericListOfSubject
       appBar: customAppBar(placeholderBack, myText(appBarText, 20, Theme.of(context).colorScheme.onPrimary, FontWeight.w500), 60,context),
       body: Padding(
         padding: const EdgeInsets.all(6.0),
-        child:
+        child: isSubjects ? FutureBuilder<Subjects>(
+          future:getSubjectByDoc(widget.professor!).then((value) => subjectsFromJson(value)),
+          builder: (BuildContext context,AsyncSnapshot<Subjects> snapshot){
+            print(snapshot.data?.corsi[0]);
+
+
+            if(snapshot.hasData){
+              return (snapshot.hasData ? GridView.count(
+                  crossAxisCount: 2,
+                  children: List.generate(
+
+                      snapshot.data!.corsi.length,
+                          (index) => subCard(context, snapshot.data!.corsi[index],widget.professor)
+                  )
+              ) :CircularProgressIndicator());
+
+            }
+            else
+              return CircularProgressIndicator();
+
+
+
+
+
+          },
+        ):
         FutureBuilder<List<ProfCard>>(
           future:getAllDocenti().then((value) => professorFromJson(value)),
           builder: (BuildContext context,AsyncSnapshot<List<ProfCard>> snapshot){
-            print(snapshot.data?.length);
+
             if(snapshot.hasData){
-              return (snapshot.hasData ? GridView.count(
-              crossAxisCount: 2,
-              children: List.generate(
-                  getProfCards().length,
-            (index) => isSubjects ?
-            subCard(context, getSubjectCards(Theme.of(context).colorScheme.tertiaryContainer)[index],widget.professor) :
-            profCard(context,snapshot.data![index],widget.subject)
-            )
-            ) : CircularProgressIndicator());
+                return (snapshot.hasData ? GridView.count(
+                crossAxisCount: 2,
+                children: List.generate(
+
+                    snapshot.data!.length,
+                    (index) =>
+                    profCard(context,snapshot.data![index],widget.subject)
+                )
+              ) : CircularProgressIndicator());
             }
             else
               return CircularProgressIndicator();
           },
         )
-      ),
+      )
+      ,
     );
   }
 }
