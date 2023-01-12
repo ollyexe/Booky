@@ -43,61 +43,53 @@ class _OrdersState extends State<Orders> {
     return Scaffold(
       appBar: customAppBar(placeholderBack, myText("Orders", 23, Colors.white, FontWeight.w500),75,context),
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Center(
-
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondaryContainer,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Theme.of(context).colorScheme.shadow,
-                      spreadRadius: 1,
-                      blurRadius: 5,
-                      offset: const Offset(1, 2)
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            myText("To be confirmed", 20, Theme.of(context).colorScheme.onBackground, FontWeight.w500),
+            FutureBuilder<List<Lecture>>(
+              future: SessionManager().get("email").then((value) => getLezioniFinite(value).then((value) => lectureFromJson(value))),
+              builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
+                if(snapshot.hasData) {
+                  return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : CircularProgressIndicator());
+                } else {
+                  return  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black26, width: 1),
                     ),
-                  ]
-                ),
-                child: buttons(),
-              ),
-              const SizedBox(height: 30),
-              screens[index],
-            ],
-          ),
+                    padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
+                    child: myText("Non ci sono lezioni ", 20, Colors.red, FontWeight.bold)
+                  );
+                }
+              },
+            ),
+            myText("Already confirmed", 20, Theme.of(context).colorScheme.onBackground, FontWeight.w500),
+            FutureBuilder<List<Lecture>>(
+              future: SessionManager().get("email").then((value) => getNextLezioniPrenotate(value).then((value) => lectureFromJson(value))),
+              builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
+                if(snapshot.hasData) {
+                  return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : CircularProgressIndicator());
+                } else {
+                  return (!snapshot.hasData ? Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        border: Border.all(color: Colors.black26, width: 1),
+                      ),
+                      padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
+                      child: myText("Non ci sono lezioni ", 20, Colors.red, FontWeight.bold)
+                  ):const CircularProgressIndicator());
+                }
+              },
+            ),
+          ],
         ),
       )
     );
   }
-  Widget buttons(){
-    return ToggleButtons(
-      onPressed: (int newIndex) {
-        setState(() {
-          for (int i = 0; i < isSelected.length; i++) {
-            isSelected[i] = i == newIndex;
-          }
-          index = newIndex;
-        });
-      },
-      borderRadius: BorderRadius.circular(5),
-      selectedColor: Theme.of(context).colorScheme.onTertiaryContainer,
-      fillColor: Theme.of(context).colorScheme.tertiaryContainer,
-      color: Theme.of(context).colorScheme.onSecondaryContainer,
-      highlightColor: Theme.of(context).colorScheme.tertiaryContainer,
-      constraints: const BoxConstraints(
-        minHeight: 70.0,
-        minWidth: 150.0,
-      ),
-      isSelected: isSelected,
-      children: const [
-        Text("Pending"),
-        Text("Confirmed"),
-      ],
-    );
-  }
+
 }
 
 
@@ -138,6 +130,7 @@ Future<String> getLezioniFinite(String login) async{
   }
 }
 
+/*
 Widget confirmed = FutureBuilder<List<Lecture>>(
   future: SessionManager().get("email").then((value) => getNextLezioniPrenotate(value).then((value) => lectureFromJson(value))),
   builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
@@ -178,3 +171,31 @@ Widget pending = FutureBuilder<List<Lecture>>(
     }
   },
 );
+
+Widget buttons(){
+  return ToggleButtons(
+    onPressed: (int newIndex) {
+      setState(() {
+        for (int i = 0; i < isSelected.length; i++) {
+          isSelected[i] = i == newIndex;
+        }
+        index = newIndex;
+      });
+    },
+    borderRadius: BorderRadius.circular(5),
+    selectedColor: Theme.of(context).colorScheme.onTertiaryContainer,
+    fillColor: Theme.of(context).colorScheme.tertiaryContainer,
+    color: Theme.of(context).colorScheme.onSecondaryContainer,
+    highlightColor: Theme.of(context).colorScheme.tertiaryContainer,
+    constraints: const BoxConstraints(
+      minHeight: 70.0,
+      minWidth: 150.0,
+    ),
+    isSelected: isSelected,
+    children: const [
+      Text("Pending"),
+      Text("Confirmed"),
+    ],
+  );
+}
+ */
