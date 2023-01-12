@@ -23,46 +23,7 @@ class _OrdersState extends State<Orders> {
 
 
 
-  Widget pending = FutureBuilder<List<Lecture>>(
-    future: SessionManager().get("email").then((value) => getNextLezioniPrenotate(value).then((value) => lectureFromJson(value))),
-    builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
-      if(snapshot.hasData) {
-        return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : CircularProgressIndicator());
-      } else {
-        return (!snapshot.hasData ? Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-              border: Border.all(color: Colors.black26, width: 1),
-            ),
-            padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
-            child: myText("Non ci sono lezioni ", 20, Colors.red, FontWeight.bold)
-        ):CircularProgressIndicator());
-      }
-    },
-  );
 
-
-  Widget confirmed = FutureBuilder<List<Lecture>>(
-    future: SessionManager().get("email").then((value) => getLezioniFinite(value).then((value) => lectureFromJson(value))),
-    builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
-      if(snapshot.hasData) {
-        return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : CircularProgressIndicator());
-      } else {
-        return (!snapshot.hasData ? Container(
-
-            decoration: BoxDecoration(
-
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-              border: Border.all(color: Colors.black26, width: 1),
-            ),
-            padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
-            child: myText("Non ci sono lezioni ", 20, Colors.red, FontWeight.bold)
-        ):CircularProgressIndicator());
-      }
-    },
-  );
 
 
 
@@ -164,7 +125,7 @@ Future<String> getLezioniFinite(String login) async{
 
   Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiLezione?path=getLezioniFinite&mail=$login"));
 
-
+  print("http://192.168.1.15:9999/servlet_war_exploded/apiLezione?path=getLezioniFinite&mail=$login");
   if (response.statusCode == 200) {
 
 
@@ -176,3 +137,44 @@ Future<String> getLezioniFinite(String login) async{
     throw Exception('Unexpected error occured!');
   }
 }
+
+Widget confirmed = FutureBuilder<List<Lecture>>(
+  future: SessionManager().get("email").then((value) => getNextLezioniPrenotate(value).then((value) => lectureFromJson(value))),
+  builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
+    if(snapshot.hasData) {
+      return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : CircularProgressIndicator());
+    } else {
+      return (!snapshot.hasData ? Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+            border: Border.all(color: Colors.black26, width: 1),
+          ),
+          padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
+          child: myText("Non ci sono lezioni ", 20, Colors.red, FontWeight.bold)
+      ):CircularProgressIndicator());
+    }
+  },
+);
+
+
+Widget pending = FutureBuilder<List<Lecture>>(
+  future: SessionManager().get("email").then((value) => getLezioniFinite(value).then((value) => lectureFromJson(value))),
+  builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
+    if(snapshot.hasData) {
+      return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : CircularProgressIndicator());
+    } else {
+      return  Container(
+
+          decoration: BoxDecoration(
+
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.white,
+            border: Border.all(color: Colors.black26, width: 1),
+          ),
+          padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
+          child: myText("Non ci sono lezioni ", 20, Colors.red, FontWeight.bold)
+      );
+    }
+  },
+);

@@ -31,7 +31,6 @@ class _HomePageState extends State<HomePage> {
             settingsButton(context),
             myText("IUM Project", 20, Theme.of(context).colorScheme.onPrimary, FontWeight.w500),90,context), //Custom Widget from MyAppBar.dart file
           const SizedBox(height: 5),
-          myText("Selezione le lezioni in base ", 20, Colors.black54,FontWeight.bold),
           const SizedBox(height: 5),
           profSubjectButton(context), //Custom Widget from Selection_Professor_Subject.dart file
           const SizedBox(height: 30),
