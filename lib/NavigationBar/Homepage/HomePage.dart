@@ -5,6 +5,7 @@ import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:progettoium/NavigationBar/Homepage/Selection_Professor_Subject.dart';
 import 'package:progettoium/Utilities/CommonWidgets/SingleLecture.dart';
 import '../../Utilities/Settings/Settings.dart';
+import 'package:http/http.dart';
 
 
 
@@ -16,10 +17,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Lecture> lectures = [
-    Lecture.local("Alessandro","Abrate","Matematica","2022-11-03","17:00",NetworkImage("https://thispersondoesnotexist.com/image"),5,10),
-    Lecture.local("Alessandro","Abrate","Matematica","2022-11-03","17:00",NetworkImage("https://thispersondoesnotexist.com/image"),5,10),
-  ];
+  List<Lecture> lectures = [];
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +36,13 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 75, 0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 157, 0),
-                  child: FutureBuilder(
-                    future: SessionManager().get("email"),
-                    builder: (context, snapshot){
-                      return myText( snapshot.hasData ? "Ciao ${snapshot.data}" : "Ciao Guest", 20, Theme.of(context).colorScheme.onBackground, FontWeight.w400);
-                    },
-                  ),
+                FutureBuilder(
+                  future: SessionManager().get("nome"),
+                  builder: (context, snapshot){
+                    return myText( snapshot.hasData ? "Ciao ${snapshot.data}" : "Ciao Guest", 20, Theme.of(context).colorScheme.onBackground, FontWeight.w400);
+                  },
                 ),
                 const SizedBox(height: 5),
                 myText("queste sono le tue prossime lezioni:", 17, Theme.of(context).colorScheme.onBackground, FontWeight.w400),
@@ -52,8 +50,23 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 10),
-          ListOfLectures(lectures), //Custom Widget from List_Of_Appointments.dart, found in the Utilities/CommonWidgets
-        ],
+          FutureBuilder<List<Lecture>>(
+            future: SessionManager().get("email").then((value) => getNextLezioniPrenotate(value).then((value) => lectureFromJson(value))),
+            builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
+              if(snapshot.hasData)
+                return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : CircularProgressIndicator());
+              else
+                return (!snapshot.hasData ? Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.black26, width: 1),
+                    ),
+                    padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
+                    child: myText("Non ci sono lezioni", 20, Colors.red, FontWeight.bold)
+                ):CircularProgressIndicator());
+            },
+          ),        ],
       )
     );
   }
@@ -69,3 +82,20 @@ IconButton settingsButton(BuildContext context) {
   );
 }
 
+Future<String> getNextLezioniPrenotate(String login) async{
+
+  Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiLezione?path=getNextLezioniPrenotate&mail=$login"));
+
+
+  if (response.statusCode == 200) {
+
+
+
+    print("got the data");
+
+    return  response.body;
+  }
+  else {
+    throw Exception('Unexpected error occured!');
+  }
+}

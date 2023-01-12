@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
 
+import '../../Utilities/CommonWidgets/CommonStyles.dart';
 import '../../main.dart';
 import 'ChangeDataPage.dart';
 import 'ChangePasswordPage.dart';
@@ -24,9 +25,9 @@ class _MyProfileState extends State<MyProfile> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: SessionManager().get("loginState"),
+      future: SessionManager().get("login_state"),
       builder: (context, snapshot){
-        return ( snapshot.hasData ?  profile() : Login());
+        return ( snapshot.data.toString()=="true" ? profile() : Login());
       },
     );
   }
@@ -45,26 +46,58 @@ class _MyProfileState extends State<MyProfile> {
         ),
         Positioned(
           top: top,
-          child: buildProfileImage(),
+          child: FutureBuilder(
+            future:SessionManager().get("pf"),
+            builder: (context, snapshot){
+              return CircleAvatar(
+                radius: profileHeight / 2,
+                backgroundColor: Colors.grey.shade800,
+                backgroundImage:  NetworkImage(snapshot.data)
+              );},
+          ),
         ),
       ],
     );
   }
 
   Widget buildContent() => Column(
-    children: const [
+    children:  [
       SizedBox(
         height: 15,
       ),
-      Text(
-        'Nome Cognome',
-        style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-      ),
+
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+        FutureBuilder(
+          future:SessionManager().get("nome"),
+          builder: (context, snapshot){
+            return myText(snapshot.data,28,Colors.black,FontWeight.bold);
+          },
+        ),
+        SizedBox(width: 10,),
+        FutureBuilder(
+          future:SessionManager().get("cognome"),
+          builder: (context, snapshot){
+            return myText(snapshot.data,28,Colors.black,FontWeight.bold);
+          },
+        ),
+      ],),
       SizedBox(height: 8),
-      Text(
-        'Studente',
-        style: TextStyle(fontSize: 20, color: Colors.black),
+      FutureBuilder(
+        future:SessionManager().get("ruolo"),
+        builder: (context, snapshot){
+          if(snapshot.data=="utente"){
+            return myText("Studente",20,Colors.black,FontWeight.normal);
+
+          }
+          else {
+            return myText(snapshot.data,20,Colors.black,FontWeight.normal);
+
+          }
+        },
       ),
+
       SizedBox(height: 20)
     ],
   );
@@ -79,35 +112,11 @@ class _MyProfileState extends State<MyProfile> {
     ),
   );
 
-  Widget buildProfileImage() => CircleAvatar(
-    radius: profileHeight / 2,
-    backgroundColor: Colors.grey.shade800,
-    backgroundImage: const NetworkImage(
-        'https://www.punto-informatico.it/app/uploads/2021/06/sfondo_art.jpg'),
-    child: Stack(
-      children: [
-        Positioned(
-            child: GestureDetector(
-              onTap: () {},
-              child: Container(
-                margin: EdgeInsets.fromLTRB(85, 105, 0, 0),
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(width: 4, color: Colors.white),
-                    color: Colors.blue),
-                child: const Icon(
-                  Icons.edit,
-                  color: Colors.white,
-                ),
-              ),
-            ))
-      ],
-    ),
-  );
+
+
   Widget profile(){return Scaffold(
     body: Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         ListView(
           shrinkWrap: true,

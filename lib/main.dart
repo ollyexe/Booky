@@ -2,6 +2,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:provider/provider.dart';
 
 /* My Pages */
@@ -39,7 +40,18 @@ class Progetto extends StatelessWidget {
         //themeMode: ThemeMode.dark,
         theme: ThemeData(useMaterial3: true, colorScheme: theme.getTheme()),//ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
         //darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
-        home: const Login(),
+        home: FutureBuilder(
+          future:SessionManager().get("login_state"),
+          builder: (context, snapshot){
+            print(snapshot.data.toString());
+            if(snapshot.data.toString()=="true"){
+              return  Root();
+            }
+            else{
+              return Login();
+            }
+          },
+        ),
       ),
     );
   }
