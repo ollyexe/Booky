@@ -28,7 +28,7 @@ class _CartState extends State<Cart> {
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Column(
         children: [
-          customAppBar(placeholder,myText("Cart", 20, Theme.of(context).colorScheme.onPrimary, FontWeight.w500),60,context),
+          customAppBar(placeholderBack,myText("Cart", 20, Theme.of(context).colorScheme.onPrimary, FontWeight.w500),60,context),
           const SizedBox(height: 20),
           ListForCart(lectures),
           const SizedBox(height: 15),

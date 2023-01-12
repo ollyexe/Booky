@@ -38,6 +38,8 @@ class _ListForCartState extends State<ListForCart> {
     widget.list.removeAt(i);
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -79,7 +81,10 @@ class _ListForCartState extends State<ListForCart> {
                               size: 40,
                               color: Theme.of(context).colorScheme.error,
                             ),
-                            onPressed: () => _removeItem(index),
+                            onPressed: () {
+                              //api to cancell
+                              _removeItem(index);
+                            }
                           )
                         ],
                       ),
@@ -183,7 +188,7 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                                   iconSize: 40,
                                   onPressed: () async {
                                     await launchUrl(
-                                        Uri.parse('https://calendar.google.com/calendar/u/0/r/eventedit?text=Lezione+di+${widget.list[index].subject}+con+${widget.list[index].name}+${widget.list[index].surname}&dates=${widget.list[index].date.replaceAll(new RegExp(r'[^\w\s]+'),'')}T${widget.list[index].time.replaceAll(new RegExp(r'[^\w\s]+'),'')}00/${widget.list[index].date.replaceAll(new RegExp(r'[^\w\s]+'),'')}T${int.parse(widget.list[index].time.replaceAll(new RegExp(r'[^\w\s]+'),''))+100}00Z&details=zoom.com/random_reunion&location=Metavers&sf=true&output=xml'));
+                                        Uri.parse('https://calendar.google.com/calendar/u/0/r/eventedit?text=Lezione+di+${widget.list[index].subject}+con+${widget.list[index].name}+${widget.list[index].surname}&dates=${widget.list[index].date.replaceAll(new RegExp(r'[^\w\s]+'),'')}T${widget.list[index].time.replaceAll(new RegExp(r'[^\w\s]+'),'')}00/${widget.list[index].date.replaceAll(new RegExp(r'[^\w\s]+'),'')}T${int.parse(widget.list[index].time.replaceAll(new RegExp(r'[^\w\s]+'),''))+100}00Z&details=zoom.com/random_reunion&location=Metaverso&sf=true&output=xml'),mode: LaunchMode.externalApplication);
                                   },
                                   icon: const Icon(Icons.calendar_month_rounded,color: Colors.green),
                                 ),
@@ -191,7 +196,7 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                                   iconSize: 40,
                                   onPressed: () => _removeItem(index),
                                   icon: Icon(Icons.delete, color: Theme.of(context).colorScheme.error),
-                                )
+                                ),
                               ],
                             )
                           ],
@@ -218,7 +223,6 @@ class ListForSubject extends StatefulWidget {
   @override
   State<ListForSubject> createState() => _ListForSubjectState();
 }
-
 
 class _ListForSubjectState extends State<ListForSubject> {
   final GlobalKey<AnimatedListState> _key = GlobalKey();

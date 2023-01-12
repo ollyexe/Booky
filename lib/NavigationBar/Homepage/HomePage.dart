@@ -19,23 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Lecture> lectures = [];
 
-  Future<String> getNextLezioniPrenotate(String login) async{
 
-    Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiLezione?path=getNextLezioniPrenotate&mail=$login"));
-
-
-    if (response.statusCode == 200) {
-
-
-
-      print("got the data");
-
-      return  response.body;
-    }
-    else {
-      throw Exception('Unexpected error occured!');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,15 +36,13 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 75, 0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 157, 0),
-                  child: FutureBuilder(
-                    future: SessionManager().get("nome"),
-                    builder: (context, snapshot){
-                      return myText( snapshot.hasData ? "Ciao ${snapshot.data}" : "Ciao Guest", 20, Theme.of(context).colorScheme.onBackground, FontWeight.w400);
-                    },
-                  ),
+                FutureBuilder(
+                  future: SessionManager().get("nome"),
+                  builder: (context, snapshot){
+                    return myText( snapshot.hasData ? "Ciao ${snapshot.data}" : "Ciao Guest", 20, Theme.of(context).colorScheme.onBackground, FontWeight.w400);
+                  },
                 ),
                 const SizedBox(height: 5),
                 myText("queste sono le tue prossime lezioni:", 17, Theme.of(context).colorScheme.onBackground, FontWeight.w400),
@@ -100,3 +82,20 @@ IconButton settingsButton(BuildContext context) {
   );
 }
 
+Future<String> getNextLezioniPrenotate(String login) async{
+
+  Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiLezione?path=getNextLezioniPrenotate&mail=$login"));
+
+
+  if (response.statusCode == 200) {
+
+
+
+    print("got the data");
+
+    return  response.body;
+  }
+  else {
+    throw Exception('Unexpected error occured!');
+  }
+}

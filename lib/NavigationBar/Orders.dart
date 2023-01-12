@@ -80,7 +80,7 @@ class _OrdersState extends State<Orders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(placeholder, myText("Orders", 23, Colors.white, FontWeight.w500),75,context),
+      appBar: customAppBar(placeholderBack, myText("Orders", 23, Colors.white, FontWeight.w500),75,context),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
