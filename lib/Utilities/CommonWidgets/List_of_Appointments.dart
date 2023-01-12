@@ -5,6 +5,9 @@ import 'CommonStyles.dart';
 
 
 
+
+
+
 class ListForCart extends StatefulWidget {
 
   List<Lecture> list;
