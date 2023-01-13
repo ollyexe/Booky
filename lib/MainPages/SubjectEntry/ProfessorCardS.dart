@@ -2,9 +2,8 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:progettoium/MainPages/GenericListOfSubjectsOrProfessors.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
-import '../LessonsToBeSelected.dart';
+import 'appointmentsBySubjectAndByProf.dart';
 
 
 List<ProfCard> professorFromJson(String str) => List<ProfCard>.from(json.decode(str).map((x) => ProfCard.fromJson(x)));
@@ -42,13 +41,10 @@ int randomColorGradient(){
 
 
 
-Widget profCard(BuildContext context,ProfCard card,String? subjectAlreadySelected){
+Widget profCardS(BuildContext context,ProfCard card,String subj){
   return GestureDetector(
     onTap: () {
-      print(card.insegnamenti.length);
-      subjectAlreadySelected != null ?
-      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const LessonsToBeSelected())) :
-      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) =>  GenericListOfSubjectsOrProfessors(null,card.email, null)));
+      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) =>  appointmentsBySubjectAndByProf(card.email,subj)));
 
     },
     child: Container(
@@ -72,12 +68,12 @@ Widget profCard(BuildContext context,ProfCard card,String? subjectAlreadySelecte
         children: [
           CircleAvatar(
             radius: 40,
-            backgroundImage: NetworkImage(card.image!),
+            backgroundImage: NetworkImage(card.image),
           ),
           myText("Prof. ${card.profName} ${card.profSurname}", 17, Theme.of(context).colorScheme.onTertiaryContainer, FontWeight.w500),
           Expanded(
             child: ListView.separated(
-              itemBuilder: (context, i) =>  myText(card.insegnamenti[i]!, 15, Theme.of(context).colorScheme.onTertiaryContainer.withOpacity(0.5), FontWeight.w500),
+              itemBuilder: (context, i) =>  myText(card.insegnamenti[i], 15, Theme.of(context).colorScheme.onTertiaryContainer.withOpacity(0.5), FontWeight.w500),
               separatorBuilder: (context, index) => const SizedBox(height: 5),
               itemCount: card.insegnamenti.length
             )
@@ -101,7 +97,6 @@ Future<String> getAllDocenti() async{
 
 
 
-    print("got the professors");
 
     return  response.body;
   }

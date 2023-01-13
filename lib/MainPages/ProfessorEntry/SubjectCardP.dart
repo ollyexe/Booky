@@ -3,18 +3,17 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:progettoium/MainPages/GenericListOfSubjectsOrProfessors.dart';
-import 'package:progettoium/MainPages/LessonsToBeSelected.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 
+import '../ProfessorEntry/appointmentsByProfAndBySubject.dart';
 
 
-Widget subCard(BuildContext context, String subject, String? professorAlreadySelected){
+
+Widget subCardP(BuildContext context, String subject, String prof){
   return GestureDetector(
     onTap: () {
-      professorAlreadySelected != null ?
-      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const LessonsToBeSelected())) :
-      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => GenericListOfSubjectsOrProfessors(subject, null, null)));
+      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) =>  appointmentsByProfAndBySubject(prof,subject)));
+
     },
     child: Container(
       margin: const EdgeInsets.all(5),

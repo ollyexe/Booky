@@ -60,7 +60,7 @@ class _CalendarState extends State<Calendar> {
             builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
 
               if(snapshot.data!=null) {
-                return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : CircularProgressIndicator());
+                return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : const CircularProgressIndicator());
               } else {
                 return (!snapshot.hasData ? Container(
                     decoration: BoxDecoration(
@@ -85,7 +85,6 @@ Future<String> getLexByDayAndUtente(String login,String year,String month,String
 
   Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiLezione?path=getLezioneByUtenteAndByDay&mail=$login&data=$year-$month-$day"));
 
-  print("http://192.168.1.15:9999/servlet_war_exploded/apiLezione?path=getLezioneByUtenteAndByDay&mail=$login&data=$year-$month-$day");
   if (response.statusCode == 200) {
 
 

@@ -49,11 +49,19 @@ class _MyProfileState extends State<MyProfile> {
           child: FutureBuilder(
             future:SessionManager().get("pf"),
             builder: (context, snapshot){
-              return CircleAvatar(
+              if(snapshot.hasData){
+                return (snapshot.hasData ?  CircleAvatar(
                 radius: profileHeight / 2,
                 backgroundColor: Colors.grey.shade800,
                 backgroundImage:  NetworkImage(snapshot.data)
-              );},
+              ):CircularProgressIndicator());
+              }
+              else{
+                return CircularProgressIndicator();
+              }
+
+
+              },
           ),
         ),
       ],
@@ -72,14 +80,27 @@ class _MyProfileState extends State<MyProfile> {
         FutureBuilder(
           future:SessionManager().get("nome"),
           builder: (context, snapshot){
-            return myText(snapshot.data,28,Colors.black,FontWeight.bold);
+            if(snapshot.hasData){
+              return (snapshot.hasData ? myText(snapshot.data,28,Theme.of(context).colorScheme.onBackground,FontWeight.bold):CircularProgressIndicator() );
+            }
+            else{
+              return CircularProgressIndicator();
+            }
+
+
           },
         ),
         SizedBox(width: 10,),
         FutureBuilder(
           future:SessionManager().get("cognome"),
           builder: (context, snapshot){
-            return myText(snapshot.data,28,Colors.black,FontWeight.bold);
+            if(snapshot.hasData){
+              return (snapshot.hasData ?  myText(snapshot.data,28,Theme.of(context).colorScheme.onBackground,FontWeight.bold):CircularProgressIndicator() );
+            }
+            else{
+              return CircularProgressIndicator();
+            }
+
           },
         ),
       ],),
@@ -87,14 +108,14 @@ class _MyProfileState extends State<MyProfile> {
       FutureBuilder(
         future:SessionManager().get("ruolo"),
         builder: (context, snapshot){
-          if(snapshot.data=="utente"){
-            return myText("Studente",20,Colors.black,FontWeight.normal);
-
+          if(snapshot.hasData){
+            return (snapshot.hasData ? (snapshot.data=="utente" ? myText("Studente",20,Theme.of(context).colorScheme.onBackground,FontWeight.normal):myText(snapshot.data,20,Theme.of(context).colorScheme.onBackground,FontWeight.normal) ):CircularProgressIndicator() );
           }
-          else {
-            return myText(snapshot.data,20,Colors.black,FontWeight.normal);
-
+          else{
+            return CircularProgressIndicator();
           }
+
+
         },
       ),
 
@@ -116,7 +137,6 @@ class _MyProfileState extends State<MyProfile> {
 
   Widget profile(){return Scaffold(
     body: Column(
-      mainAxisSize: MainAxisSize.min,
       children: [
         ListView(
           shrinkWrap: true,
@@ -191,10 +211,10 @@ class _MyProfileState extends State<MyProfile> {
               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Root()));
 
             },
-            label: const Text(
+            label:  Text(
               "SIGN OUT",
               style: TextStyle(
-                  fontSize: 16, letterSpacing: 2.2, color: Colors.black),
+                  fontSize: 16, letterSpacing: 2.2, color: Theme.of(context).colorScheme.onBackground),
             ),
           ),
         ),
@@ -252,3 +272,4 @@ Center(
               ),
             ),
  */
+

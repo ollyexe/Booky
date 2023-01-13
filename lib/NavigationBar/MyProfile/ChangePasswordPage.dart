@@ -20,19 +20,19 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     return Scaffold(
       body: Column(
         children: [
-          customAppBar(placeholder, myText("Change Password", 22, Colors.white, FontWeight.w600),75,context),
+          customAppBar(placeholderBack, myText("Change Password", 22, Colors.white, FontWeight.w600),75,context),
           Expanded(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+
               children: [
                 myText("Create New Password", 37, Color(0xFF3B5998),
                     FontWeight.w600),
                 const SizedBox(
                   height: 10,
                 ),
-                const Text(
+                 Text(
                   'Insert Current and New Password',
-                  style: TextStyle(fontSize: 18, color: Colors.black),
+                  style: TextStyle(fontSize: 18, color: Theme.of(context).colorScheme.onBackground),
                 ),
                 const SizedBox(height: 50),
                 //vecchia password
@@ -49,6 +49,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                           borderSide: BorderSide(color: Color(0xFF3B5998)),
                           borderRadius: BorderRadius.circular(12)),
                       hintText: 'Current Password',
+                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground),
                       fillColor: Colors.grey[200],
                       filled: true,
                       suffixIcon: IconButton(
@@ -64,6 +65,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         ),
                       ),
                     ),
+                    style:  TextStyle(color: Theme.of(context).colorScheme.onInverseSurface),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -82,8 +84,11 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                           borderSide: const BorderSide(color: Color(0xFF3B5998)),
                           borderRadius: BorderRadius.circular(12)),
                       hintText: 'New Password',
+                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onInverseSurface),
+                      hoverColor:Theme.of(context).colorScheme.onInverseSurface,
                       fillColor: Colors.grey[200],
                       filled: true,
+
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
@@ -97,9 +102,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         ),
                       ),
                     ),
+                    style:  TextStyle(color: Theme.of(context).colorScheme.onInverseSurface),
                   ),
                 ),
-                const SizedBox(height: 150),
+                const SizedBox(height: 120),
 
                 //bottone
                 Padding(

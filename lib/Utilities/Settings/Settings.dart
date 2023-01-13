@@ -1,6 +1,7 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../CommonWidgets/CommonStyles.dart';
 import 'ThemeManager.dart';
 //import 'dart:html';
@@ -118,9 +119,22 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
                 divider(Theme.of(context).colorScheme.onBackground.withOpacity(0.9)),
-                ListTile(
-                  leading: Icon(Icons.help,color: Theme.of(context).colorScheme.inversePrimary),
-                  title: myText("Help", 18, Theme.of(context).colorScheme.onBackground, FontWeight.normal),
+                TextButton(
+                  onPressed: () async {
+                    await launchUrl(
+                        Uri.parse("https://www.unito.it/privacy"),mode: LaunchMode.externalApplication);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(12, 5, 0, 15),
+                    child: Row(
+                      children: [
+                        Icon(Icons.help,color: Theme.of(context).colorScheme.inversePrimary),
+                        SizedBox(width: 30,),
+                        myText("Help", 18, Theme.of(context).colorScheme.onBackground, FontWeight.normal),
+
+                      ],
+                    ),
+                  )
                 )
               ],
             ),

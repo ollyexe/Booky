@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
+
 /* This file contains some useful widget, used in different context */
 
 
@@ -46,6 +48,30 @@ AppBar customAppBar(Widget widget,Text text,double height,BuildContext context){
     toolbarHeight: height,
     actions: [
       widget
+    ],
+  );
+}
+
+AppBar customAppBar4Cart(Widget widget,Widget bin,Text text,double height,BuildContext context){
+  return AppBar(
+    backgroundColor: Theme.of(context).colorScheme.primary,
+    elevation: 0,
+    title: text,
+    leading: widget.key == const Key('BackArrow') ? IconButton(
+      icon:Icon(Icons.arrow_back,color: Theme.of(context).colorScheme.onPrimary),
+      onPressed: () =>      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) =>  Root())),
+    ) : placeholder,
+
+    toolbarHeight: height,
+    actions: [
+      widget,
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [Padding(
+          padding: const EdgeInsets.fromLTRB(0,5,0,0),
+          child: bin,
+        )],
+      )
     ],
   );
 }
