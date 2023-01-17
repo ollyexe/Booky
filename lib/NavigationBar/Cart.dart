@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 
-import '../Utilities/CommonWidgets/SingleLecture.dart';
+import '../Model/Lecture.dart';
 import '../main.dart';
 int cart_size = 0;
 class Cart extends StatefulWidget {
@@ -83,6 +83,7 @@ class _CartState extends State<Cart> {
                     await prenotaLezioni(lectures.elementAt(i).time,lectures.elementAt(i).date,lectures.elementAt(i).email,await SessionManager().get("email"));
                   }
                   await SessionManager().remove("cart_list");
+
                   setState(() {
                     if(direction == DismissDirection.startToEnd){
 
@@ -97,6 +98,7 @@ class _CartState extends State<Cart> {
                       //Add the removal of all the lessons you buyed
                     }
                   });
+
                 },
                 background: buyContainer(context, const CircularProgressIndicator(), Colors.green[200]!, "Processing"),
                 child: buyContainer(context, placeOrderIcon, Colors.transparent, placeOrderText)
@@ -199,7 +201,7 @@ IconButton binButton(BuildContext context) {
     icon: Icon(Icons.delete_forever_outlined, color: Theme.of(context).colorScheme.error,size: 35),
     onPressed: ()async{
       await SessionManager().remove("cart_list");
-      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) =>  Root()));
+      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) =>  const Root()));
     },
   );
 }
@@ -207,9 +209,8 @@ IconButton binButton(BuildContext context) {
 
 Future<String> prenotaLezioni(String time,String date,String prof,String stud) async{
 
-  Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiLezione?path=prenotaLezione&docente=$prof&utente=$stud&data=$date&ora=$time"));
+  Response response = await get(Uri.parse("http://172.20.10.11:9999/servlet_war_exploded/apiLezione?path=prenotaLezione&docente=$prof&utente=$stud&data=$date&ora=$time"));
 
-  print("http://192.168.1.15:9999/servlet_war_exploded/apiLezione?path=prenotaLezione&docente=$prof&utente=$stud&data=$date&ora=$time");
   if (response.statusCode == 200) {
 
 

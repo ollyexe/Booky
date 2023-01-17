@@ -27,7 +27,7 @@ class _MyProfileState extends State<MyProfile> {
     return FutureBuilder(
       future: SessionManager().get("login_state"),
       builder: (context, snapshot){
-        return ( snapshot.data.toString()=="true" ? profile() : Login());
+        return ( snapshot.data.toString()=="true" ? profile() : const Login());
       },
     );
   }
@@ -54,10 +54,10 @@ class _MyProfileState extends State<MyProfile> {
                 radius: profileHeight / 2,
                 backgroundColor: Colors.grey.shade800,
                 backgroundImage:  NetworkImage(snapshot.data)
-              ):CircularProgressIndicator());
+              ):const CircularProgressIndicator());
               }
               else{
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               }
 
 
@@ -70,7 +70,7 @@ class _MyProfileState extends State<MyProfile> {
 
   Widget buildContent() => Column(
     children:  [
-      SizedBox(
+      const SizedBox(
         height: 15,
       ),
 
@@ -81,45 +81,45 @@ class _MyProfileState extends State<MyProfile> {
           future:SessionManager().get("nome"),
           builder: (context, snapshot){
             if(snapshot.hasData){
-              return (snapshot.hasData ? myText(snapshot.data,28,Theme.of(context).colorScheme.onBackground,FontWeight.bold):CircularProgressIndicator() );
+              return (snapshot.hasData ? myText(snapshot.data,28,Theme.of(context).colorScheme.onBackground,FontWeight.bold):const CircularProgressIndicator() );
             }
             else{
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }
 
 
           },
         ),
-        SizedBox(width: 10,),
+        const SizedBox(width: 10,),
         FutureBuilder(
           future:SessionManager().get("cognome"),
           builder: (context, snapshot){
             if(snapshot.hasData){
-              return (snapshot.hasData ?  myText(snapshot.data,28,Theme.of(context).colorScheme.onBackground,FontWeight.bold):CircularProgressIndicator() );
+              return (snapshot.hasData ?  myText(snapshot.data,28,Theme.of(context).colorScheme.onBackground,FontWeight.bold):const CircularProgressIndicator() );
             }
             else{
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }
 
           },
         ),
       ],),
-      SizedBox(height: 8),
+      const SizedBox(height: 8),
       FutureBuilder(
         future:SessionManager().get("ruolo"),
         builder: (context, snapshot){
           if(snapshot.hasData){
-            return (snapshot.hasData ? (snapshot.data=="utente" ? myText("Studente",20,Theme.of(context).colorScheme.onBackground,FontWeight.normal):myText(snapshot.data,20,Theme.of(context).colorScheme.onBackground,FontWeight.normal) ):CircularProgressIndicator() );
+            return (snapshot.hasData ? (snapshot.data=="utente" ? myText("Studente",20,Theme.of(context).colorScheme.onBackground,FontWeight.normal):myText(snapshot.data,20,Theme.of(context).colorScheme.onBackground,FontWeight.normal) ):const CircularProgressIndicator() );
           }
           else{
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
 
 
         },
       ),
 
-      SizedBox(height: 20)
+      const SizedBox(height: 20)
     ],
   );
 
@@ -189,7 +189,7 @@ class _MyProfileState extends State<MyProfile> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return ChangeDataPage();
+                            return const ChangeDataPage();
                           },
                         ),
                       );

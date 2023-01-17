@@ -3,36 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
+import '../../Model/ProfCard.dart';
 import 'appointmentsBySubjectAndByProf.dart';
 
 
-List<ProfCard> professorFromJson(String str) => List<ProfCard>.from(json.decode(str).map((x) => ProfCard.fromJson(x)));
 
-class ProfCard {
-  ProfCard({
-    required this.email,
-    required this.profName,
-    required this.profSurname,
-    required this.image,
-    required this.insegnamenti,
-  });
-
-  String email;
-  String profName;
-  String profSurname;
-  String image;
-  List<String> insegnamenti;
-
-
-  factory ProfCard.fromJson(Map<String, dynamic> json) => ProfCard(
-      profName: json["nome"],
-      profSurname: json["cognome"],
-      image: json["pf"],
-      insegnamenti: json["corsi"] == null ? [] : List<String>.from(json["corsi"]!.map((x) => x)),
-      email: json["email"],
-
-  );
-}
 
 int randomColorGradient(){
   List<int> gradients = [0xFFFFDDE1,0xFF7EA56C,0xFF00CDAC,0xFFEA8D8D ,0xFF1EAE98,0xFFBFF098 ,0xFFC33764];
@@ -90,7 +65,7 @@ Widget profCardS(BuildContext context,ProfCard card,String subj){
 
 Future<String> getAllDocenti() async{
 
-  Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiUtente?path=getAllDocenti"));
+  Response response = await get(Uri.parse("http://172.20.10.11:9999/servlet_war_exploded/apiUtente?path=getAllDocenti"));
 
 
   if (response.statusCode == 200) {

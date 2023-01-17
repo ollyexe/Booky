@@ -5,7 +5,6 @@ import 'package:flutter_session_manager/flutter_session_manager.dart' ;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:progettoium/Model/LoginM.dart';
-import 'package:progettoium/NavigationBar/Homepage/HomePage.dart';
 import '../../Utilities/CommonWidgets/CommonStyles.dart';
 import '../../main.dart';
 
@@ -27,16 +26,14 @@ class _SignUpScreenState extends State<Login> {
     try{
 
       Response response = await get(
-          Uri.parse('http://192.168.1.15:9999/servlet_war_exploded/apiUtente?path=login&mail=$email&pass=$password'),
+          Uri.parse('http://172.20.10.11:9999/servlet_war_exploded/apiUtente?path=login&mail=$email&pass=$password'),
       );
 
       if(response.statusCode == 200){
-          print("object received");
 
          var loginStatus=LoginM.fromJson(jsonDecode(response.body));
 
          if(loginStatus.loginState=="true"){
-           print(loginStatus.stateDescription);
            setState(() {
              log=0;
            });
@@ -44,13 +41,11 @@ class _SignUpScreenState extends State<Login> {
 
          }
          else if (loginStatus.loginState=="other"){
-           print(loginStatus.stateDescription);
            setState(() {
              log=1;
            });
          }
          else if(loginStatus.loginState=="false"){
-           print(loginStatus.stateDescription);
            setState(() {
              log=2;
            });
@@ -63,10 +58,8 @@ class _SignUpScreenState extends State<Login> {
 
 
       }else {
-        print('failed');
       }
     }catch(e){
-      print(e.toString());
     }
 return 0;
   }
@@ -75,14 +68,13 @@ return 0;
 
 
     Response response = await get(
-      Uri.parse('http://192.168.1.15:9999/servlet_war_exploded/apiUtente?path=getMiniUser&mail=$email'),
+      Uri.parse('http://172.20.10.11:9999/servlet_war_exploded/apiUtente?path=getMiniUser&mail=$email'),
     );
 
       if (response.statusCode == 200) {
 
 
 
-        print("got the data");
 
         return  response.body;
       }
@@ -95,7 +87,7 @@ return 0;
 
 
   String s="Status";
-  TextStyle t = TextStyle(
+  TextStyle t = const TextStyle(
       color: Colors.white,
       fontSize: 15
   );
@@ -104,7 +96,7 @@ return 0;
     if(i==0){
       setState(() {
         s="Succesful Login";
-        t = TextStyle(
+        t = const TextStyle(
             color: Colors.green,
             fontSize: 15
         );
@@ -114,7 +106,7 @@ return 0;
     else if(i==1){
       setState(() {
         s="User Not Exist";
-        t = TextStyle(
+        t = const TextStyle(
             color: Colors.red,
             fontSize: 15
         );
@@ -123,7 +115,7 @@ return 0;
     else if(i==2){
       setState(() {
         s="Wrong Password";
-        t = TextStyle(
+        t = const TextStyle(
             color: Colors.red,
             fontSize: 15
         );
@@ -132,7 +124,7 @@ return 0;
     else{
       setState(() {
         s="Login Failed";
-        t = TextStyle(
+        t = const TextStyle(
             color: Colors.blue,
             fontSize: 15
         );
@@ -155,16 +147,16 @@ return 0;
           children: [
             TextFormField(
               controller: emailController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Email',
 
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             TextFormField(
               obscureText: true,
               controller: passwordController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: 'Password'
               ),
 
@@ -177,12 +169,10 @@ return 0;
               onTap: () async {
                 await login(emailController.text.toString(), passwordController.text.toString());
 
-                print(statusDisplay(log));
                 if(statusDisplay(log)){
                   await sessionManager.set("login_state","true");
                   await sessionManager.set("email",emailController.text.toString());
                   dynamic id = await SessionManager().get("email");
-                  print(id);
                   var u = await getUser( await sessionManager.get("email")).then((value) => userFromJson(value));
                   await sessionManager.set("nome",u.nome);
                   await sessionManager.set("cognome",u.cognome);
@@ -200,13 +190,13 @@ return 0;
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(10)
                 ),
-                child: Center(child: Text('Login'),),
+                child: const Center(child: Text('Login'),),
               ),
             ),
             const SizedBox(height: 5,),
             GestureDetector(
               onTap: ()  {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => Root()));
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Root()));
               },
               child: Container(
                 height: 50,
@@ -214,7 +204,7 @@ return 0;
                     color: Colors.indigo,
                     borderRadius: BorderRadius.circular(10)
                 ),
-                child: Center(child: Text('Guest'),),
+                child: const Center(child: Text('Guest'),),
               ),
             ),
 

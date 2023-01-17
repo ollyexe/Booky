@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import '../../Model/ProfCard.dart';
 import '../../Utilities/CommonWidgets/CommonStyles.dart';
 
 import '../../MainPages/SubjectEntry/ProfessorCardS.dart';
@@ -53,7 +54,7 @@ class _profSelectedSubjState extends State<profSelectedSubj> {
 
 Future<String> getProfBySubj(String subject) async{
 
-  Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiUtente?path=getDocByCorso&corso=$subject"));
+  Response response = await get(Uri.parse("http://172.20.10.11:9999/servlet_war_exploded/apiUtente?path=getDocByCorso&corso=$subject"));
   if (response.statusCode == 200) {
 
 

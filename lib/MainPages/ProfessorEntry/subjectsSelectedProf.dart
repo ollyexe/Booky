@@ -25,7 +25,6 @@ class _subjectsSelectedProfState extends State<subjectsSelectedProf> {
         child: FutureBuilder<Subjects>(
           future:getSubjectByDoc(widget.prof).then((value) => subjectsFromJson(value)),
           builder: (BuildContext context,AsyncSnapshot<Subjects> snapshot){
-            print(snapshot.data?.corsi[0]);
 
 
             if(snapshot.hasData){
@@ -39,8 +38,9 @@ class _subjectsSelectedProfState extends State<subjectsSelectedProf> {
               ) :CircularProgressIndicator());
 
             }
-            else
+            else {
               return CircularProgressIndicator();
+            }
 
 
 

@@ -26,7 +26,8 @@ class _bySubject extends State<bySubject> {
            child: FutureBuilder<Subjects>(
              future:getAllSubj().then((value) => subjectsFromJson(value)),
              builder: (BuildContext context,AsyncSnapshot<Subjects> snapshot){
-               print(snapshot.data?.corsi[0]);
+
+
 
 
                if(snapshot.hasData){
@@ -40,8 +41,9 @@ class _bySubject extends State<bySubject> {
                  ) :CircularProgressIndicator());
 
                }
-               else
+               else {
                  return CircularProgressIndicator();
+               }
 
 
 
@@ -57,12 +59,11 @@ class _bySubject extends State<bySubject> {
 
 Future<String> getAllSubj() async{
 
-  Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiCorso?path=getAllCorsi"));
+  Response response = await get(Uri.parse("http://172.20.10.11:9999/servlet_war_exploded/apiCorso?path=getAllCorsi"));
 
   if (response.statusCode == 200) {
 
 
-    print("got the professors");
 
     return  response.body;
   }
@@ -70,3 +71,5 @@ Future<String> getAllSubj() async{
     throw Exception('Unexpected error occured!');
   }
 }
+
+

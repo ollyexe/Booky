@@ -36,7 +36,7 @@ Widget subCardS(BuildContext context, String subject){
         children: [
           const CircleAvatar(
             radius: 40,
-            backgroundImage: NetworkImage("https://www.asistar.it/var/ezdemo_site/storage/images/media/images/30-anni-web/11896-1-ita-IT/30-anni-web_hq.jpg"),
+            backgroundImage: NetworkImage("https://www.graphicsprings.com/filestorage/stencils/2f3bdb9733c4a68659dc2900a7595fea.png?width=500&height=500"),
           ),
           myText(subject, 20, Theme.of(context).colorScheme.onTertiaryContainer, FontWeight.w500),
         ],
@@ -109,7 +109,7 @@ class Subjects {
 
 Future<String> getSubjectByDoc(String email) async{
 
-  Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiCorso?path=getCorsiByDoc&mail=$email"));
+  Response response = await get(Uri.parse("http://172.20.10.11:9999/servlet_war_exploded/apiCorso?path=getCorsiByDoc&mail=$email"));
 
   if (response.statusCode == 200) {
 

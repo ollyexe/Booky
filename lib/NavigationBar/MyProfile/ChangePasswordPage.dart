@@ -25,7 +25,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             child: Column(
 
               children: [
-                myText("Create New Password", 37, Color(0xFF3B5998),
+                myText("Create New Password", 37, const Color(0xFF3B5998),
                     FontWeight.w600),
                 const SizedBox(
                   height: 10,
@@ -42,11 +42,11 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     obscureText: obscuredpassword1,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+                        borderSide: const BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFF3B5998)),
+                          borderSide: const BorderSide(color: Color(0xFF3B5998)),
                           borderRadius: BorderRadius.circular(12)),
                       hintText: 'Current Password',
                       hintStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground),
@@ -111,9 +111,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: Color(0xFF3B5998),
+                      color: const Color(0xFF3B5998),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const Center(

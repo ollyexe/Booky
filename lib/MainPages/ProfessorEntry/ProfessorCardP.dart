@@ -44,7 +44,7 @@ int randomColorGradient(){
 Widget profCard(BuildContext context,ProfCard card){
   return GestureDetector(
     onTap: () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) =>  subjectsSelectedProf(card.email)));
+      Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) =>  subjectsSelectedProf(card.email)));
 
     },
     child: Container(
@@ -90,14 +90,14 @@ Widget profCard(BuildContext context,ProfCard card){
 
 Future<String> getAllDocenti() async{
 
-  Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiUtente?path=getAllDocenti"));
+  Response response = await get(Uri.parse("http://172.20.10.11:9999/servlet_war_exploded/apiUtente?path=getAllDocenti"));
 
 
   if (response.statusCode == 200) {
 
 
 
-    print("got the professors");
+
 
     return  response.body;
   }

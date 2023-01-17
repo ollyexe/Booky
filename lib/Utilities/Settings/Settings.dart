@@ -129,7 +129,7 @@ class _SettingsState extends State<Settings> {
                     child: Row(
                       children: [
                         Icon(Icons.help,color: Theme.of(context).colorScheme.inversePrimary),
-                        SizedBox(width: 30,),
+                        const SizedBox(width: 30,),
                         myText("Help", 18, Theme.of(context).colorScheme.onBackground, FontWeight.normal),
 
                       ],

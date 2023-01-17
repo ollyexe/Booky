@@ -15,43 +15,46 @@ class _ChangeDataPageState extends State<ChangeDataPage> {
     return Scaffold(
       body: Column(
         children: [
-          customAppBar(placeholder, myText("Change Data", 22, Colors.white, FontWeight.w600),75,context),
+          customAppBar(placeholderBack, myText("Change Data", 22, Colors.white, FontWeight.w600),75,context),
           const SizedBox(height: 30),
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
             child: Column(
               children: [
-                buildTextField("Name", "Matteo"),
-                buildTextField("Surname", "Barone"),
-                buildTextField("Email", "matteo.barone@edu.unito.it"),
-                buildTextField("University",
-                    "Università degli studi di Torino - Informatica"),
-                buildTextField("University ID", "854850"),
+                Column(
+                  children: [
+                    buildTextField("Name", "Matteo"),
+                    buildTextField("Surname", "Barone"),
+                    buildTextField("Email", "matteo.barone@edu.unito.it"),
+
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    OutlinedButton(
+                        onPressed: () {},
+                        style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(horizontal: 50),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        child: customText("CANCEL")
+                    ),
+                    ElevatedButton(
+                        onPressed: () {},
+                        style: OutlinedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(horizontal: 50),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20))),
+                        child: customText("SAVE")
+                    ),
+                  ],
+                )
               ],
             ),
           ),
-          const SizedBox(height: 125),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                  child: customText("CANCEL")
-              ),
-              ElevatedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                  child: customText("SAVE")
-              ),
-            ],
-          )
+
+
         ],
       ),
     );

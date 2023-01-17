@@ -14,6 +14,7 @@ class Lecture{
         required this.time,
         required this.image,
         required this.rating,
+        required this.lRating,
         required this.price});
 
 
@@ -25,11 +26,13 @@ class Lecture{
   String time;
   NetworkImage image;
   double rating;
+  double lRating;
   double price;
 
   factory Lecture.fromJson(Map<String, dynamic> json) => Lecture(
     date: json["data"],
     time: json["ora"],
+    lRating: (double.parse(json["valutazione"])),
     subject: json["nome_corso"],
     email: json["email"],
     name: json["nome_docente"],
@@ -48,7 +51,9 @@ class Lecture{
       String time,
       NetworkImage image,
       double rating,
-      double price) => Lecture(
+      double lRating,
+      double price
+      ) => Lecture(
     date: date,
     time: time,
     subject: subject,
@@ -57,6 +62,7 @@ class Lecture{
     surname: surname,
     image:image,
     rating: rating,
+    lRating:lRating,
     price: price,
 
   );
@@ -70,6 +76,7 @@ class Lecture{
     "\"email\"": "\""+email+"\"",
     "\"pf\"": "\""+image.url+"\"",
     "\"stelle\"": "\""+rating.toString()+"\"",
+    "\"valutazione\"": "\""+lRating.toString()+"\"",
     "\"prezzo\"": "\""+price.toString()+"\"",
   };
 }

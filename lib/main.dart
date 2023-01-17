@@ -43,9 +43,8 @@ class Progetto extends StatelessWidget {
         home: FutureBuilder(
           future:SessionManager().get("login_state"),
           builder: (context, snapshot){
-            print(snapshot.data.toString());
-            if(snapshot.data.toString()=="true"){
-              return  Root();
+            if(snapshot.data=="true"){
+              return Root();
             }
             else{
               return Login();

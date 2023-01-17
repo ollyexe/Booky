@@ -3,7 +3,7 @@ import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
 import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 import 'package:progettoium/NavigationBar/Homepage/Selection_Professor_Subject.dart';
-import 'package:progettoium/Utilities/CommonWidgets/SingleLecture.dart';
+import 'package:progettoium/Model/Lecture.dart';
 import '../../Utilities/Settings/Settings.dart';
 import 'package:http/http.dart';
 
@@ -17,7 +17,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  refresh() {
+    setState(() {});
+  }
 
+
+   nothing(){
+
+  }
 
 
 
@@ -55,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             future: SessionManager().get("email").then((value) => getNextLezioniPrenotate(value).then((value) => lectureFromJson(value))),
             builder: (BuildContext context,AsyncSnapshot<List<Lecture>> snapshot){
               if(snapshot.hasData) {
-                return ( snapshot.hasData ?  ListOfLectures(snapshot.data!) : const CircularProgressIndicator());
+                return ( snapshot.hasData ?  ListOfBooks(snapshot.data!,(){}) : const CircularProgressIndicator());
               } else {
                 return (!snapshot.hasData ? Container(
                     decoration: BoxDecoration(
@@ -86,7 +93,7 @@ IconButton settingsButton(BuildContext context) {
 
 Future<String> getNextLezioniPrenotate(String login) async{
 
-  Response response = await get(Uri.parse("http://192.168.1.15:9999/servlet_war_exploded/apiLezione?path=getNextLezioniPrenotate&mail=$login"));
+  Response response = await get(Uri.parse("http://172.20.10.11:9999/servlet_war_exploded/apiLezione?path=getNextLezioniPrenotate&mail=$login"));
 
 
   if (response.statusCode == 200) {
