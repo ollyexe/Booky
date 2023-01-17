@@ -18,16 +18,12 @@ class _MyProfileState extends State<MyProfile> {
   final double coverHeight = 280;
   final double profileHeight = 144;
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: SessionManager().get("login_state"),
-      builder: (context, snapshot){
-        return ( snapshot.data.toString()=="true" ? profile() : const Login());
+      builder: (context, snapshot) {
+        return (snapshot.data.toString() == "true" ? profile() : const Login());
       },
     );
   }
@@ -47,21 +43,19 @@ class _MyProfileState extends State<MyProfile> {
         Positioned(
           top: top,
           child: FutureBuilder(
-            future:SessionManager().get("pf"),
-            builder: (context, snapshot){
-              if(snapshot.hasData){
-                return (snapshot.hasData ?  CircleAvatar(
-                radius: profileHeight / 2,
-                backgroundColor: Colors.grey.shade800,
-                backgroundImage:  NetworkImage(snapshot.data)
-              ):const CircularProgressIndicator());
-              }
-              else{
+            future: SessionManager().get("pf"),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return (snapshot.hasData
+                    ? CircleAvatar(
+                        radius: profileHeight / 2,
+                        backgroundColor: Colors.grey.shade800,
+                        backgroundImage: NetworkImage(snapshot.data))
+                    : const CircularProgressIndicator());
+              } else {
                 return const CircularProgressIndicator();
               }
-
-
-              },
+            },
           ),
         ),
       ],
@@ -69,158 +63,177 @@ class _MyProfileState extends State<MyProfile> {
   }
 
   Widget buildContent() => Column(
-    children:  [
-      const SizedBox(
-        height: 15,
-      ),
-
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        FutureBuilder(
-          future:SessionManager().get("nome"),
-          builder: (context, snapshot){
-            if(snapshot.hasData){
-              return (snapshot.hasData ? myText(snapshot.data,28,Theme.of(context).colorScheme.onBackground,FontWeight.bold):const CircularProgressIndicator() );
-            }
-            else{
-              return const CircularProgressIndicator();
-            }
-
-
-          },
-        ),
-        const SizedBox(width: 10,),
-        FutureBuilder(
-          future:SessionManager().get("cognome"),
-          builder: (context, snapshot){
-            if(snapshot.hasData){
-              return (snapshot.hasData ?  myText(snapshot.data,28,Theme.of(context).colorScheme.onBackground,FontWeight.bold):const CircularProgressIndicator() );
-            }
-            else{
-              return const CircularProgressIndicator();
-            }
-
-          },
-        ),
-      ],),
-      const SizedBox(height: 8),
-      FutureBuilder(
-        future:SessionManager().get("ruolo"),
-        builder: (context, snapshot){
-          if(snapshot.hasData){
-            return (snapshot.hasData ? (snapshot.data=="utente" ? myText("Studente",20,Theme.of(context).colorScheme.onBackground,FontWeight.normal):myText(snapshot.data,20,Theme.of(context).colorScheme.onBackground,FontWeight.normal) ):const CircularProgressIndicator() );
-          }
-          else{
-            return const CircularProgressIndicator();
-          }
-
-
-        },
-      ),
-
-      const SizedBox(height: 20)
-    ],
-  );
+          const SizedBox(
+            height: 15,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FutureBuilder(
+                future: SessionManager().get("nome"),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return (snapshot.hasData
+                        ? myText(
+                            snapshot.data,
+                            28,
+                            Theme.of(context).colorScheme.onBackground,
+                            FontWeight.bold)
+                        : const CircularProgressIndicator());
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              FutureBuilder(
+                future: SessionManager().get("cognome"),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return (snapshot.hasData
+                        ? myText(
+                            snapshot.data,
+                            28,
+                            Theme.of(context).colorScheme.onBackground,
+                            FontWeight.bold)
+                        : const CircularProgressIndicator());
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          FutureBuilder(
+            future: SessionManager().get("ruolo"),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return (snapshot.hasData
+                    ? (snapshot.data == "utente"
+                        ? myText(
+                            "Studente",
+                            20,
+                            Theme.of(context).colorScheme.onBackground,
+                            FontWeight.normal)
+                        : myText(
+                            snapshot.data,
+                            20,
+                            Theme.of(context).colorScheme.onBackground,
+                            FontWeight.normal))
+                    : const CircularProgressIndicator());
+              } else {
+                return const CircularProgressIndicator();
+              }
+            },
+          ),
+          const SizedBox(height: 20)
+        ],
+      );
 
   Widget buildCoverImage() => Container(
-    color: Colors.grey,
-    child: Image.network(
-      'https://img.wallpapic.it/i1862-037-811/medium/spazio-viola-blu-astronomia-sfondo.jpg',
-      width: double.infinity,
-      height: coverHeight,
-      fit: BoxFit.cover,
-    ),
-  );
+        color: Colors.grey,
+        child: Image.network(
+          'https://img.wallpapic.it/i1862-037-811/medium/spazio-viola-blu-astronomia-sfondo.jpg',
+          width: double.infinity,
+          height: coverHeight,
+          fit: BoxFit.cover,
+        ),
+      );
 
-
-
-  Widget profile(){return Scaffold(
-    body: Column(
-      children: [
-        ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.zero,
-          children: [
-            buildTop(),
-            buildContent(),
-            Card(
-              elevation: 4.0,
-              margin: const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 16.0),
+  Widget profile() {
+    return Scaffold(
+      body: Column(
+        children: [
+          ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            children: [
+              buildTop(),
+              buildContent(),
+              Card(
+                elevation: 4.0,
+                margin: const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 16.0),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: const Icon(
+                        Icons.lock_outline,
+                        color: Colors.blue,
+                      ),
+                      title: const Text("Change Password"),
+                      trailing: const Icon(Icons.keyboard_arrow_right),
+                      onTap: () {
+                        //open change password
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const ChangePasswordPage();
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                    const Divider(
+                      height: 1.0,
+                      thickness: 2,
+                      indent: Checkbox.width,
+                      endIndent: Checkbox.width,
+                    ),
+                    ListTile(
+                      leading: const Icon(
+                        Icons.account_box,
+                        color: Colors.blue,
+                      ),
+                      title: const Text("Change Data"),
+                      trailing: const Icon(Icons.keyboard_arrow_right),
+                      onTap: () {
+                        //open change Theme
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const ChangeDataPage();
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+            child: FloatingActionButton.extended(
+              backgroundColor: Colors.deepPurple[500],
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0)),
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: const Icon(
-                      Icons.lock_outline,
-                      color: Colors.blue,
-                    ),
-                    title: const Text("Change Password"),
-                    trailing: const Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      //open change password
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const ChangePasswordPage();
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                  const Divider(
-                    height: 1.0,
-                    thickness: 2,
-                    indent: Checkbox.width,
-                    endIndent: Checkbox.width,
-                  ),
-                  ListTile(
-                    leading: const Icon(
-                      Icons.account_box,
-                      color: Colors.blue,
-                    ),
-                    title: const Text("Change Data"),
-                    trailing: const Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      //open change Theme
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const ChangeDataPage();
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                  borderRadius: BorderRadius.circular(10)),
+              onPressed: () async {
+                await SessionManager().destroy();
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (BuildContext context) => const Root()));
+              },
+              label: Text(
+                "SIGN OUT",
+                style: TextStyle(
+                    fontSize: 16,
+                    letterSpacing: 2.2,
+                    color: Theme.of(context).colorScheme.onBackground),
               ),
             ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-          child: FloatingActionButton.extended(
-            backgroundColor: Colors.deepPurple[500],
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)),
-            onPressed: () async {
-              await SessionManager().destroy();
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Root()));
-
-            },
-            label:  Text(
-              "SIGN OUT",
-              style: TextStyle(
-                  fontSize: 16, letterSpacing: 2.2, color: Theme.of(context).colorScheme.onBackground),
-            ),
           ),
-        ),
-      ],
-    ),
-  );}
+        ],
+      ),
+    );
+  }
 }
 
 /*Widget buildTextField(String labelText, String placeholder) {
@@ -255,10 +268,6 @@ Center(
             ),
  */
 
-
-
-
-
 /*
 Center(
               child: ElevatedButton(
@@ -272,4 +281,3 @@ Center(
               ),
             ),
  */
-

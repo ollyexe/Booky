@@ -1,8 +1,6 @@
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 LoginM loginFromJson(String str) => LoginM.fromJson(json.decode(str));
-
 
 class LoginM {
   LoginM({
@@ -14,15 +12,12 @@ class LoginM {
   String? stateDescription;
 
   factory LoginM.fromJson(Map<String, dynamic> json) => LoginM(
-    loginState: json["login_state"],
-    stateDescription: json["state_description"],
-  );
+        loginState: json["login_state"],
+        stateDescription: json["state_description"],
+      );
 }
 
-
 User userFromJson(String str) => User.fromJson(json.decode(str));
-
-
 
 class User {
   User({
@@ -38,9 +33,9 @@ class User {
   String? pf;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    nome: json["nome"],
-    cognome: json["cognome"],
-    ruolo: json["ruolo"],
-    pf: json["pf"],
-  );
+        nome: json["nome"],
+        cognome: json["cognome"],
+        ruolo: json["ruolo"],
+        pf: json["pf"],
+      );
 }

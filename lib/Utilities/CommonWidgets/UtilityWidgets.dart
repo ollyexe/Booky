@@ -9,19 +9,14 @@ import 'CommonStyles.dart';
  *  ------ ------ ------ ------ ------ ------ ------ ------
 */
 
-
-GestureDetector bottomButtons(Color color,Widget myWidget){
+GestureDetector bottomButtons(Color color, Widget myWidget) {
   return GestureDetector(
-    onTap: () {
-
-    },
+    onTap: () {},
     child: Container(
       height: 60,
       width: 160,
-      decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(7)
-      ),
+      decoration:
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(7)),
       child: myWidget,
     ),
   );
@@ -34,13 +29,10 @@ GestureDetector bottomButtons(Color color,Widget myWidget){
  *  ------ ------ ------ ------ ------ ------ ------ ------
 */
 
-
 Widget cancelReservationWidget = Padding(
   padding: const EdgeInsetsDirectional.fromSTEB(11, 23, 0, 0),
   child: myText("CANCEL RESERVATION", 13, Colors.white, FontWeight.w600),
 );
-
-
 
 /*  ------ ------ ------ ------ ------ ------ ------ ------
  *  From here on we have all the Widget that will be passed
@@ -56,8 +48,7 @@ IconButton removeButton() {
         Icons.delete,
         size: 40,
         color: Color(0xFFFF0000),
-      )
-  );
+      ));
 }
 
 /*  ------ ------ ------ ------ ------ ------ ------ ------
@@ -71,7 +62,6 @@ Widget toBeConfirmedLecture = Padding(
   padding: const EdgeInsetsDirectional.fromSTEB(20, 23, 0, 0),
   child: myText("CONFIRM LECTURE", 13, Colors.white, FontWeight.w600),
 );
-
 
 Widget confirmedLecture = Padding(
   padding: const EdgeInsetsDirectional.fromSTEB(10, 23, 0, 0),

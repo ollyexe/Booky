@@ -1,8 +1,12 @@
 /* External Libraries imports  */
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter_session_manager/flutter_session_manager.dart';
+import 'package:progettoium/NavigationBar/MyProfile/Login.dart';
+import 'package:progettoium/NavigationBar/MyProfile/MyProfile.dart';
+import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
+import 'package:progettoium/Utilities/Settings/ThemeManager.dart';
 import 'package:provider/provider.dart';
 
 /* My Pages */
@@ -10,19 +14,10 @@ import 'NavigationBar/Calendar.dart';
 import 'NavigationBar/Cart.dart';
 import 'NavigationBar/Homepage/HomePage.dart';
 import 'NavigationBar/Orders.dart';
-import 'package:progettoium/NavigationBar/MyProfile/Login.dart';
-import 'package:progettoium/NavigationBar/MyProfile/MyProfile.dart';
-import 'package:progettoium/Utilities/CommonWidgets/CommonStyles.dart';
-import 'package:progettoium/Utilities/Settings/ThemeManager.dart';
 
-
-void main(){
-  return runApp(
-    ChangeNotifierProvider<ThemeNotifier>(
-      create: (_) => ThemeNotifier(),
-      child: const Progetto()
-    )
-  );
+void main() {
+  return runApp(ChangeNotifierProvider<ThemeNotifier>(
+      create: (_) => ThemeNotifier(), child: const Progetto()));
   /*runApp(const Progetto());*/
 }
 
@@ -38,15 +33,18 @@ class Progetto extends StatelessWidget {
         initialRoute: 'Root',
         themeMode: ThemeMode.system,
         //themeMode: ThemeMode.dark,
-        theme: ThemeData(useMaterial3: true, colorScheme: theme.getTheme()),//ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
+        theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: theme
+                .getTheme()), //ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
         //darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
         home: FutureBuilder(
-          future:SessionManager().get("login_state"),
-          builder: (context, snapshot){
-            if(snapshot.data=="true"){
+          future: SessionManager().get("login_state"),
+          builder: (context, snapshot) {
+
+            if (snapshot.data.toString() == "true") {
               return Root();
-            }
-            else{
+            } else {
               return Login();
             }
           },
@@ -65,7 +63,7 @@ class Root extends StatefulWidget {
 
 class _RootState extends State<Root> {
   final autoSizeGroup = AutoSizeGroup();
-  var index=0;
+  var index = 0;
 
   List<Widget> screens = [
     const HomePage(),
@@ -82,13 +80,7 @@ class _RootState extends State<Root> {
     Icons.person,
   ];
 
-  List<String> elements = [
-    "Home",
-    "Calendar",
-    "Orders",
-    "Profile"
-  ];
-
+  List<String> elements = ["Home", "Calendar", "Orders", "Profile"];
 
   @override
   Widget build(BuildContext context) {
@@ -96,63 +88,62 @@ class _RootState extends State<Root> {
       body: screens[index],
       resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
-        shape: const CircleBorder(
-          side: BorderSide.none
-        ),
+        shape: const CircleBorder(side: BorderSide.none),
         foregroundColor: Colors.orange,
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         child: const Icon(Icons.shopping_cart),
         onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => const Cart()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext context) => const Cart()));
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       //NavigationBar
       backgroundColor: Theme.of(context).colorScheme.background,
       bottomNavigationBar: AnimatedBottomNavigationBar.builder(
-      itemCount: iconList.length,
-      tabBuilder: (int index, bool isActive) {
-        final color = isActive ? Theme.of(context).colorScheme.onPrimary : Colors.grey;
-        final double iconSize = isActive ? 22 : 20;
-        final double textSize = isActive ? 12 : 10;
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              iconList[index],
-              size: iconSize,
-              color: color,
-            ),
-            const SizedBox(height: 4),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: myText(elements[index], textSize, color, FontWeight.w400)
-            ),
-          ],
-        );
-      },
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      elevation: 0,
-      activeIndex: index,
-      splashColor: Colors.blueAccent,
-      splashSpeedInMilliseconds: 400,
-      notchSmoothness: NotchSmoothness.sharpEdge,
-      gapLocation: GapLocation.center,
-      leftCornerRadius: 10,
-      rightCornerRadius: 10,
-      onTap: (newIndex) => setState(() => index = newIndex),
-      shadow: const BoxShadow(
-        offset:  Offset(0, 1),
-        blurRadius: 12,
-        spreadRadius: 0.5,
-        color: Colors.white12,
-      ),
+        itemCount: iconList.length,
+        tabBuilder: (int index, bool isActive) {
+          final color =
+              isActive ? Theme.of(context).colorScheme.onPrimary : Colors.grey;
+          final double iconSize = isActive ? 22 : 20;
+          final double textSize = isActive ? 12 : 10;
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                iconList[index],
+                size: iconSize,
+                color: color,
+              ),
+              const SizedBox(height: 4),
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: myText(
+                      elements[index], textSize, color, FontWeight.w400)),
+            ],
+          );
+        },
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        elevation: 0,
+        activeIndex: index,
+        splashColor: Colors.blueAccent,
+        splashSpeedInMilliseconds: 400,
+        notchSmoothness: NotchSmoothness.sharpEdge,
+        gapLocation: GapLocation.center,
+        leftCornerRadius: 10,
+        rightCornerRadius: 10,
+        onTap: (newIndex) => setState(() => index = newIndex),
+        shadow: const BoxShadow(
+          offset: Offset(0, 1),
+          blurRadius: 12,
+          spreadRadius: 0.5,
+          color: Colors.white12,
+        ),
       ),
     );
   }
 }
-
 
 /*
 final lightColorScheme = ColorScheme(

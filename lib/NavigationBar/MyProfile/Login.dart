@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter_session_manager/flutter_session_manager.dart' ;
+
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 import 'package:progettoium/Model/LoginM.dart';
+
+import '../../Model/Client_API.dart';
 import '../../Utilities/CommonWidgets/CommonStyles.dart';
 import '../../main.dart';
 
@@ -16,118 +18,61 @@ class Login extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<Login> {
-  int log=-1;
+  int log = -1;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   var sessionManager = SessionManager();
 
-   Future<int> login(String email , String password) async {
+  Future<int> login(String email, String password) async {
+    try {
+      var loginStatus = LoginM.fromJson(
+          jsonDecode(await Client_API().getLoginStatus(email, password)));
 
-    try{
-
-      Response response = await get(
-          Uri.parse('http://172.20.10.11:9999/servlet_war_exploded/apiUtente?path=login&mail=$email&pass=$password'),
-      );
-
-      if(response.statusCode == 200){
-
-         var loginStatus=LoginM.fromJson(jsonDecode(response.body));
-
-         if(loginStatus.loginState=="true"){
-           setState(() {
-             log=0;
-           });
-
-
-         }
-         else if (loginStatus.loginState=="other"){
-           setState(() {
-             log=1;
-           });
-         }
-         else if(loginStatus.loginState=="false"){
-           setState(() {
-             log=2;
-           });
-         }
-         else{
-           setState(() {
-             log=-1;
-           });
-         }
-
-
-      }else {
+      if (loginStatus.loginState == "true") {
+        setState(() {
+          log = 0;
+        });
+      } else if (loginStatus.loginState == "other") {
+        setState(() {
+          log = 1;
+        });
+      } else if (loginStatus.loginState == "false") {
+        setState(() {
+          log = 2;
+        });
+      } else {
+        setState(() {
+          log = -1;
+        });
       }
-    }catch(e){
-    }
-return 0;
+    } catch (e) {}
+    return 0;
   }
 
-  Future<String> getUser(String email ) async {
+  String s = "Status";
+  TextStyle t = const TextStyle(color: Colors.white, fontSize: 15);
 
-
-    Response response = await get(
-      Uri.parse('http://172.20.10.11:9999/servlet_war_exploded/apiUtente?path=getMiniUser&mail=$email'),
-    );
-
-      if (response.statusCode == 200) {
-
-
-
-
-        return  response.body;
-      }
-      else {
-        throw Exception('Unexpected error occured!');
-      }
-
-  }
-
-
-
-  String s="Status";
-  TextStyle t = const TextStyle(
-      color: Colors.white,
-      fontSize: 15
-  );
-
-  bool statusDisplay(int i){
-    if(i==0){
+  bool statusDisplay(int i) {
+    if (i == 0) {
       setState(() {
-        s="Succesful Login";
-        t = const TextStyle(
-            color: Colors.green,
-            fontSize: 15
-        );
+        s = "Succesful Login";
+        t = const TextStyle(color: Colors.green, fontSize: 15);
       });
       return true;
-    }
-    else if(i==1){
+    } else if (i == 1) {
       setState(() {
-        s="User Not Exist";
-        t = const TextStyle(
-            color: Colors.red,
-            fontSize: 15
-        );
+        s = "User Not Exist";
+        t = const TextStyle(color: Colors.red, fontSize: 15);
       });
-    }
-    else if(i==2){
+    } else if (i == 2) {
       setState(() {
-        s="Wrong Password";
-        t = const TextStyle(
-            color: Colors.red,
-            fontSize: 15
-        );
+        s = "Wrong Password";
+        t = const TextStyle(color: Colors.red, fontSize: 15);
       });
-    }
-    else{
+    } else {
       setState(() {
-        s="Login Failed";
-        t = const TextStyle(
-            color: Colors.blue,
-            fontSize: 15
-        );
+        s = "Login Failed";
+        t = const TextStyle(color: Colors.blue, fontSize: 15);
       });
     }
     return false;
@@ -135,10 +80,14 @@ return 0;
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: customAppBar(placeholder, myText("Login",22, Theme.of(context).colorScheme.onPrimary, FontWeight.w600), 75,context),
+      appBar: customAppBar(
+          placeholder,
+          myText("Login", 22, Theme.of(context).colorScheme.onPrimary,
+              FontWeight.w600),
+          75,
+          context),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -149,65 +98,76 @@ return 0;
               controller: emailController,
               decoration: const InputDecoration(
                 hintText: 'Email',
-
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             TextFormField(
               obscureText: true,
               controller: passwordController,
-              decoration: const InputDecoration(
-                  hintText: 'Password'
-              ),
-
+              decoration: const InputDecoration(hintText: 'Password'),
             ),
-            const SizedBox(height: 20,),
-            Text(s,
-            style: t,),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              s,
+              style: t,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             GestureDetector(
               onTap: () async {
-                await login(emailController.text.toString(), passwordController.text.toString());
+                await login(emailController.text.toString(),
+                    passwordController.text.toString());
 
-                if(statusDisplay(log)){
-                  await sessionManager.set("login_state","true");
-                  await sessionManager.set("email",emailController.text.toString());
-                  dynamic id = await SessionManager().get("email");
-                  var u = await getUser( await sessionManager.get("email")).then((value) => userFromJson(value));
-                  await sessionManager.set("nome",u.nome);
-                  await sessionManager.set("cognome",u.cognome);
-                  await sessionManager.set("ruolo",u.ruolo);
-                  await sessionManager.set("pf",u.pf);
+                if (statusDisplay(log)) {
+                  await sessionManager.set("login_state", "true");
+                  await sessionManager.set(
+                      "email", emailController.text.toString());
+                  await SessionManager().get("email");
+                  var u = await Client_API()
+                      .getUser(await sessionManager.get("email"))
+                      .then((value) => userFromJson(value));
+                  await sessionManager.set("nome", u.nome);
+                  await sessionManager.set("cognome", u.cognome);
+                  await sessionManager.set("ruolo", u.ruolo);
+                  await sessionManager.set("pf", u.pf);
                   sleep(const Duration(milliseconds: 50));
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Root()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (BuildContext context) => const Root()));
                 }
-
-
               },
               child: Container(
                 height: 50,
                 decoration: BoxDecoration(
                     color: Colors.green,
-                    borderRadius: BorderRadius.circular(10)
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Center(
+                  child: Text('Login'),
                 ),
-                child: const Center(child: Text('Login'),),
               ),
             ),
-            const SizedBox(height: 5,),
+            const SizedBox(
+              height: 5,
+            ),
             GestureDetector(
-              onTap: ()  {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => const Root()));
+              onTap: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (BuildContext context) => const Root()));
               },
               child: Container(
                 height: 50,
                 decoration: BoxDecoration(
                     color: Colors.indigo,
-                    borderRadius: BorderRadius.circular(10)
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Center(
+                  child: Text('Guest'),
                 ),
-                child: const Center(child: Text('Guest'),),
               ),
             ),
-
           ],
         ),
       ),

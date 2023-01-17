@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../Utilities/CommonWidgets/CommonStyles.dart';
 
-
-
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({Key? key}) : super(key: key);
 
@@ -20,19 +18,24 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     return Scaffold(
       body: Column(
         children: [
-          customAppBar(placeholderBack, myText("Change Password", 22, Colors.white, FontWeight.w600),75,context),
+          customAppBar(
+              placeholderBack,
+              myText("Change Password", 22, Colors.white, FontWeight.w600),
+              75,
+              context),
           Expanded(
             child: Column(
-
               children: [
                 myText("Create New Password", 37, const Color(0xFF3B5998),
                     FontWeight.w600),
                 const SizedBox(
                   height: 10,
                 ),
-                 Text(
+                Text(
                   'Insert Current and New Password',
-                  style: TextStyle(fontSize: 18, color: Theme.of(context).colorScheme.onBackground),
+                  style: TextStyle(
+                      fontSize: 18,
+                      color: Theme.of(context).colorScheme.onBackground),
                 ),
                 const SizedBox(height: 50),
                 //vecchia password
@@ -46,10 +49,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Color(0xFF3B5998)),
+                          borderSide:
+                              const BorderSide(color: Color(0xFF3B5998)),
                           borderRadius: BorderRadius.circular(12)),
                       hintText: 'Current Password',
-                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onBackground),
+                      hintStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.onBackground),
                       fillColor: Colors.grey[200],
                       filled: true,
                       suffixIcon: IconButton(
@@ -65,7 +70,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         ),
                       ),
                     ),
-                    style:  TextStyle(color: Theme.of(context).colorScheme.onInverseSurface),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onInverseSurface),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -81,14 +87,17 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(color: Color(0xFF3B5998)),
+                          borderSide:
+                              const BorderSide(color: Color(0xFF3B5998)),
                           borderRadius: BorderRadius.circular(12)),
                       hintText: 'New Password',
-                      hintStyle: TextStyle(color: Theme.of(context).colorScheme.onInverseSurface),
-                      hoverColor:Theme.of(context).colorScheme.onInverseSurface,
+                      hintStyle: TextStyle(
+                          color:
+                              Theme.of(context).colorScheme.onInverseSurface),
+                      hoverColor:
+                          Theme.of(context).colorScheme.onInverseSurface,
                       fillColor: Colors.grey[200],
                       filled: true,
-
                       suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
@@ -102,7 +111,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         ),
                       ),
                     ),
-                    style:  TextStyle(color: Theme.of(context).colorScheme.onInverseSurface),
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.onInverseSurface),
                   ),
                 ),
                 const SizedBox(height: 120),

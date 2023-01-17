@@ -15,7 +15,11 @@ class _ChangeDataPageState extends State<ChangeDataPage> {
     return Scaffold(
       body: Column(
         children: [
-          customAppBar(placeholderBack, myText("Change Data", 22, Colors.white, FontWeight.w600),75,context),
+          customAppBar(
+              placeholderBack,
+              myText("Change Data", 22, Colors.white, FontWeight.w600),
+              75,
+              context),
           const SizedBox(height: 30),
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
@@ -26,7 +30,6 @@ class _ChangeDataPageState extends State<ChangeDataPage> {
                     buildTextField("Name", "Matteo"),
                     buildTextField("Surname", "Barone"),
                     buildTextField("Email", "matteo.barone@edu.unito.it"),
-
                   ],
                 ),
                 Row(
@@ -38,23 +41,19 @@ class _ChangeDataPageState extends State<ChangeDataPage> {
                             padding: const EdgeInsets.symmetric(horizontal: 50),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20))),
-                        child: customText("CANCEL")
-                    ),
+                        child: customText("CANCEL")),
                     ElevatedButton(
                         onPressed: () {},
                         style: OutlinedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 50),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20))),
-                        child: customText("SAVE")
-                    ),
+                        child: customText("SAVE")),
                   ],
                 )
               ],
             ),
           ),
-
-
         ],
       ),
     );
@@ -81,7 +80,8 @@ class _ChangeDataPageState extends State<ChangeDataPage> {
   Text customText(String label) {
     return Text(
       label,
-      style: const TextStyle(fontSize: 18, letterSpacing: 2, color: Colors.black),
+      style:
+          const TextStyle(fontSize: 18, letterSpacing: 2, color: Colors.black),
     );
   }
 }

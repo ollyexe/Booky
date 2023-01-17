@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'StorageManager.dart';
 
 class ThemeNotifier with ChangeNotifier {
@@ -10,7 +11,7 @@ class ThemeNotifier with ChangeNotifier {
     onPrimaryContainer: const Color(0xFF001944),
     secondary: const Color(0xFF575E71),
     onSecondary: const Color(0xFFFFFFFF),
-    secondaryContainer: Colors.lightBlueAccent,//Color(0xFFDBE2F9),
+    secondaryContainer: Colors.lightBlueAccent, //Color(0xFFDBE2F9),
     onSecondaryContainer: const Color(0xFF141B2C),
     tertiary: const Color(0xFF725572),
     onTertiary: const Color(0xFFFFFFFF),
@@ -30,7 +31,7 @@ class ThemeNotifier with ChangeNotifier {
     onInverseSurface: const Color(0xFFF2F0F4),
     inverseSurface: const Color(0xFF303034),
     inversePrimary: Colors.lightBlue,
-    shadow: Colors.grey.withOpacity(0.5),//Color(0xFF000000),
+    shadow: Colors.grey.withOpacity(0.5), //Color(0xFF000000),
     surfaceTint: const Color(0xFF355CA8),
   );
 
@@ -72,12 +73,12 @@ class ThemeNotifier with ChangeNotifier {
   //bool? getValue() => _isLight;
 
   ThemeNotifier() {
-    StorageManager.readData('themeMode').then((value){
+    StorageManager.readData('themeMode').then((value) {
       var themeMode = value ?? 'light';
       if (themeMode == 'light') {
         _themeData = lightColorScheme;
       } else {
-       //print('setting dark theme');
+        //print('setting dark theme');
         _themeData = darkColorScheme;
       }
       notifyListeners();

@@ -27,7 +27,7 @@ class StorageManager {
     return prefs.remove(key);
   }
 
-  static void saveSwitch(String key,bool switchValue) async{
+  static void saveSwitch(String key, bool switchValue) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool(key, switchValue);
   }
