@@ -399,25 +399,7 @@ class _ListOfLecturesState extends State<ListOfLectures> {
     widget.list.removeAt(i);
   }
 
-  void _removeItem(int i) {
-    _key.currentState!.removeItem(
-      i,
-      (context, animation) {
-        return SizeTransition(
-          sizeFactor: animation,
-          child: Card(
-            margin: const EdgeInsets.all(10),
-            color: Colors.red,
-            child: ListTile(
-              title: myText("Deleted", 24, Colors.black, FontWeight.normal),
-            ),
-          ),
-        );
-      },
-      duration: const Duration(milliseconds: 300),
-    );
-    widget.list.removeAt(i);
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -493,33 +475,20 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    IconButton(
-                                      iconSize: 40,
-                                      onPressed: () async {
-                                        await launchUrl(
-                                            Uri.parse(
-                                                'https://calendar.google.com/calendar/u/0/r/eventedit?text=Lezione+di+${widget.list[index].subject}+con+${widget.list[index].name}+${widget.list[index].surname}&dates=${widget.list[index].date.replaceAll(RegExp(r'[^\w\s]+'), '')}T${widget.list[index].time.replaceAll(RegExp(r'[^\w\s]+'), '')}00/${widget.list[index].date.replaceAll(RegExp(r'[^\w\s]+'), '')}T${int.parse(widget.list[index].time.replaceAll(RegExp(r'[^\w\s]+'), '')) + 100}00Z&details=zoom.com/random_reunion&location=Metaverso&sf=true&output=xml'),
-                                            mode:
-                                                LaunchMode.externalApplication);
-                                      },
-                                      icon: const Icon(
-                                          Icons.calendar_month_rounded,
-                                          color: Colors.green),
-                                    ),
-                                    IconButton(
-                                      iconSize: 40,
-                                      onPressed: () async {
-                                        await Client_API().cancelPrenotazione(
-                                            widget.list[index].email,
-                                            widget.list[index].date,
-                                            widget.list[index].time);
-                                        _removeItem(index);
-                                      },
-                                      icon: Icon(Icons.delete,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .error),
-                                    ),
+                                    // IconButton(
+                                    //   iconSize: 40,
+                                    //   onPressed: () async {
+                                    //     await launchUrl(
+                                    //         Uri.parse(
+                                    //             'https://calendar.google.com/calendar/u/0/r/eventedit?text=Lezione+di+${widget.list[index].subject}+con+${widget.list[index].name}+${widget.list[index].surname}&dates=${widget.list[index].date.replaceAll(RegExp(r'[^\w\s]+'), '')}T${widget.list[index].time.replaceAll(RegExp(r'[^\w\s]+'), '')}00/${widget.list[index].date.replaceAll(RegExp(r'[^\w\s]+'), '')}T${int.parse(widget.list[index].time.replaceAll(RegExp(r'[^\w\s]+'), '')) + 100}00Z&details=zoom.com/random_reunion&location=Metaverso&sf=true&output=xml'),
+                                    //         mode:
+                                    //             LaunchMode.externalApplication);
+                                    //   },
+                                    //   icon: const Icon(
+                                    //       Icons.calendar_month_rounded,
+                                    //       color: Colors.green),
+                                    // ),
+
                                     IconButton(
                                       iconSize: 40,
                                       onPressed: () async {
@@ -620,8 +589,8 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                                         _doneItem(index);
                                         widget.update;
                                       },
-                                      icon: const Icon(Icons.check,
-                                          color: Colors.blue),
+                                      icon: const Icon(Icons.check_box,
+                                          color: Colors.indigo),
                                     ),
                                   ],
                                 )

@@ -41,12 +41,12 @@ class Progetto extends StatelessWidget {
         home: FutureBuilder(
           future: SessionManager().get("login_state"),
           builder: (context, snapshot) {
-
             if (snapshot.data.toString() == "true") {
               return Root();
             } else {
               return Login();
             }
+
           },
         ),
       ),

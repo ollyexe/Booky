@@ -23,7 +23,9 @@ class _MyProfileState extends State<MyProfile> {
     return FutureBuilder(
       future: SessionManager().get("login_state"),
       builder: (context, snapshot) {
-        return (snapshot.data.toString() == "true" ? profile() : const Login());
+
+        return (snapshot.hasData ? (snapshot.data.toString() == "true" ? profile() : const Login()):Login());
+
       },
     );
   }
