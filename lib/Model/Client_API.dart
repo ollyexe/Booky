@@ -183,4 +183,14 @@ class Client_API {
       throw Exception('Unexpected error occured!');
     }
   }
+  Future<String> changePassword(String email,String new_password) async {
+    Response response = await get(Uri.parse(
+        "http://$host:9999/servlet_war_exploded/apiUtente?path=changePassword&mail=$email&pass=$new_password"));
+
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      throw Exception('Unexpected error occured!');
+    }
+  }
 }

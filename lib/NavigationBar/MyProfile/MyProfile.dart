@@ -175,7 +175,7 @@ class _MyProfileState extends State<MyProfile> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) {
+                            builder: (BuildContext context) {
                               return const ChangePasswordPage();
                             },
                           ),
@@ -200,7 +200,7 @@ class _MyProfileState extends State<MyProfile> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) {
+                            builder: (BuildContext context) {
                               return const ChangeDataPage();
                             },
                           ),
@@ -215,6 +215,7 @@ class _MyProfileState extends State<MyProfile> {
           Padding(
             padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
             child: FloatingActionButton.extended(
+              heroTag:"SignOUT" ,
               backgroundColor: Colors.deepPurple[500],
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),

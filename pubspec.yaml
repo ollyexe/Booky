@@ -51,6 +51,7 @@ dependencies:
   fk_toggle: ^0.1.4
   flutter_rating_stars: ^1.0.3+4
   flutter_rating_bar: ^4.0.1
+  add_2_calendar: ^2.1.2
 
 dev_dependencies:
   flutter_test:

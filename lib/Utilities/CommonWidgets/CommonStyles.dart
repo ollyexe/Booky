@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
@@ -44,7 +46,7 @@ AppBar customAppBar(
         ? IconButton(
             icon: Icon(Icons.arrow_back,
                 color: Theme.of(context).colorScheme.onPrimary),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () { FocusManager.instance.primaryFocus?.unfocus(); sleep(const Duration(milliseconds: 200));Navigator.of(context).pop();},
           )
         : placeholder,
     toolbarHeight: height,

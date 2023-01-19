@@ -1,3 +1,4 @@
+import 'package:add_2_calendar/add_2_calendar.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -377,6 +378,7 @@ class ListOfLectures extends StatefulWidget {
 }
 
 class _ListOfLecturesState extends State<ListOfLectures> {
+
   final GlobalKey<AnimatedListState> _key = GlobalKey();
   double ratingValue = 5.0;
   void _doneItem(int i) {
@@ -639,6 +641,25 @@ class _ListOfBooksState extends State<ListOfBooks> {
     );
     widget.list.removeAt(i);
   }
+  Future<Event> buildEvent(Lecture lec) async {
+
+    return Event(
+      timeZone: "GMT+1",
+      title: 'Lezione di ${lec.subject} con Prof. ${lec.surname} ${lec.name}',
+      description: 'http://zoom.com/random_reunion',
+      location: 'Metaverso',
+      startDate: DateTime.parse(lec.date +' '+ lec.time).subtract(Duration(hours: 1)),
+      endDate: DateTime.parse(lec.date +' '+ lec.time),
+      allDay: false,
+      iosParams: const IOSParams(
+        reminder: Duration(hours: 1),
+        url: "zoom.com/random_reunion",
+      ),
+      androidParams: AndroidParams(
+        emailInvites: [await SessionManager().get("email")],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -717,11 +738,10 @@ class _ListOfBooksState extends State<ListOfBooks> {
                                     IconButton(
                                       iconSize: 40,
                                       onPressed: () async {
-                                        await launchUrl(
-                                            Uri.parse(
-                                                'https://calendar.google.com/calendar/u/0/r/eventedit?text=Lezione+di+${widget.list[index].subject}+con+${widget.list[index].name}+${widget.list[index].surname}&dates=${widget.list[index].date.replaceAll(RegExp(r'[^\w\s]+'), '')}T${widget.list[index].time.replaceAll(RegExp(r'[^\w\s]+'), '')}00/${widget.list[index].date.replaceAll(RegExp(r'[^\w\s]+'), '')}T${int.parse(widget.list[index].time.replaceAll(RegExp(r'[^\w\s]+'), '')) + 100}00Z&details=zoom.com/random_reunion&location=Metaverso&sf=true&output=xml'),
-                                            mode:
-                                                LaunchMode.externalApplication);
+                                        Event ev = await buildEvent(widget.list[index]);
+                                        Add2Calendar.addEvent2Cal(
+                                          ev,
+                                        );
                                       },
                                       icon: const Icon(
                                           Icons.calendar_month_rounded,

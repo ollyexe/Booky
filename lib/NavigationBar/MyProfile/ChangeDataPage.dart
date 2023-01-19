@@ -27,16 +27,18 @@ class _ChangeDataPageState extends State<ChangeDataPage> {
               children: [
                 Column(
                   children: [
-                    buildTextField("Name", "Matteo"),
-                    buildTextField("Surname", "Barone"),
-                    buildTextField("Email", "matteo.barone@edu.unito.it"),
+                    buildTextField("Name", "your name"),
+                    buildTextField("Surname", "your surname"),
+                    buildTextField("Email", "your@email.com"),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     OutlinedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         style: OutlinedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(horizontal: 50),
                             shape: RoundedRectangleBorder(
