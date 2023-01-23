@@ -19,7 +19,7 @@ class _subjectsSelectedProfState extends State<subjectsSelectedProf> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: customAppBar(
-          placeholderBack,
+          arrowBackNoWait,
           myText("Scegli la materia", 20,
               Theme.of(context).colorScheme.onPrimary, FontWeight.w500),
           60,

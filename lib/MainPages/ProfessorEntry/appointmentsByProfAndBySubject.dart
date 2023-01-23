@@ -23,7 +23,7 @@ class _appointmentsByProfAndBySubjectState
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: customAppBar(
-          placeholderBack,
+          arrowBackNoWait,
           myText("Scegli la lezione", 20,
               Theme.of(context).colorScheme.onPrimary, FontWeight.w500),
           60,

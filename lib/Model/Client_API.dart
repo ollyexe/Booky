@@ -1,7 +1,7 @@
 import 'package:http/http.dart';
 
 class Client_API {
-  String host = "192.168.1.23";
+  String host = "37.182.1.240";
   Future<String> getLezioniDaConfermare(String login) async {
     Response response = await get(Uri.parse(
         "http://$host:9999/servlet_war_exploded/apiLezione?path=getLezioniDaConfermare&mail=$login"));

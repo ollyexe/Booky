@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -46,9 +45,13 @@ AppBar customAppBar(
         ? IconButton(
             icon: Icon(Icons.arrow_back,
                 color: Theme.of(context).colorScheme.onPrimary),
-            onPressed: () { FocusManager.instance.primaryFocus?.unfocus(); sleep(const Duration(milliseconds: 200));Navigator.of(context).pop();},
+            onPressed: () async { FocusManager.instance.primaryFocus!.unfocus();await Future.delayed(const Duration(seconds : 2)) ;Navigator.of(context).pop();},
           )
-        : placeholder,
+        : (widget.key==const Key('BackArrowNoWait')? IconButton(
+    icon: Icon(Icons.arrow_back,
+        color: Theme.of(context).colorScheme.onPrimary),
+  onPressed: () async {  Navigator.of(context).pop();},
+  ) :placeholder),
     toolbarHeight: height,
     actions: [widget],
   );
@@ -65,7 +68,7 @@ AppBar customAppBar4Cart(
             icon: Icon(Icons.arrow_back,
                 color: Theme.of(context).colorScheme.onPrimary),
             onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (BuildContext context) => Root())),
+                MaterialPageRoute(builder: (BuildContext context) => const Root())),
           )
         : placeholder,
     toolbarHeight: height,
@@ -88,6 +91,8 @@ SizedBox placeholder = const SizedBox(width: 0, height: 0);
 
 SizedBox placeholderBack =
     const SizedBox(key: Key('BackArrow'), width: 0, height: 0);
+SizedBox arrowBackNoWait =
+const SizedBox(key: Key('BackArrowNoWait'), width: 0, height: 0);
 
 Widget space = const SizedBox(height: 25);
 

@@ -18,7 +18,7 @@ class _bySubject extends State<bySubject> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: customAppBar(
-          placeholderBack,
+          arrowBackNoWait,
           myText("Scegli la materia", 20,
               Theme.of(context).colorScheme.onPrimary, FontWeight.w500),
           60,
@@ -32,12 +32,27 @@ class _bySubject extends State<bySubject> {
           builder: (BuildContext context, AsyncSnapshot<Subjects> snapshot) {
             if (snapshot.hasData) {
               return (snapshot.hasData
-                  ? GridView.count(
-                      crossAxisCount: 2,
-                      children: List.generate(
-                          snapshot.data!.corsi.length,
+                  ? (snapshot.data!.corsi.length!=0?GridView.count(
+                  crossAxisCount: 2,
+                  children: List.generate(
+                      snapshot.data!.corsi.length,
                           (index) =>
-                              subCardS(context, snapshot.data!.corsi[index])))
+                          subCardS(context, snapshot.data!.corsi[index]))):Row(
+                mainAxisAlignment:MainAxisAlignment.center ,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        border: Border.all(color: Colors.black26, width: 1),
+                      ),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          5, 10, 0, 10),
+                      child: myText("Non ci sono lezioni", 20, Colors.red,
+                          FontWeight.bold)),
+                ],
+              ))
                   : const CircularProgressIndicator());
             } else {
               return const CircularProgressIndicator();

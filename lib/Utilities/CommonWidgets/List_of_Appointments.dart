@@ -153,7 +153,7 @@ class _ListForRatingState extends State<ListForRating> {
                                         builder: (BuildContext context) {
                                           return AlertDialog(
                                             title: const Text(
-                                                "Thank you for chousing US",
+                                                "Thank you for choosing us ",
                                                 style: TextStyle(fontSize: 20)),
                                             content: Column(
                                               mainAxisSize: MainAxisSize.min,
@@ -503,7 +503,7 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                                             builder: (BuildContext context) {
                                               return AlertDialog(
                                                 title: const Text(
-                                                    "Thank you for chousing US",
+                                                    "Thank you for choosing us",
                                                     style: TextStyle(
                                                         fontSize: 20)),
                                                 content: Column(

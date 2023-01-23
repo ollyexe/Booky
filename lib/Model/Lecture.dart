@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-List<Lecture> lectureFromJson(String str) =>
-    List<Lecture>.from(json.decode(str).map((x) => Lecture.fromJson(x)));
+List<Lecture> lectureFromJson(String str) =>List<Lecture>.from(json.decode(str).map((x) => Lecture.fromJson(x)));
 String lecturesToJson(List<Lecture> data) => json.encode(data == null
     ? []
     : List<dynamic>.from(data.map((x) => x.toJson())).toString());

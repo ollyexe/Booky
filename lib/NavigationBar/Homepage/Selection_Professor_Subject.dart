@@ -55,8 +55,12 @@ Column buttonElements(IconData icon, String label, BuildContext context) {
 
 Future<int> nullCheck() async {
   String json = await Client_API().getLezioniLibere();
-  List<Lecture> l = lectureFromJson(json);
+  List<Lecture>? l = lectureFromJson(json);
 
+  if(l.isEmpty){
+    return 0;
+
+  }
   return l.length;
 }
 

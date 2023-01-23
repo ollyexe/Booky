@@ -6,6 +6,7 @@ import 'package:progettoium/Utilities/CommonWidgets/List_of_Appointments.dart';
 
 import '../Model/Lecture.dart';
 import '../main.dart';
+import 'MyProfile/Login.dart';
 
 int cart_size = 0;
 
@@ -91,24 +92,34 @@ class _CartState extends State<Cart> {
                     key: UniqueKey(),
                     direction: placeOrderDirection,
                     onDismissed: (DismissDirection direction) async {
-                      for (int i = 0; i < lectures.length; i++) {
-                        await Client_API().prenotaLezioni(
-                            lectures.elementAt(i).time,
-                            lectures.elementAt(i).date,
-                            lectures.elementAt(i).email,
-                            await SessionManager().get("email"));
-                      }
-                      await SessionManager().remove("cart_list");
+                      bool log_st = await SessionManager().get("login_state");
+                      if( log_st==true){
 
-                      setState(() {
-                        if (direction == DismissDirection.startToEnd) {
-                          placeOrderIcon = const Icon(Icons.check);
-                          placeOrderText = "Payment Confirmed";
-                          placeOrderColorContainer = Colors.green;
-                          placeOrderDirection = DismissDirection.none;
-                          //Add the removal of all the lessons you buyed
+                        for (int i = 0; i < lectures.length; i++) {
+                          await Client_API().prenotaLezioni(
+                              lectures.elementAt(i).time,
+                              lectures.elementAt(i).date,
+                              lectures.elementAt(i).email,
+                              await SessionManager().get("email"));
                         }
-                      });
+                        await SessionManager().remove("cart_list");
+
+                        setState(() {
+                          if (direction == DismissDirection.startToEnd) {
+                            placeOrderIcon = const Icon(Icons.check);
+                            placeOrderText = "Payment Confirmed";
+                            placeOrderColorContainer = Colors.green;
+                            placeOrderDirection = DismissDirection.none;
+                            //Add the removal of all the lessons you buyed
+                          }
+                        });
+                      }
+                      else{
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => const Login()));
+                      }
+
+
                     },
                     background: buyContainer(
                         context,
@@ -221,6 +232,7 @@ IconButton binButton(BuildContext context) {
     icon: Icon(Icons.delete_forever_outlined,
         color: Theme.of(context).colorScheme.error, size: 35),
     onPressed: () async {
+
       await SessionManager().remove("cart_list");
       Navigator.of(context).push(
           MaterialPageRoute(builder: (BuildContext context) => const Root()));

@@ -154,7 +154,8 @@ class _SignUpScreenState extends State<Login> {
               height: 5,
             ),
             GestureDetector(
-              onTap: () {
+              onTap: () async {
+                await sessionManager.set("login_state", "false");
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (BuildContext context) => const Root()));
               },

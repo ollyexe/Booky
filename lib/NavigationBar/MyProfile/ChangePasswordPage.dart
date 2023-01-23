@@ -253,7 +253,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 if (statusDisplay(log)) {
                   await changeP(await SessionManager().get("email"),newPass.text.toString() );
                   changeStatusDisplay(change);
-                  sleep(const Duration(milliseconds: 200));
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  await Future.delayed(const Duration(seconds : 2));
                   Navigator.of(context).pop();
 
                 }
