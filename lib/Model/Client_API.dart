@@ -4,7 +4,7 @@ class Client_API {
   String host = "37.182.1.240";
   Future<String> getLezioniDaConfermare(String login) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiLezione?path=getLezioniDaConfermare&mail=$login"));
+        "http://$host:9999/apiLezione?path=getLezioniDaConfermare&mail=$login"));
 
     if (response.statusCode == 200) {
       return response.body;
@@ -15,7 +15,7 @@ class Client_API {
 
   Future<String> getLezioniFinite(String login) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiLezione?path=getLezioniFinite&mail=$login"));
+        "http://$host:9999/apiLezione?path=getLezioniFinite&mail=$login"));
     if (response.statusCode == 200) {
       return response.body;
     } else {
@@ -26,7 +26,7 @@ class Client_API {
   Future<String> cancelPrenotazione(
       String prof, String data, String time) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiLezione?path=annullaLezione&docente=$prof&data=$data&ora=$time"));
+        "http://$host:9999/apiLezione?path=annullaLezione&docente=$prof&data=$data&ora=$time"));
 
     if (response.statusCode == 200) {
       return response.body;
@@ -37,7 +37,7 @@ class Client_API {
 
   Future<String> concludiLezione(String prof, String data, String time) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiLezione?path=concludiLezione&docente=$prof&data=$data&ora=$time"));
+        "http://$host:9999/apiLezione?path=concludiLezione&docente=$prof&data=$data&ora=$time"));
 
     if (response.statusCode == 200) {
       return response.body;
@@ -49,7 +49,7 @@ class Client_API {
   Future<String> valuta(
       String prof, String data, String time, int stars) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiLezione?"
+        "http://$host:9999/apiLezione?"
         "path=valutaLezione&docente=$prof&stelle=$stars&data=$data&ora=$time"));
 
     if (response.statusCode == 200) {
@@ -61,7 +61,7 @@ class Client_API {
 
   Future<String> getNextLezioniPrenotate(String login) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiLezione?path=getNextLezioniPrenotate&mail=$login"));
+        "http://$host:9999/apiLezione?path=getNextLezioniPrenotate&mail=$login"));
 
     if (response.statusCode == 200) {
       return response.body;
@@ -72,7 +72,7 @@ class Client_API {
 
   Future<String> getProfBySubj(String subject) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiUtente?path=getDocByCorso&corso=$subject"));
+        "http://$host:9999/apiUtente?path=getDocByCorso&corso=$subject"));
     if (response.statusCode == 200) {
       return response.body;
     } else {
@@ -82,7 +82,7 @@ class Client_API {
 
   Future<String> getSubjectByDoc(String email) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiCorso?path=getCorsiByDoc&mail=$email"));
+        "http://$host:9999/apiCorso?path=getCorsiByDoc&mail=$email"));
 
     if (response.statusCode == 200) {
       return response.body;
@@ -94,7 +94,7 @@ class Client_API {
   Future<String> getLoginStatus(String email, String password) async {
     Response response = await get(
       Uri.parse(
-          'http://$host:9999/servlet_war_exploded/apiUtente?path=login&mail=$email&pass=$password'),
+          'http://$host:9999/apiUtente?path=login&mail=$email&pass=$password'),
     );
 
     if (response.statusCode == 200) {
@@ -107,7 +107,7 @@ class Client_API {
   Future<String> getUser(String email) async {
     Response response = await get(
       Uri.parse(
-          'http://$host:9999/servlet_war_exploded/apiUtente?path=getMiniUser&mail=$email'),
+          'http://$host:9999/apiUtente?path=getMiniUser&mail=$email'),
     );
 
     if (response.statusCode == 200) {
@@ -119,7 +119,7 @@ class Client_API {
 
   Future<String> getLezioniLibere() async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiLezione?path=getLezioniLibere"));
+        "http://$host:9999/apiLezione?path=getLezioniLibere"));
 
     if (response.statusCode == 200) {
       return response.body;
@@ -131,7 +131,7 @@ class Client_API {
   Future<String> prenotaLezioni(
       String time, String date, String prof, String stud) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiLezione?path=prenotaLezione&docente=$prof&utente=$stud&data=$date&ora=$time"));
+        "http://$host:9999/apiLezione?path=prenotaLezione&docente=$prof&utente=$stud&data=$date&ora=$time"));
 
     if (response.statusCode == 200) {
       return response.body;
@@ -142,7 +142,7 @@ class Client_API {
 
   Future<String> getLBDoc(String email, String subject) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiLezione?path=getLezioniByDocenteAndCorso&docente=$email&corso=$subject"));
+        "http://$host:9999/apiLezione?path=getLezioniByDocenteAndCorso&docente=$email&corso=$subject"));
     if (response.statusCode == 200) {
       return response.body;
     } else {
@@ -153,7 +153,7 @@ class Client_API {
   Future<String> getLexByDayAndUtente(
       String login, String year, String month, String day) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiLezione?path=getLezioneByUtenteAndByDay&mail=$login&data=$year-$month-$day"));
+        "http://$host:9999/apiLezione?path=getLezioneByUtenteAndByDay&mail=$login&data=$year-$month-$day"));
 
     if (response.statusCode == 200) {
       return response.body;
@@ -164,7 +164,7 @@ class Client_API {
 
   Future<String> getAllSubj() async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiCorso?path=getAllCorsi"));
+        "http://$host:9999/apiCorso?path=getAllCorsi"));
 
     if (response.statusCode == 200) {
       return response.body;
@@ -175,7 +175,7 @@ class Client_API {
 
   Future<String> getAllDocenti() async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiUtente?path=getAllDocenti"));
+        "http://$host:9999/apiUtente?path=getAllDocenti"));
 
     if (response.statusCode == 200) {
       return response.body;
@@ -183,9 +183,10 @@ class Client_API {
       throw Exception('Unexpected error occured!');
     }
   }
-  Future<String> changePassword(String email,String new_password) async {
+
+  Future<String> changePassword(String email, String new_password) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/servlet_war_exploded/apiUtente?path=changePassword&mail=$email&pass=$new_password"));
+        "http://$host:9999/apiUtente?path=changePassword&mail=$email&pass=$new_password"));
 
     if (response.statusCode == 200) {
       return response.body;

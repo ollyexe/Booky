@@ -135,7 +135,9 @@ class _SignUpScreenState extends State<Login> {
                   await sessionManager.set("cognome", u.cognome);
                   await sessionManager.set("ruolo", u.ruolo);
                   await sessionManager.set("pf", u.pf);
-                  sleep(const Duration(milliseconds: 50));
+                  sleep(const Duration(seconds: 2));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(duration: Duration(seconds: 3),content: Text('Login effettuato con Successo!')));
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (BuildContext context) => const Root()));
                 }

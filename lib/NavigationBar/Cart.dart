@@ -113,6 +113,9 @@ class _CartState extends State<Cart> {
                             //Add the removal of all the lessons you buyed
                           }
                         });
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(duration: Duration(seconds: 3),content: Text('Hai acquistato con successo le tue lezioni!')));
+
                       }
                       else{
                         Navigator.of(context).push(MaterialPageRoute(
