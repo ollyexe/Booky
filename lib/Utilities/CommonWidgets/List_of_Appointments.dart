@@ -206,6 +206,8 @@ class _ListForRatingState extends State<ListForRating> {
                                                             .list[index].email,
                                                         widget.list[index].date,
                                                         widget.list[index].time,
+                                                        widget.list[index]
+                                                            .subject,
                                                         ratingValue.toInt());
                                                     widget.update();
                                                     Navigator.pop(context);
@@ -253,7 +255,7 @@ class _ListForCartState extends State<ListForCart> {
   void _removeItem(int i) {
     _key.currentState!.removeItem(
       i,
-          (context, animation) {
+      (context, animation) {
         return SizeTransition(
           sizeFactor: animation,
           child: Card(
@@ -366,8 +368,8 @@ class _ListForCartState extends State<ListForCart> {
                                       context),
                                   Padding(
                                     padding:
-                                    const EdgeInsetsDirectional.fromSTEB(
-                                        15, 0, 0, 0),
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            15, 0, 0, 0),
                                     child: containerSingleLecture(
                                         widget.list[index].date,
                                         Theme.of(context)
@@ -396,18 +398,18 @@ class _ListForCartState extends State<ListForCart> {
                                 //api to add
                                 if (await SessionManager()
                                     .containsKey("cart_list")) {
-                                  String json = await (SessionManager()
-                                      .get("cart_list"));
+                                  String json =
+                                      await (SessionManager().get("cart_list"));
                                   cart = lectureFromJson(json);
 
                                   cart.removeAt(index);
-                                  await SessionManager().set(
-                                      "cart_list", lecturesToJson(cart));
+                                  await SessionManager()
+                                      .set("cart_list", lecturesToJson(cart));
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>
-                                          const Cart()));
+                                              const Cart()));
                                 }
 
                                 _removeItem(index);
@@ -443,7 +445,7 @@ class _ListOfLecturesState extends State<ListOfLectures> {
   void _doneItem(int i) {
     _key.currentState!.removeItem(
       i,
-          (context, animation) {
+      (context, animation) {
         return SizeTransition(
           sizeFactor: animation,
           child: Card(
@@ -554,8 +556,8 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                                       context),
                                   Padding(
                                     padding:
-                                    const EdgeInsetsDirectional.fromSTEB(
-                                        15, 0, 0, 0),
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            15, 0, 0, 0),
                                     child: containerSingleLecture(
                                         widget.list[index].date,
                                         Theme.of(context)
@@ -579,6 +581,7 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                             onPressed: () async {
                               await Client_API().concludiLezione(
                                   widget.list[index].email,
+                                  widget.list[index].subject,
                                   widget.list[index].date,
                                   widget.list[index].time);
                               await showDialog(
@@ -587,49 +590,32 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                                     return AlertDialog(
                                       title: const Text(
                                           "Thank you for choosing us",
-                                          style: TextStyle(
-                                              fontSize: 20)),
+                                          style: TextStyle(fontSize: 20)),
                                       content: Column(
-                                        mainAxisSize:
-                                        MainAxisSize.min,
+                                        mainAxisSize: MainAxisSize.min,
                                         children: [
                                           const Text("Please",
                                               style: TextStyle(
                                                   fontSize: 15,
-                                                  color:
-                                                  Colors.grey)),
-                                          myText(
-                                              "Rate the lecture",
-                                              20,
-                                              Colors.black,
-                                              FontWeight.bold),
+                                                  color: Colors.grey)),
+                                          myText("Rate the lecture", 20,
+                                              Colors.black, FontWeight.bold),
                                           RatingBar(
                                               initialRating: 5,
-                                              direction:
-                                              Axis.horizontal,
+                                              direction: Axis.horizontal,
                                               itemCount: 5,
-                                              ratingWidget:
-                                              RatingWidget(
-                                                  full: const Icon(
-                                                      Icons.star,
-                                                      color: Colors
-                                                          .orange),
-                                                  half:
-                                                  const Icon(
-                                                    Icons
-                                                        .star_half,
-                                                    color: Colors
-                                                        .orange,
+                                              ratingWidget: RatingWidget(
+                                                  full: const Icon(Icons.star,
+                                                      color: Colors.orange),
+                                                  half: const Icon(
+                                                    Icons.star_half,
+                                                    color: Colors.orange,
                                                   ),
-                                                  empty:
-                                                  const Icon(
-                                                    Icons
-                                                        .star_outline,
-                                                    color: Colors
-                                                        .orange,
+                                                  empty: const Icon(
+                                                    Icons.star_outline,
+                                                    color: Colors.orange,
                                                   )),
-                                              onRatingUpdate:
-                                                  (value) {
+                                              onRatingUpdate: (value) {
                                                 setState(() {
                                                   ratingValue = value;
                                                 });
@@ -639,8 +625,7 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                                       actions: <Widget>[
                                         TextButton(
                                             onPressed: () {
-                                              Navigator.of(context)
-                                                  .pop();
+                                              Navigator.of(context).pop();
                                             },
                                             child: const Text("Later",
                                                 style: TextStyle(
@@ -648,25 +633,17 @@ class _ListOfLecturesState extends State<ListOfLectures> {
                                                 ))),
                                         TextButton(
                                             onPressed: () async {
-                                              await Client_API()
-                                                  .valuta(
-                                                  widget
-                                                      .list[index]
-                                                      .email,
-                                                  widget
-                                                      .list[index]
-                                                      .date,
-                                                  widget
-                                                      .list[index]
-                                                      .time,
-                                                  ratingValue
-                                                      .toInt());
+                                              await Client_API().valuta(
+                                                  widget.list[index].email,
+                                                  widget.list[index].date,
+                                                  widget.list[index].time,
+                                                  widget.list[index].subject,
+                                                  ratingValue.toInt());
                                               Navigator.pop(context);
                                             },
                                             child: const Text(
                                               "Rate",
-                                              style: TextStyle(
-                                                  fontSize: 18),
+                                              style: TextStyle(fontSize: 18),
                                             )),
                                       ],
                                     );
@@ -723,15 +700,16 @@ class _ListOfBooksState extends State<ListOfBooks> {
     );
     widget.list.removeAt(i);
   }
-  Future<Event> buildEvent(Lecture lec) async {
 
+  Future<Event> buildEvent(Lecture lec) async {
     return Event(
       timeZone: "GMT+1",
       title: 'Lezione di ${lec.subject} con Prof. ${lec.surname} ${lec.name}',
       description: 'http://zoom.com/random_reunion',
       location: 'Metaverso',
-      startDate: DateTime.parse(lec.date +' '+ lec.time).subtract(Duration(hours: 1)),
-      endDate: DateTime.parse(lec.date +' '+ lec.time),
+      startDate: DateTime.parse(lec.date + ' ' + lec.time)
+          .subtract(Duration(hours: 1)),
+      endDate: DateTime.parse(lec.date + ' ' + lec.time),
       allDay: false,
       iosParams: const IOSParams(
         reminder: Duration(hours: 1),
@@ -789,15 +767,22 @@ class _ListOfBooksState extends State<ListOfBooks> {
                                       backgroundImage: widget.list[index].image,
                                       radius: 25,
                                     ),
-                                    SizedBox(height: 5,),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
                                     Container(
                                       decoration: BoxDecoration(
-                                          color: Theme.of(context).colorScheme.secondaryContainer,
-                                          borderRadius: BorderRadius.circular(7)),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondaryContainer,
+                                          borderRadius:
+                                              BorderRadius.circular(7)),
                                       child: Row(
                                         children: [
                                           Icon(Icons.star,
-                                              color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .onSecondaryContainer,
                                               size: 18),
                                           myText(
                                               "${widget.list[index].rating}",
@@ -806,11 +791,11 @@ class _ListOfBooksState extends State<ListOfBooks> {
                                                   .colorScheme
                                                   .onSecondaryContainer
                                                   .withOpacity(0.6),
-                                              FontWeight.w600), //CHANGE 4.7 TO A VARIABLE
+                                              FontWeight
+                                                  .w600), //CHANGE 4.7 TO A VARIABLE
                                         ],
                                       ),
                                     ),
-
                                   ],
                                 ),
                                 const SizedBox(width: 40),
@@ -833,12 +818,21 @@ class _ListOfBooksState extends State<ListOfBooks> {
                                     const SizedBox(width: 40),
                                     Row(
                                       children: [
-                                        containerSingleLecture(widget.list[index].time,
-                                            Theme.of(context).colorScheme.tertiaryContainer, context),
+                                        containerSingleLecture(
+                                            widget.list[index].time,
+                                            Theme.of(context)
+                                                .colorScheme
+                                                .tertiaryContainer,
+                                            context),
                                         Padding(
-                                          padding: const EdgeInsetsDirectional.fromSTEB(15, 0, 0, 0),
-                                          child: containerSingleLecture(widget.list[index].date,
-                                              Theme.of(context).colorScheme.tertiaryContainer, context),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(15, 0, 0, 0),
+                                          child: containerSingleLecture(
+                                              widget.list[index].date,
+                                              Theme.of(context)
+                                                  .colorScheme
+                                                  .tertiaryContainer,
+                                              context),
                                         )
                                       ],
                                     ),
@@ -857,7 +851,8 @@ class _ListOfBooksState extends State<ListOfBooks> {
                                     IconButton(
                                       iconSize: 40,
                                       onPressed: () async {
-                                        Event ev = await buildEvent(widget.list[index]);
+                                        Event ev = await buildEvent(
+                                            widget.list[index]);
                                         Add2Calendar.addEvent2Cal(
                                           ev,
                                         );
@@ -872,6 +867,7 @@ class _ListOfBooksState extends State<ListOfBooks> {
                                         await Client_API().cancelPrenotazione(
                                             widget.list[index].email,
                                             widget.list[index].date,
+                                            widget.list[index].subject,
                                             widget.list[index].time);
                                         _removeItem(index);
                                       },
@@ -907,11 +903,11 @@ class ListForSubject extends StatefulWidget {
 
 class _ListForSubjectState extends State<ListForSubject> {
   final GlobalKey<AnimatedListState> _key = GlobalKey();
-  List<Lecture> cart=[];
+  List<Lecture> cart = [];
   void _additem(int i) {
     _key.currentState!.removeItem(
       i,
-          (context, animation) {
+      (context, animation) {
         return SizeTransition(
           sizeFactor: animation,
           child: Card(
@@ -919,7 +915,7 @@ class _ListForSubjectState extends State<ListForSubject> {
             color: Colors.green,
             child: ListTile(
               title:
-              myText("Added To Cart", 24, Colors.black, FontWeight.normal),
+                  myText("Added To Cart", 24, Colors.black, FontWeight.normal),
             ),
           ),
         );
@@ -931,154 +927,158 @@ class _ListForSubjectState extends State<ListForSubject> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: AnimatedList(
-        key: _key,
-        initialItemCount: widget.list.length,
-        padding: const EdgeInsets.all(10),
-        itemBuilder: (context, index, animation) {
-          return SizeTransition(
-            key: UniqueKey(),
-            sizeFactor: animation,
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    //border: Border.all(color: Colors.black26, width: 1),
-                  ),
-                  padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
+    return Column(
+      children: [
+        Expanded(
+          child: AnimatedList(
+            key: _key,
+            initialItemCount: widget.list.length,
+            padding: const EdgeInsets.all(10),
+            itemBuilder: (context, index, animation) {
+              return SizeTransition(
+                key: UniqueKey(),
+                sizeFactor: animation,
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        //border: Border.all(color: Colors.black26, width: 1),
+                      ),
+                      padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 10),
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CircleAvatar(
-                            backgroundImage: widget.list[index].image,
-                            radius: 25,
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondaryContainer,
-                                borderRadius: BorderRadius.circular(7)),
-                            child: Row(
-                              children: [
-                                Icon(Icons.star,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CircleAvatar(
+                                backgroundImage: widget.list[index].image,
+                                radius: 25,
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
                                     color: Theme.of(context)
                                         .colorScheme
-                                        .onSecondaryContainer,
-                                    size: 18),
-                                myText(
-                                    "${widget.list[index].rating}",
-                                    15,
-                                    Theme.of(context)
-                                        .colorScheme
-                                        .onSecondaryContainer
-                                        .withOpacity(0.6),
-                                    FontWeight.w600), //CHANGE 4.7 TO A VARIABLE
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          const SizedBox(
-                            width: 40,
+                                        .secondaryContainer,
+                                    borderRadius: BorderRadius.circular(7)),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.star,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondaryContainer,
+                                        size: 18),
+                                    myText(
+                                        "${widget.list[index].rating}",
+                                        15,
+                                        Theme.of(context)
+                                            .colorScheme
+                                            .onSecondaryContainer
+                                            .withOpacity(0.6),
+                                        FontWeight.w600), //CHANGE 4.7 TO A VARIABLE
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                           Column(
                             children: [
+                              const SizedBox(
+                                width: 40,
+                              ),
                               Column(
                                 children: [
-                                  myText(
-                                      "Prof ${widget.list[index].name} ${widget.list[index].surname}",
-                                      19,
-                                      Theme.of(context)
-                                          .colorScheme
-                                          .onPrimaryContainer,
-                                      FontWeight.w500),
-                                  myText(
-                                      widget.list[index].subject,
-                                      15,
-                                      Theme.of(context)
-                                          .colorScheme
-                                          .onPrimaryContainer,
-                                      FontWeight.normal)
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  containerSingleLecture(
-                                      widget.list[index].time,
-                                      Theme.of(context)
-                                          .colorScheme
-                                          .tertiaryContainer,
-                                      context),
-                                  Padding(
-                                    padding:
-                                    const EdgeInsetsDirectional.fromSTEB(
-                                        15, 0, 0, 0),
-                                    child: containerSingleLecture(
-                                        widget.list[index].date,
-                                        Theme.of(context)
-                                            .colorScheme
-                                            .tertiaryContainer,
-                                        context),
-                                  )
+                                  Column(
+                                    children: [
+                                      myText(
+                                          "Prof ${widget.list[index].name} ${widget.list[index].surname}",
+                                          19,
+                                          Theme.of(context)
+                                              .colorScheme
+                                              .onPrimaryContainer,
+                                          FontWeight.w500),
+                                      myText(
+                                          widget.list[index].subject,
+                                          15,
+                                          Theme.of(context)
+                                              .colorScheme
+                                              .onPrimaryContainer,
+                                          FontWeight.normal)
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      containerSingleLecture(
+                                          widget.list[index].time,
+                                          Theme.of(context)
+                                              .colorScheme
+                                              .tertiaryContainer,
+                                          context),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsetsDirectional.fromSTEB(
+                                                15, 0, 0, 0),
+                                        child: containerSingleLecture(
+                                            widget.list[index].date,
+                                            Theme.of(context)
+                                                .colorScheme
+                                                .tertiaryContainer,
+                                            context),
+                                      )
+                                    ],
+                                  ),
                                 ],
                               ),
                             ],
                           ),
+                          Column(
+                            children: [
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              IconButton(
+                                  icon: const Icon(
+                                    Icons.add,
+                                    size: 40,
+                                    color: Colors.yellow,
+                                  ),
+                                  onPressed: () async {
+                                    //api to add
+                                    if (await SessionManager()
+                                        .containsKey("cart_list")) {
+                                      String json =
+                                          await (SessionManager().get("cart_list"));
+                                      cart = lectureFromJson(json);
+
+                                      cart.add(widget.list[index]);
+                                      await SessionManager()
+                                          .set("cart_list", lecturesToJson(cart));
+                                    } else {
+                                      List<Lecture> l = [];
+                                      l.add(widget.list[index]);
+                                      await SessionManager()
+                                          .set("cart_list", lecturesToJson(l));
+                                    }
+                                    _additem(index);
+                                  })
+                            ],
+                          )
                         ],
                       ),
-                      Column(
-                        children: [
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          IconButton(
-                              icon: const Icon(
-                                Icons.add,
-                                size: 40,
-                                color: Colors.yellow,
-                              ),
-                              onPressed: () async {
-                                //api to add
-                                if (await SessionManager()
-                                    .containsKey("cart_list")) {
-                                  String json = await (SessionManager()
-                                      .get("cart_list"));
-                                  cart = lectureFromJson(json);
-
-                                  cart.add(widget.list[index]);
-                                  await SessionManager().set(
-                                      "cart_list", lecturesToJson(cart));
-                                } else {
-                                  List<Lecture> l = [];
-                                  l.add(widget.list[index]);
-                                  await SessionManager()
-                                      .set("cart_list", lecturesToJson(l));
-                                }
-                                _additem(index);
-                              })
-                        ],
-                      )
-                    ],
-                  ),
+                    ),
+                    space
+                  ],
                 ),
-                space
-              ],
-            ),
-          );
-        },
-      ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }
@@ -1088,9 +1088,7 @@ Widget topWidget(Lecture lecture, BuildContext context) {
     padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 0, 0),
     child: Row(
       children: const [
-
         SizedBox(width: 40),
-
         SizedBox(width: 40),
       ],
     ),

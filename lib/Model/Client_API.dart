@@ -1,10 +1,48 @@
 import 'package:http/http.dart';
 
 class Client_API {
-  String host = "37.182.1.240";
-  Future<String> getLezioniDaConfermare(String login) async {
+  String host = "10.0.2.2";
+  Future<String> cancelPrenotazione(
+      String prof, String data,String subj, String time) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/apiLezione?path=getLezioniDaConfermare&mail=$login"));
+        "http://$host:9999/apiLezione?path=annullaLezione&docente=$prof&data=$data&ora=$time&corso=$subj"));
+
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      throw Exception('Unexpected error occured!');
+    }
+  }
+
+  Future<String> concludiLezione(String prof, String subj,String data, String time) async {
+    Response response = await get(Uri.parse(
+        "http://$host:9999/apiLezione?path=concludiLezione&docente=$prof&data=$data&ora=$time&corso=$subj"));
+
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      throw Exception('Unexpected error occured!');
+    }
+  }
+
+  Future<String> valuta(
+      String prof, String data, String time,String subj, int stars) async {
+    Response response = await get(Uri.parse(
+        "http://$host:9999/apiLezione?"
+        "path=valutaLezione&docente=$prof&stelle=$stars&data=$data&ora=$time&corso=$subj"));
+
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      throw Exception('Unexpected error occured!');
+    }
+  }
+
+  Future<String> prenotaLezioni(
+      String time, String date, String prof, String subj,String stud) async {
+    Response response = await get(Uri.parse(
+        "http://$host:9999/apiLezione?path=prenotaLezione&docente=$prof&utente=$stud&data=$date&ora=$time&corso=$subj"));
+
 
     if (response.statusCode == 200) {
       return response.body;
@@ -23,34 +61,9 @@ class Client_API {
     }
   }
 
-  Future<String> cancelPrenotazione(
-      String prof, String data, String time) async {
+  Future<String> getLezioniDaConfermare(String login) async {
     Response response = await get(Uri.parse(
-        "http://$host:9999/apiLezione?path=annullaLezione&docente=$prof&data=$data&ora=$time"));
-
-    if (response.statusCode == 200) {
-      return response.body;
-    } else {
-      throw Exception('Unexpected error occured!');
-    }
-  }
-
-  Future<String> concludiLezione(String prof, String data, String time) async {
-    Response response = await get(Uri.parse(
-        "http://$host:9999/apiLezione?path=concludiLezione&docente=$prof&data=$data&ora=$time"));
-
-    if (response.statusCode == 200) {
-      return response.body;
-    } else {
-      throw Exception('Unexpected error occured!');
-    }
-  }
-
-  Future<String> valuta(
-      String prof, String data, String time, int stars) async {
-    Response response = await get(Uri.parse(
-        "http://$host:9999/apiLezione?"
-        "path=valutaLezione&docente=$prof&stelle=$stars&data=$data&ora=$time"));
+        "http://$host:9999/apiLezione?path=getLezioniDaConfermare&mail=$login"));
 
     if (response.statusCode == 200) {
       return response.body;
@@ -124,19 +137,7 @@ class Client_API {
     if (response.statusCode == 200) {
       return response.body;
     } else {
-      throw Exception('Unexpected error occured!');
-    }
-  }
-
-  Future<String> prenotaLezioni(
-      String time, String date, String prof, String stud) async {
-    Response response = await get(Uri.parse(
-        "http://$host:9999/apiLezione?path=prenotaLezione&docente=$prof&utente=$stud&data=$date&ora=$time"));
-
-    if (response.statusCode == 200) {
-      return response.body;
-    } else {
-      throw Exception('Unexpected error occured!');
+      return "";
     }
   }
 
@@ -165,6 +166,7 @@ class Client_API {
   Future<String> getAllSubj() async {
     Response response = await get(Uri.parse(
         "http://$host:9999/apiCorso?path=getAllCorsi"));
+    print(response.statusCode);
 
     if (response.statusCode == 200) {
       return response.body;

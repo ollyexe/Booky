@@ -24,7 +24,7 @@ GestureDetector buildButton(IconData icon, String label, BuildContext context) {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) => bySubject()));
           } else {
-            //ERROR
+
           }
         } else {
           showDialog(

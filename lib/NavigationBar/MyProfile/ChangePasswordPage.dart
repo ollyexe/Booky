@@ -134,7 +134,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           children: [
             Column(
               children: [
-                myText("Create New Password", 37, const Color(0xFF3B5998),
+                myText("Create New Password", 35, const Color(0xFF3B5998),
                     FontWeight.w600),
                 const SizedBox(
                   height: 10,

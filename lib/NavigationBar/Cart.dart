@@ -100,6 +100,7 @@ class _CartState extends State<Cart> {
                               lectures.elementAt(i).time,
                               lectures.elementAt(i).date,
                               lectures.elementAt(i).email,
+                              lectures.elementAt(i).subject,
                               await SessionManager().get("email"));
                         }
                         await SessionManager().remove("cart_list");

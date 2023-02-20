@@ -35,7 +35,9 @@ class _byProfessorState extends State<byProfessor> {
                   ? (snapshot.data!.length!=0? GridView.count(
                   crossAxisCount: 2,
                   children: List.generate(snapshot.data!.length,
-                          (index) => profCard(context, snapshot.data![index]))):Row(
+                          (index) => profCard(context, snapshot.data![index]))):
+
+              Row(
                             mainAxisAlignment:MainAxisAlignment.center ,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [

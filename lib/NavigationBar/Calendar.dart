@@ -16,7 +16,7 @@ class Calendar extends StatefulWidget {
 
 class _CalendarState extends State<Calendar> {
   DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
+  DateTime? _selectedDay=DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.month;
 
   @override
@@ -62,7 +62,7 @@ class _CalendarState extends State<Calendar> {
                 (BuildContext context, AsyncSnapshot<List<Lecture>> snapshot) {
               if (snapshot.data != null) {
                 return (snapshot.hasData
-                    ? ListOfLectures(snapshot.data!, () {})
+                    ? ListOfBooks(snapshot.data!, () {})
                     : const CircularProgressIndicator());
               } else {
                 return (!snapshot.hasData
